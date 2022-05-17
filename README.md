@@ -4,9 +4,9 @@ Código back-end da aplicação em nodejs.
 
 COMANDOS:
 
-docker: sudo docker-compose up -d
+DOCKER : sudo docker-compose up -d
 
-ORM   : yarn typeorm migration:run -d src/data-source.ts
+ORM    : yarn typeorm migration:run -d src/data-source.ts
 
 Dados DB:
 porta externa: 5435
