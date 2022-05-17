@@ -8,7 +8,7 @@ export const AppDataSource =
     ? new DataSource({
         type: "sqlite",
         database: ":memory:",
-        entities: ["src/models/*.ts"],
+        entities: ["src/entities/*.ts"],
         synchronize: true,
       })
 
@@ -21,7 +21,7 @@ export const AppDataSource =
         database: process.env.POSTGRES_DB,
         synchronize: false,
         logging: true,
-        entities: ["src/models/*.ts"],
+        entities: ["src/entities/*.ts"],
         migrations: ["src/migrations/*.ts"],
       });
 
