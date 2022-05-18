@@ -1,8 +1,9 @@
-import { Entity, Column, PrimaryColumn } from "typeorm";
+import { Entity, Column, PrimaryColumn, ManyToOne } from "typeorm";
 import { v4 as uuid } from "uuid";
+// import { Category } from "./category.entity";
 
 @Entity()
-export class User {
+export class Product {
   @PrimaryColumn("uuid")
   readonly id: string;
 
@@ -10,23 +11,22 @@ export class User {
   name: string;
 
   @Column()
-  nickname: string;
-
-
-  @Column()
-  birthday: Date;
+  description: string;
 
   @Column()
-  email: string;
+  price: number;
 
   @Column()
-  password: string;
+  likes: number;
 
   @Column()
   created_at: Date;
 
   @Column()
   updated_at: Date;
+
+  // @ManyToOne(type => Category, category => category.id  )
+  //   category: Category
 
   constructor() {
     if (!this.id) {
