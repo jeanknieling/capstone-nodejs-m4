@@ -1,7 +1,7 @@
 export interface IUser {
   id: string;
   name: string;
-  surname: string;
+  nickname: string;
   birthday: Date;
   email: string;
   password: string;
@@ -11,8 +11,8 @@ export interface IUser {
 
 export interface IUserCreate {
   name: string;
-  surname: string;
-  birthday: number;
+  nickname: string;
+  birthday: Date;
   email: string;
   password: string;
 }
