@@ -1,26 +1,24 @@
-import { Entity, Column, PrimaryColumn } from "typeorm";
-import { v4 as uuid } from "uuid";
+import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class User {
-  @PrimaryColumn("uuid")
-  readonly id: string;
+export class Address {
+  @PrimaryGeneratedColumn()
+  readonly id: number;
 
   @Column()
-  name: string;
+  zipcode: string;
 
   @Column()
-  nickname: string;
-
-
-  @Column()
-  birthday: Date;
+  street: string;
 
   @Column()
-  email: string;
+  number: string;
 
   @Column()
-  password: string;
+  neighborhood: string;
+
+  @Column()
+  complement: string;
 
   @Column()
   created_at: Date;
@@ -29,9 +27,6 @@ export class User {
   updated_at: Date;
 
   constructor() {
-    if (!this.id) {
-      this.id = uuid();
-    }
     if (!this.created_at) {
       this.created_at = new Date();
     }
