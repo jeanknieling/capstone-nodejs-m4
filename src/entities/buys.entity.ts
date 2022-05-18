@@ -9,8 +9,8 @@ export class Buys {
   @Column()
   status: string;
 
-  @ManyToOne( )
-  client_id: number;
+  // @ManyToOne( )
+  // client_id: number;
 
   
   @Column()
