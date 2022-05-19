@@ -12,7 +12,6 @@ export class User {
   @Column()
   nickname: string;
 
-
   @Column()
   birthday: Date;
 
@@ -21,6 +20,9 @@ export class User {
 
   @Column()
   password: string;
+
+  @Column()
+  isAdm: boolean;
 
   @Column()
   created_at: Date;

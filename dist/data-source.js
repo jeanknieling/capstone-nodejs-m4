@@ -1,15 +1,16 @@
-import { DataSource } from "typeorm";
-import "dotenv/config";
-
-export const AppDataSource =
-  process.env.NODE_ENV === "test"
-    ? new DataSource({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AppDataSource = void 0;
+const typeorm_1 = require("typeorm");
+require("dotenv/config");
+exports.AppDataSource = process.env.NODE_ENV === "test"
+    ? new typeorm_1.DataSource({
         type: "sqlite",
         database: ":memory:",
         entities: ["src/entities/*.ts"],
         synchronize: true,
-      })
-    : new DataSource({
+    })
+    : new typeorm_1.DataSource({
         type: "postgres",
         host: "localhost",
         port: 5435,
@@ -20,17 +21,8 @@ export const AppDataSource =
         logging: true,
         entities: ["src/entities/*.ts"],
         migrations: ["src/migrations/*.ts"],
-      });
-
-AppDataSource.initialize()
-  .then(() => {
-    console.log("Data Source Initialized");
-  })
-  .catch((err) => {
-    console.error("Error during Data Source Initialization", err);
-  });
-
-// DADOS PARA DEPLOY>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    });
+// DADOS PARA DEPLOY>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
 // : new DataSource({
 //     type: "postgres",
 //     host: "localhost",
