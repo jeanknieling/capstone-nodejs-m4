@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryColumn, OneToOne, OneToMany, ManyToOne } from "typeorm";
+import { Entity, Column, PrimaryColumn, OneToOne, OneToMany, ManyToOne, JoinColumn } from "typeorm";
+import { User } from "./user.entity";
 
 
 @Entity()
@@ -6,17 +7,17 @@ export class Buys {
   @PrimaryColumn("uuid")
   readonly id: string;
 
+  @ManyToOne(type => User, user => user.buys)
+  @JoinColumn({ name: "user_id" })
+  user: User
+
   @Column()
   status: string;
-
-  @ManyToOne( )
-  client_id: number;
-
   
-  @Column()
+  @Column({ name: "created_at" })
   created_at: Date;
 
-  @Column()
+  @Column({ name: "updated_at" })
   updated_at: Date;
 
   constructor() {
