@@ -6,25 +6,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 require("express-async-errors");
 require("reflect-metadata");
-// import AppError from './errors/appErrors';
 const index_1 = __importDefault(require("./routes/index"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use(index_1.default);
-// app.use((err: Error, request: Request, response: Response, next: NextFunction) =>{
-//     if (err instanceof AppError){
-//         return response.status(err.statusCode).json({
-//             status: "error",
-//             message: err.message,
-//         })
-//     }
-//     console.log(err)
-//     return response.status(500).json({
-//         status: "error",
-//         message: "Internal Server Error",
-//     })
-// })
-app.listen(3000, () => {
-    console.log("Server running 3000");
+app.get("/home", (request, response) => {
+    response.send("<h1>Bem vindo ao capstone do grupo 8!!!</h1>");
+});
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Server running ${port}`);
 });
 exports.default = app;
