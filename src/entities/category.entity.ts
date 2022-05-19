@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { Product } from "./product.entity";
 
 @Entity()
 export class Category {
@@ -11,6 +12,8 @@ export class Category {
   @Column()
   discount_value: number;
 
+  @OneToMany((type) => Product, product => product.category)
+  product: Product
   
   @Column()
   created_at: Date;

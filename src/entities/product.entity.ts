@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryColumn, ManyToOne } from "typeorm";
 import { v4 as uuid } from "uuid";
-// import { Category } from "./category.entity";
+import { Category } from "./category.entity";
 
 @Entity()
 export class Product {
@@ -25,8 +25,10 @@ export class Product {
   @Column()
   updated_at: Date;
 
-  // @ManyToOne(type => Category, category => category.id  )
-  //   category: Category
+  @ManyToOne((type) => Category, category => category.product, {
+    eager: true
+  })
+  category: Category
 
   constructor() {
     if (!this.id) {
@@ -40,3 +42,16 @@ export class Product {
     }
   }
 }
+
+// @CreateDateColumn({
+//   type: "timestamp",
+//   default: () => "CURRENT_TIMESTAMP(6)",
+// })
+// public created_at: Date;
+
+// @UpdateDateColumn({
+//   type: "timestamp",
+//   default: () => "CURRENT_TIMESTAMP(6)",
+//   onUpdate: "CURRENT_TIMESTAMP(6)",
+// })
+// public updated_at: Date;
