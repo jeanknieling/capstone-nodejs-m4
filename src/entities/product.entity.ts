@@ -1,6 +1,7 @@
-import { Entity, Column, PrimaryColumn, ManyToOne } from "typeorm";
+import { Entity, Column, PrimaryColumn, ManyToOne, OneToMany } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Category } from "./category.entity";
+import { Order } from "./order.entity";
 
 @Entity()
 export class Product {
@@ -25,10 +26,11 @@ export class Product {
   @Column()
   updated_at: Date;
 
-  @ManyToOne((type) => Category, category => category.product, {
-    eager: true
-  })
+  @ManyToOne((type) => Category, category => category.product)
   category: Category
+
+  @OneToMany((type) => Order, order => order.product)
+  order: Order[]
 
   constructor() {
     if (!this.id) {

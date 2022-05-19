@@ -1,6 +1,6 @@
-import { Entity, Column, PrimaryColumn, OneToOne, OneToMany, ManyToOne, JoinColumn } from "typeorm";
+import { Entity, Column, PrimaryColumn, OneToMany, ManyToOne, JoinColumn } from "typeorm";
+import { Order } from "./order.entity";
 import { User } from "./user.entity";
-
 
 @Entity()
 export class Buys {
@@ -8,16 +8,19 @@ export class Buys {
   readonly id: string;
 
   @ManyToOne(type => User, user => user.buys)
-  @JoinColumn({ name: "user_id" })
+  @JoinColumn()
   user: User
+
+  @OneToMany((type) => Order, order => order.buy)
+  order: Order[]
 
   @Column()
   status: string;
   
-  @Column({ name: "created_at" })
+  @Column()
   created_at: Date;
 
-  @Column({ name: "updated_at" })
+  @Column()
   updated_at: Date;
 
   constructor() {
