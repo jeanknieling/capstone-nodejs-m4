@@ -1,5 +1,7 @@
-import { Entity, Column, PrimaryColumn } from "typeorm";
+import { Entity, Column, PrimaryColumn, OneToMany } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { Address } from "./address.entity";
+import { Buys } from "./buys.entity";
 
 @Entity()
 export class User {
@@ -29,6 +31,16 @@ export class User {
 
   @Column()
   updated_at: Date;
+
+  @OneToMany((type) => Address, address => address.user, {
+    eager: true
+  })
+  address: Address[];
+
+  @OneToMany(type => Buys, buys => buys.user, {
+    eager: true
+  })
+  buys: Buys[];
 
   constructor() {
     if (!this.id) {
