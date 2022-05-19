@@ -1,13 +1,22 @@
 import express, { Request, Response, NextFunction } from "express";
 import "express-async-errors";
 import "reflect-metadata";
-// import AppError from './errors/appErrors';
-import routes from "./routes/index";
+import { appRoutes } from "./routes/index";
 
 const app = express();
 
 app.use(express.json());
-app.use(routes);
+
+appRoutes(app);
+
+app.listen(3000, () => {
+  console.log("Server running 3000");
+});
+
+export default app;
+
+// import AppError from './errors/appErrors';
+
 // app.use((err: Error, request: Request, response: Response, next: NextFunction) =>{
 //     if (err instanceof AppError){
 //         return response.status(err.statusCode).json({
@@ -22,9 +31,3 @@ app.use(routes);
 //         message: "Internal Server Error",
 //     })
 // })
-
-app.listen(3000, () => {
-  console.log("Server running 3000");
-});
-
-export default app;

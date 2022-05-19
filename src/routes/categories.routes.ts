@@ -3,11 +3,13 @@ import { Router } from "express";
 import { authUser } from "../middlewares/user/authUser.middleware";
 import { verifyisAdmMiddleware } from "../middlewares/user/authUser.middleware";
 
-const categoriesRoutes = Router();
+const routes = Router();
 
-categoriesRoutes.post("/", )
-categoriesRoutes.get("/", )
-categoriesRoutes.patch("/", )
-categoriesRoutes.delete("/", )
+export const categoriesRoutes = () => {
+  routes.post("/", );
+  routes.get("/", );
+  routes.patch("/", );
+  routes.delete("/", );
 
-export default categoriesRoutes;
+  return routes;
+}

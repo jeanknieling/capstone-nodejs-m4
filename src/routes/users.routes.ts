@@ -10,13 +10,16 @@ import userUpdateController from "../controllers/user/userUpdate.controller";
 import { authUser } from "../middlewares/user/authUser.middleware";
 import { verifyisAdmMiddleware } from "../middlewares/user/authUser.middleware";
 
-const usersRoutes = Router();
+const routes = Router();
 
-usersRoutes.post("/users", userCreateController);
-usersRoutes.post("/users/login", userLoginController);
-usersRoutes.get("/users", userListController);
-usersRoutes.get("/users/:id", authUser, userListOneController);
-usersRoutes.delete("/users/:id", authUser, userDeleteSelfController);
-usersRoutes.patch("/users/:id", authUser, userUpdateController);
+export const usersRoutes = () => {
+  
+  routes.post("/users", userCreateController);
+  routes.post("/users/login", userLoginController);
+  routes.get("/users", userListController);
+  routes.get("/users/:id", authUser, userListOneController);
+  routes.delete("/users/:id", authUser, userDeleteSelfController);
+  routes.patch("/users/:id", authUser, userUpdateController);
 
-export default usersRoutes;
+  return routes;
+}
