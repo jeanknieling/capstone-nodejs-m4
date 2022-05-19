@@ -6,9 +6,9 @@ const userUpdateController = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const { name, password } = req.body;
+    const { nickname, password } = req.body;
 
-    const user = await userUpdateService(id, name, password);
+    const user = await userUpdateService(id, nickname, password);
 
     return res.status(200).json(user);
   } catch (err) {

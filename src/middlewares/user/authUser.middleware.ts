@@ -10,10 +10,23 @@ export const authUser = (req: Request, res: Response, next: NextFunction) => {
       process.env.JWT_SECRET as string,
       (err: any, decoded: any) => {
         req.userEmail = decoded.email;
+        req.userIsAdm = decoded.isAdm;
+
         next();
       }
     );
   } catch (error) {
     return res.status(401).json({ message: "Invalid Token" });
   }
+};
+
+export const verifyisAdmMiddleware = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  if (req.userIsAdm) {
+    return next();
+  }
+  return res.status(401).json({ message: "Unauthorized" });
 };
