@@ -18,7 +18,7 @@ Documentação referente a interligação de uma API em Node/ExpressJS e um banc
 
 ## Variáveis de Ambiente
 
-Dados           | sdasda
+Dados           | Chaves
 ----------------|-----------
 Porta externa   | 5435
 Porta aplicação | 5432
