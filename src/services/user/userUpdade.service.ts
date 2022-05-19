@@ -5,7 +5,7 @@ import brcypt from "bcrypt";
 
 const userUpdateService = async (
   id: string,
-  name: string,
+  nickname: string,
   password: string
 ) => {
   const userRepository = AppDataSource.getRepository(User);
@@ -22,11 +22,15 @@ const userUpdateService = async (
     await userRepository.update(account!.id, { password: newPassword });
   }
 
-  const newName = name;
+  if (nickname) {
+    const newNickName = nickname;
 
-  await userRepository.update(account!.id, { name: newName });
+    await userRepository.update(account!.id, { nickname: newNickName });
+  }
+  const usersUpdated = await userRepository.find();
+  const accountUpdated = usersUpdated.find((user) => user.id === id);
 
-  return account;
+  return accountUpdated;
 };
 
 export default userUpdateService;

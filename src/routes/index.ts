@@ -12,7 +12,7 @@ const routes = Router();
 
 routes.post("/users", userCreateController);
 routes.post("/users/login", userLoginController);
-routes.get("/users", verifyisAdmMiddleware, userListController);
+routes.get("/users", userListController);
 routes.get("/users/:id", authUser, userListOneController);
 routes.delete("/users/:id", authUser, userDeleteSelfController);
 routes.patch("/users/:id", authUser, userUpdateController);
