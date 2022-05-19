@@ -22,13 +22,13 @@ export class Address {
   complement: string;
 
   @ManyToOne((type) => User, user => user.address)
-  @JoinColumn({ name: "user_id" })
+  @JoinColumn()
   user: User
 
-  @Column({ name: "created_at" })
+  @Column()
   created_at: Date;
 
-  @Column({ name: "updated_at" })
+  @Column()
   updated_at: Date;
 
   constructor() {
