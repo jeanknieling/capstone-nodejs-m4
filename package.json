@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/app.ts",
-    "typeorm": "typeorm-ts-node-commonjs -d src/data-source.ts",
+    "typeorm": "typeorm-ts-node-commonjs",
     "build": "tsc",
     "start": "node dist/app.js"
   },
