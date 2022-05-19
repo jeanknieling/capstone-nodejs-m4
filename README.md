@@ -28,4 +28,4 @@ DB              | data_capstone
 
 ## Insomnia - Importação para Testes de Requisições
 
-[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Resquest%20Collection%20--%20Capstone%20NodeJS&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fjeanknieling%2Fcapstone-nodejs-m4%2Ffeature%2Fentities-interfaces%2FInsomnia.json)
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=https%3A%2F%2Fraw.githubusercontent.com%2Fjeanknieling%2Fcapstone-nodejs-m4%2Ffeature%2Fentities-interfaces%2FInsomnia.json&uri=Request%20Collection%20-%20Capstone%20NodeJS)
