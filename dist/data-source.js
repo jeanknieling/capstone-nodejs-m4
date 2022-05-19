@@ -22,7 +22,14 @@ exports.AppDataSource = process.env.NODE_ENV === "test"
         entities: ["src/entities/*.ts"],
         migrations: ["src/migrations/*.ts"],
     });
-// DADOS PARA DEPLOY>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
+exports.AppDataSource.initialize()
+    .then(() => {
+    console.log("Data Source Initialized");
+})
+    .catch((err) => {
+    console.error("Error during Data Source Initialization", err);
+});
+// DADOS PARA DEPLOY>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // : new DataSource({
 //     type: "postgres",
 //     host: "localhost",

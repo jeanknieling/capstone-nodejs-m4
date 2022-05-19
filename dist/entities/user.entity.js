@@ -12,6 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const typeorm_1 = require("typeorm");
 const uuid_1 = require("uuid");
+const address_entity_1 = require("./address.entity");
+const buys_entity_1 = require("./buys.entity");
 let User = class User {
     constructor() {
         if (!this.id) {
@@ -51,12 +53,28 @@ __decorate([
 ], User.prototype, "password", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
+    __metadata("design:type", Boolean)
+], User.prototype, "isAdm", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
     __metadata("design:type", Date)
 ], User.prototype, "created_at", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Date)
 ], User.prototype, "updated_at", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)((type) => address_entity_1.Address, address => address.user, {
+        eager: true
+    }),
+    __metadata("design:type", Array)
+], User.prototype, "address", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(type => buys_entity_1.Buys, buys => buys.user, {
+        eager: true
+    }),
+    __metadata("design:type", Array)
+], User.prototype, "buys", void 0);
 User = __decorate([
     (0, typeorm_1.Entity)(),
     __metadata("design:paramtypes", [])

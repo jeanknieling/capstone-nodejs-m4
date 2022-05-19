@@ -16,8 +16,9 @@ const user_entity_1 = require("../../entities/user.entity");
 const data_source_1 = require("../../data-source");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const appError_1 = require("../../errors/appError");
-const userCreateService = ({ name, nickname, birthday, email, password, }) => __awaiter(void 0, void 0, void 0, function* () {
+const userCreateService = ({ name, nickname, birthday, email, password, isAdm, }) => __awaiter(void 0, void 0, void 0, function* () {
     const userRepository = data_source_1.AppDataSource.getRepository(user_entity_1.User);
+    console.log(birthday);
     const users = yield userRepository.find();
     const emailAlreadyExists = users.find((user) => user.email === email);
     if (emailAlreadyExists) {
@@ -29,6 +30,7 @@ const userCreateService = ({ name, nickname, birthday, email, password, }) => __
     user.birthday = birthday;
     user.email = email;
     user.password = bcrypt_1.default.hashSync(password, 10);
+    user.isAdm = isAdm;
     user.created_at = new Date();
     user.updated_at = new Date();
     userRepository.create(user);
