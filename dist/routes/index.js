@@ -1,0 +1,21 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const userCreate_controller_1 = __importDefault(require("../controllers/user/userCreate.controller"));
+const userDeleteSelf_controller_1 = __importDefault(require("../controllers/user/userDeleteSelf.controller"));
+const userList_controller_1 = __importDefault(require("../controllers/user/userList.controller"));
+const userListOne_controller_1 = __importDefault(require("../controllers/user/userListOne.controller"));
+const userLogin_controller_1 = __importDefault(require("../controllers/user/userLogin.controller"));
+const userUpdate_controller_1 = __importDefault(require("../controllers/user/userUpdate.controller"));
+const authUser_middleware_1 = require("../middlewares/user/authUser.middleware");
+const routes = (0, express_1.Router)();
+routes.post("/users", userCreate_controller_1.default);
+routes.post("/users/login", userLogin_controller_1.default);
+routes.get("/users", userList_controller_1.default);
+routes.get("/users/:id", authUser_middleware_1.authUser, userListOne_controller_1.default);
+routes.delete("/users/:id", authUser_middleware_1.authUser, userDeleteSelf_controller_1.default);
+routes.patch("/users/:id", authUser_middleware_1.authUser, userUpdate_controller_1.default);
+exports.default = routes;
