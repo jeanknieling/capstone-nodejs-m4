@@ -24,12 +24,12 @@ export class User {
   password: string;
 
   @Column()
-  isAdm: string;
+  isAdm: boolean;
 
-  @Column({ name: "created_at" })
+  @Column()
   created_at: Date;
 
-  @Column({ name: "updated_at" })
+  @Column()
   updated_at: Date;
 
   @OneToMany((type) => Address, address => address.user, {
