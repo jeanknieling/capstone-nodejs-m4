@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Address = void 0;
 const typeorm_1 = require("typeorm");
+const user_entity_1 = require("./user.entity");
 let Address = class Address {
     constructor() {
         if (!this.created_at) {
@@ -45,6 +46,11 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Address.prototype, "complement", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)((type) => user_entity_1.User, user => user.address),
+    (0, typeorm_1.JoinColumn)(),
+    __metadata("design:type", user_entity_1.User)
+], Address.prototype, "user", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Date)

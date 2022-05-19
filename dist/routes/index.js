@@ -11,10 +11,11 @@ const userListOne_controller_1 = __importDefault(require("../controllers/user/us
 const userLogin_controller_1 = __importDefault(require("../controllers/user/userLogin.controller"));
 const userUpdate_controller_1 = __importDefault(require("../controllers/user/userUpdate.controller"));
 const authUser_middleware_1 = require("../middlewares/user/authUser.middleware");
+const authUser_middleware_2 = require("../middlewares/user/authUser.middleware");
 const routes = (0, express_1.Router)();
 routes.post("/users", userCreate_controller_1.default);
 routes.post("/users/login", userLogin_controller_1.default);
-routes.get("/users", userList_controller_1.default);
+routes.get("/users", authUser_middleware_2.verifyisAdmMiddleware, userList_controller_1.default);
 routes.get("/users/:id", authUser_middleware_1.authUser, userListOne_controller_1.default);
 routes.delete("/users/:id", authUser_middleware_1.authUser, userDeleteSelf_controller_1.default);
 routes.patch("/users/:id", authUser_middleware_1.authUser, userUpdate_controller_1.default);
