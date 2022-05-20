@@ -5,6 +5,7 @@ import { IUserCreate } from "../../interfaces/user/index";
 import { AppDataSource } from "../../data-source";
 import bcrypt from "bcrypt";
 import { AppError } from "../../errors/appError";
+import { checkDate } from "../../utils/checkDate";
 
 const userCreateService = async ({
   name,
@@ -14,6 +15,11 @@ const userCreateService = async ({
   password,
   isAdm,
 }: IUserCreate) => {
+  const vaildDate = checkDate(birthday);
+  if (!vaildDate) {
+    throw new AppError(404, "Invalid date");
+  }
+
   const userRepository = AppDataSource.getRepository(User);
 
   const users = await userRepository.find();
@@ -21,7 +27,7 @@ const userCreateService = async ({
   const emailAlreadyExists = users.find((user) => user.email === email);
 
   if (emailAlreadyExists) {
-    throw new AppError(409, "Email Alredy Exists");
+    throw new AppError(409, "Email Already Exists");
   }
 
   const user = new User();

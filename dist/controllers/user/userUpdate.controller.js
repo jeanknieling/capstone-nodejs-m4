@@ -16,8 +16,8 @@ const userUpdade_service_1 = __importDefault(require("../../services/user/userUp
 const userUpdateController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        const { name, password } = req.body;
-        const user = yield (0, userUpdade_service_1.default)(id, name, password);
+        const { nickname, password } = req.body;
+        const user = yield (0, userUpdade_service_1.default)(id, nickname, password);
         return res.status(200).json(user);
     }
     catch (err) {
