@@ -1,7 +1,7 @@
 import { DataSource } from "typeorm";
 import "dotenv/config";
 
-export const AppDataSource =
+/* export const AppDataSource =
   process.env.NODE_ENV === "test"
     ? new DataSource({
         type: "sqlite",
@@ -20,7 +20,28 @@ export const AppDataSource =
         logging: true,
         entities: ["src/entities/*.ts"],
         migrations: ["src/migrations/*.ts"],
-      });
+      }); */
+
+export const AppDataSource = new DataSource({
+  type: "postgres",
+  url: process.env.DATABASE_URL,
+  ssl:
+    process.env.NODE_ENV === "production"
+      ? { rejectUnauthorized: false }
+      : false,
+  synchronize: false,
+  logging: true,
+
+  entities:
+    process.env.NODE_ENV === "production"
+      ? ["dist/entities/*.js"]
+      : ["src/entities/*.ts"],
+
+  migrations:
+    process.env.NODE_ENV === "production"
+      ? ["dist/migrations/*.js"]
+      : ["src/migrations/*.ts"],
+});
 
 AppDataSource.initialize()
   .then(() => {
@@ -29,24 +50,3 @@ AppDataSource.initialize()
   .catch((err) => {
     console.error("Error during Data Source Initialization", err);
   });
-
-// DADOS PARA DEPLOY>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-// : new DataSource({
-//     type: "postgres",
-//     host: "localhost",
-//     url: process.env.DATABASE_URL,
-//     synchronize: false,
-//     logging: true,
-//     ssl:
-//       process.env.NODE_ENV === "production"
-//         ? { rejectUnauthorized: false }
-//         : false,
-//     entities:
-//       process.env.NODE_ENV === "production"
-//         ? ["dist/src/models/*.js"]
-//         : ["src/models/*.ts"],
-//     migrations:
-//       process.env.NODE_ENV === "production"
-//         ? ["dist/src/migrations/*.js"]
-//         : ["src/migrations/*.ts"],
-//   });

@@ -1,7 +1,8 @@
-import { Entity, Column, PrimaryColumn, ManyToOne, OneToMany } from "typeorm";
+import { Entity, Column, PrimaryColumn, ManyToOne,CreateDateColumn,UpdateDateColumn, OneToOne, JoinColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Category } from "./category.entity";
 import { Order } from "./order.entity";
+
 
 @Entity()
 export class Product {
@@ -21,10 +22,14 @@ export class Product {
   likes: number;
 
   @Column()
-  created_at: Date;
+  category_id: number;
 
-  @Column()
-  updated_at: Date;
+  @CreateDateColumn({
+    type: "timestamp",
+    default: () => "CURRENT_TIMESTAMP(6)",
+  })
+  public created_at: Date;
+
 
   @ManyToOne((type) => Category, category => category.product)
   category: Category
@@ -32,15 +37,17 @@ export class Product {
   @OneToMany((type) => Order, order => order.product)
   order: Order[]
 
+  @UpdateDateColumn({
+    type: "timestamp",
+    default: () => "CURRENT_TIMESTAMP(6)",
+    onUpdate: "CURRENT_TIMESTAMP(6)",
+  })
+  public updated_at: Date;
+
+
   constructor() {
     if (!this.id) {
       this.id = uuid();
-    }
-    if (!this.created_at) {
-      this.created_at = new Date();
-    }
-    if (!this.updated_at) {
-      this.updated_at = new Date();
     }
   }
 }

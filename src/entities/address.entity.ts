@@ -18,8 +18,12 @@ export class Address {
   @Column()
   neighborhood: string;
 
+
   @Column()
   complement: string;
+
+  @Column()
+  user_id: string;
 
   @ManyToOne((type) => User, user => user.address)
   @JoinColumn()

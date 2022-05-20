@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateUserTable1652881920282 = void 0;
-class CreateUserTable1652881920282 {
+exports.CreateUserTable1652986039835 = void 0;
+class CreateUserTable1652986039835 {
     up(queryRunner) {
         return __awaiter(this, void 0, void 0, function* () {
         });
@@ -20,4 +20,4 @@ class CreateUserTable1652881920282 {
         });
     }
 }
-exports.CreateUserTable1652881920282 = CreateUserTable1652881920282;
+exports.CreateUserTable1652986039835 = CreateUserTable1652986039835;
