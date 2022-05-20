@@ -15,7 +15,7 @@ const userCreateService = async ({
   isAdm,
 }: IUserCreate) => {
   const userRepository = AppDataSource.getRepository(User);
-  console.log(birthday);
+
   const users = await userRepository.find();
 
   const emailAlreadyExists = users.find((user) => user.email === email);
@@ -26,7 +26,7 @@ const userCreateService = async ({
 
   const user = new User();
 
-  user.name = name;
+  user.name = bcrypt.hashSync(name, 10);
   user.nickname = nickname;
   user.birthday = birthday;
   user.email = email;
