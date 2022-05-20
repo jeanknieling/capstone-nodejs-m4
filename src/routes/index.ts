@@ -28,10 +28,11 @@ routes.get("/users", userListController);
 routes.get("/users/me", authUser, userListOneController);
 routes.delete("/users/me", authUser, userDeleteSelfController);
 routes.patch(
-  "/users/:id",
+  "/users/me",
   expressYupMiddleware({ schemaValidator: updateUserSchema }),
   authUser,
   userUpdateController
 );
+
 
 export default routes;

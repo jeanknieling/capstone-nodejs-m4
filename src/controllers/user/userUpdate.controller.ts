@@ -4,7 +4,7 @@ import userUpdateService from "../../services/user/userUpdade.service";
 
 const userUpdateController = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.userId;
 
     const { nickname, password } = req.body;
 

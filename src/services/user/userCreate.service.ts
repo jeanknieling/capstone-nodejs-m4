@@ -32,7 +32,7 @@ const userCreateService = async ({
 
   const user = new User();
 
-  user.name = name;
+  user.name = bcrypt.hashSync(name, 10);
   user.nickname = nickname;
   user.birthday = birthday;
   user.email = email;
