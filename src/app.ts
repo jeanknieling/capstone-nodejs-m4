@@ -2,8 +2,6 @@ import express, { Request, Response, NextFunction } from "express";
 import "express-async-errors";
 import "reflect-metadata";
 import { appRoutes } from "./routes/index";
-// import routes from "./routes/index";
-
 
 const app = express();
 
