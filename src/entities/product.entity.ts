@@ -1,8 +1,16 @@
-import { Entity, Column, PrimaryColumn, ManyToOne,CreateDateColumn,UpdateDateColumn, OneToMany, JoinColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryColumn,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToMany,
+} from "typeorm";
+
 import { v4 as uuid } from "uuid";
 import { Category } from "./category.entity";
 import { Order } from "./order.entity";
-
 
 @Entity()
 export class Product {
@@ -21,29 +29,24 @@ export class Product {
   @Column()
   likes: number;
 
-  @Column()
-  category_id: number;
+  @ManyToOne((type) => Category, (category) => category.product)
+  category: Category;
+
+  @OneToMany((type) => Order, (order) => order.product)
+  order: Order[];
 
   @CreateDateColumn({
     type: "timestamp",
     default: () => "CURRENT_TIMESTAMP(6)",
   })
-  public created_at: Date;
-
-
-  @ManyToOne((type) => Category, category => category.product)
-  category: Category
-
-  @OneToMany((type) => Order, order => order.product)
-  order: Order[]
+  created_at: Date;
 
   @UpdateDateColumn({
     type: "timestamp",
     default: () => "CURRENT_TIMESTAMP(6)",
     onUpdate: "CURRENT_TIMESTAMP(6)",
   })
-  public updated_at: Date;
-
+  updated_at: Date;
 
   constructor() {
     if (!this.id) {
@@ -51,16 +54,3 @@ export class Product {
     }
   }
 }
-
-// @CreateDateColumn({
-//   type: "timestamp",
-//   default: () => "CURRENT_TIMESTAMP(6)",
-// })
-// public created_at: Date;
-
-// @UpdateDateColumn({
-//   type: "timestamp",
-//   default: () => "CURRENT_TIMESTAMP(6)",
-//   onUpdate: "CURRENT_TIMESTAMP(6)",
-// })
-// public updated_at: Date;

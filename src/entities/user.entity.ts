@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryColumn, OneToMany } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryColumn,
+  OneToMany,
+  UpdateDateColumn,
+  CreateDateColumn,
+} from "typeorm";
+
 import { v4 as uuid } from "uuid";
 import { Address } from "./address.entity";
 import { Buys } from "./buys.entity";
@@ -26,19 +34,26 @@ export class User {
   @Column()
   isAdm: boolean;
 
-  @Column()
+  @CreateDateColumn({
+    type: "timestamp",
+    default: () => "CURRENT_TIMESTAMP(6)",
+  })
   created_at: Date;
 
-  @Column()
+  @UpdateDateColumn({
+    type: "timestamp",
+    default: () => "CURRENT_TIMESTAMP(6)",
+    onUpdate: "CURRENT_TIMESTAMP(6)",
+  })
   updated_at: Date;
 
-  @OneToMany((type) => Address, address => address.user, {
-    eager: true
+  @OneToMany((type) => Address, (address) => address.user, {
+    eager: true,
   })
   address: Address[];
 
-  @OneToMany(type => Buys, buys => buys.user, {
-    eager: true
+  @OneToMany((type) => Buys, (buys) => buys.user, {
+    eager: true,
   })
   buys: Buys[];
 
@@ -46,11 +61,6 @@ export class User {
     if (!this.id) {
       this.id = uuid();
     }
-    if (!this.created_at) {
-      this.created_at = new Date();
-    }
-    if (!this.updated_at) {
-      this.updated_at = new Date();
-    }
   }
+
 }
