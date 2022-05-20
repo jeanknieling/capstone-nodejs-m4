@@ -9,7 +9,7 @@ export const authUser = (req: Request, res: Response, next: NextFunction) => {
       token as string,
       process.env.JWT_SECRET as string,
       (err: any, decoded: any) => {
-        req.userEmail = decoded.email;
+        req.userId = decoded.id;
         req.userIsAdm = decoded.isAdm;
 
         next();
@@ -25,7 +25,7 @@ export const verifyisAdmMiddleware = (
   res: Response,
   next: NextFunction
 ) => {
-  if (req.userIsAdm) {
+  if (req.userIsAdm === true) {
     return next();
   }
   return res.status(401).json({ message: "Unauthorized" });

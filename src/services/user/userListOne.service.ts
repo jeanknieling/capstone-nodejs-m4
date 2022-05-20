@@ -1,12 +1,12 @@
 import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/user.entity";
 
-const userListOneService = async (email: string) => {
+const userListOneService = async (id: string) => {
   const userRepository = AppDataSource.getRepository(User);
 
   const users = await userRepository.find();
 
-  const account = users.find((user) => user.email === email);
+  const account = users.find((user) => user.id === id);
 
   return account;
 };
