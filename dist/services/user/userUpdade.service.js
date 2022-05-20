@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const data_source_1 = require("../../data-source");
 const user_entity_1 = require("../../entities/user.entity");
 const bcrypt_1 = __importDefault(require("bcrypt"));
-const userUpdateService = (id, name, password) => __awaiter(void 0, void 0, void 0, function* () {
+const userUpdateService = (id, nickname, password) => __awaiter(void 0, void 0, void 0, function* () {
     const userRepository = data_source_1.AppDataSource.getRepository(user_entity_1.User);
     const users = yield userRepository.find();
     const account = users.find((user) => user.id === id);
@@ -26,8 +26,12 @@ const userUpdateService = (id, name, password) => __awaiter(void 0, void 0, void
         const newPassword = bcrypt_1.default.hashSync(password, 10);
         yield userRepository.update(account.id, { password: newPassword });
     }
-    const newName = name;
-    yield userRepository.update(account.id, { name: newName });
-    return account;
+    if (nickname) {
+        const newNickName = nickname;
+        yield userRepository.update(account.id, { nickname: newNickName });
+    }
+    const usersUpdated = yield userRepository.find();
+    const accountUpdated = usersUpdated.find((user) => user.id === id);
+    return accountUpdated;
 });
 exports.default = userUpdateService;

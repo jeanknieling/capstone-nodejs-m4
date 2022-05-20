@@ -22,7 +22,7 @@ const userCreateService = ({ name, nickname, birthday, email, password, isAdm, }
     const users = yield userRepository.find();
     const emailAlreadyExists = users.find((user) => user.email === email);
     if (emailAlreadyExists) {
-        throw new appError_1.AppError(409, "Email Alredy Exists");
+        throw new appError_1.AppError(409, "Email Already Exists");
     }
     const user = new user_entity_1.User();
     user.name = name;
