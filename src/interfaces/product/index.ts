@@ -13,5 +13,6 @@ export interface IProductCreate {
   name: string;
   description: string;
   price: number;
+  likes: number;
   category_id: number;
 }
