@@ -1,16 +1,16 @@
 import { AppDataSource } from "../../data-source";
-import { Product } from "../../entities/product.entity";
+import { Category } from "../../entities/category.entity";
 
-const productDeleteService = async (id: string) => {
-  const productRepository = AppDataSource.getRepository(Product);
+const categoryDeleteService = async (id: string) => {
+  const categoryRepository = AppDataSource.getRepository(Category);
 
-  const products = await productRepository.find();
+  const categories = await categoryRepository.find();
 
-  const product = products.find((product) => product.id === id);
+  const category = categories.find((category) => category.id === id);
 
-  await productRepository.delete(product!.id);
+  await categoryRepository.delete(category!.id);
 
   return true;
 };
 
-export default productDeleteService;
+export default categoryDeleteService;
