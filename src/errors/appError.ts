@@ -1,13 +1,17 @@
 import { Response } from "express";
 
-export class AppError extends Error {
-  statusCode;
-
+// export class AppError extends Error {
+export class AppError{
+  // statusCode;
+  public readonly message : string;
+  public readonly statusCode : number;
+  
   constructor(statusCode: number, message: string) {
-    super();
+    // super();
     this.statusCode = statusCode;
     this.message = message;
   }
+ 
 }
 
 export const handleError = (err: AppError, res: Response) => {
