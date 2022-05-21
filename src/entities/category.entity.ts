@@ -17,7 +17,7 @@ export class Category {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ default: 0 })
   discount_value: number;
 
   @OneToMany((type) => Product, product => product.category)

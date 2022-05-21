@@ -26,7 +26,7 @@ export class Product {
   @Column()
   price: number;
 
-  @Column()
+  @Column({ default: 0 })
   likes: number;
 
   @ManyToOne((type) => Category, (category) => category.product)
