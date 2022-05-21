@@ -7,10 +7,10 @@ const categoryDeleteController = async (req: Request, res: Response) => {
 
     const category = await categoryDeleteService(id);
 
-    return res.status(200).json({ message: "Category deleted with sucess!" });
+    return res.status(200).send(category);
   } catch (err) {
     if (err instanceof Error) {
-      return res.status(401).send({
+      return res.status(401).json({
         error: err.name,
         message: err.message,
       });
