@@ -18,7 +18,7 @@ describe("Testing the user routes", () => {
     await connection.destroy();
   });
 
-  it("Should be able to create a new category", async () => {
+  it("Should be able to create a new user", async () => {
     const name = "name";
     const nickname = "nickname";
     const email = "email@mail.com";

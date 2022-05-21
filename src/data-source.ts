@@ -17,7 +17,7 @@ export const AppDataSource =
         username: process.env.POSTGRES_USER,
         password: process.env.POSTGRES_PASSWORD,
         database: process.env.POSTGRES_DB,
-        synchronize: false,
+        synchronize: true,
         logging: true,
         entities: ["src/entities/*.ts"],
         migrations: ["src/migrations/*.ts"],
@@ -43,10 +43,12 @@ export const AppDataSource =
             : ["src/migrations/*.ts"],
       });
 
-AppDataSource.initialize()
-  .then(() => {
-    console.log("Data Source Initialized");
-  })
-  .catch((err) => {
-    console.error("Error during Data Source Initialization", err);
-  });
+if (process.env.NODE_ENV !== "test") {
+  AppDataSource.initialize()
+    .then(() => {
+      console.log("Data Source Initialized");
+    })
+    .catch((err) => {
+      console.error("Error during Data Source Initialization", err);
+    });
+}

@@ -10,7 +10,7 @@ const userLoginService = async ({ email, password }: IUserLogin) => {
   const users = await userRepository.find();
 
   const account = users.find((user) => user.email === email);
-
+  
   if (!account) {
     throw new AppError(403, "Wrong email/password");
   }
