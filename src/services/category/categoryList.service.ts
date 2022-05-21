@@ -3,7 +3,9 @@ import { AppDataSource } from "../../data-source";
 
 const categoryListService = async () => {
   const categoryRepository = AppDataSource.getRepository(Category);
-  const categories = categoryRepository.find();
+
+  const categories = await categoryRepository.find();
+
   return categories;
 };
 

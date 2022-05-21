@@ -1,20 +1,12 @@
 import { AppDataSource } from "../../data-source";
 import { Category } from "../../entities/category.entity";
 
+const categoryUpdateService = async (id: string, name: string, discount_value: number) => {
 
-const categoryUpdateService = async (
-  id: number,
-  name: string,
-  discount_value: number
-) => {
   const categoryRepository = AppDataSource.getRepository(Category);
-
   const categories = await categoryRepository.find();
 
-  const category = categories.find((category) => category.id === id);
-  if (category!.id !== id) {
-    throw new Error("Category not found");
-  }
+  const category = categories.find((category) => category.id === Number(id));
 
   const newName = !name ? category!.name : name;
   const newDiscount_value = !discount_value
@@ -24,10 +16,15 @@ const categoryUpdateService = async (
   await categoryRepository.update(category!.id, {
     name: newName,
     discount_value: newDiscount_value,
-    
   });
 
-  return true;
+  const message = {
+    status: true,
+    message: "Category updated with success!"
+  }
+
+  return message;
+  
 };
 
 export default categoryUpdateService;

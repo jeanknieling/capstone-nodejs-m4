@@ -3,15 +3,11 @@ import categoryCreateService from "../../services/category/categoryCreate.servic
 
 const categoryCreateController = async (req: Request, res: Response) => {
   try {
-    const { name, discount_value } = req.body;
+    const { name } = req.body;
 
-    const newCategory = await categoryCreateService({
-      name,
-      discount_value,
-     
-    });
+    const category = await categoryCreateService({ name });
 
-    return res.status(201).send(newCategory);
+    return res.status(201).send(category);
   } catch (err) {
     if (err instanceof Error) {
       return res.status(400).send({
