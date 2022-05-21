@@ -6,7 +6,7 @@ const categoryListOneService = async (id: string) => {
 
   const categories = await categoryRepository.find();
 
-  const category = categories.find((category) => category.id === id);
+  const category = categories.find((category) => category.id === Number(id));
 
   return category;
 };
