@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
+import { User } from "./user.entity";
 
 @Entity()
 export class Address {
@@ -17,8 +18,16 @@ export class Address {
   @Column()
   neighborhood: string;
 
+
   @Column()
   complement: string;
+
+  @Column()
+  user_id: string;
+
+  @ManyToOne((type) => User, user => user.address)
+  @JoinColumn()
+  user: User
 
   @Column()
   created_at: Date;

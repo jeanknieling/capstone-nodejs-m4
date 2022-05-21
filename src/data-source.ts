@@ -6,11 +6,11 @@ export const AppDataSource =
     ? new DataSource({
         type: "sqlite",
         database: ":memory:",
-        entities: ["src/entities/*.ts"],
+        entities: ["src/entities/**/*.ts"],
         synchronize: true,
       })
-
-      : new DataSource({
+    : process.env.NODE_ENV === "dev"
+    ? new DataSource({
         type: "postgres",
         host: "localhost",
         port: 5435,
@@ -21,25 +21,32 @@ export const AppDataSource =
         logging: true,
         entities: ["src/entities/*.ts"],
         migrations: ["src/migrations/*.ts"],
+      })
+    : new DataSource({
+        type: "postgres",
+        url: process.env.DATABASE_URL,
+        ssl:
+          process.env.NODE_ENV === "production"
+            ? { rejectUnauthorized: false }
+            : false,
+        synchronize: false,
+        logging: true,
+
+        entities:
+          process.env.NODE_ENV === "production"
+            ? ["dist/entities/*.js"]
+            : ["src/entities/*.ts"],
+
+        migrations:
+          process.env.NODE_ENV === "production"
+            ? ["dist/migrations/*.js"]
+            : ["src/migrations/*.ts"],
       });
 
-    // DADOS PARA DEPLOY>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
-    // : new DataSource({
-    //     type: "postgres",
-    //     host: "localhost",
-    //     url: process.env.DATABASE_URL,
-    //     synchronize: false,
-    //     logging: true,
-    //     ssl:
-    //       process.env.NODE_ENV === "production"
-    //         ? { rejectUnauthorized: false }
-    //         : false,
-    //     entities:
-    //       process.env.NODE_ENV === "production"
-    //         ? ["dist/src/models/*.js"]
-    //         : ["src/models/*.ts"],
-    //     migrations:
-    //       process.env.NODE_ENV === "production"
-    //         ? ["dist/src/migrations/*.js"]
-    //         : ["src/migrations/*.ts"],
-    //   });
+/* AppDataSource.initialize()
+  .then(() => {
+    console.log("Data Source Initialized");
+  })
+  .catch((err) => {
+    console.error("Error during Data Source Initialization", err);
+  }); */

@@ -1,5 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
-
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from "typeorm";
+import { Product } from "./product.entity"; 
 @Entity()
 export class Category {
   @PrimaryGeneratedColumn()
@@ -11,7 +18,6 @@ export class Category {
   @Column()
   discount_value: number;
 
-  
   @Column()
   created_at: Date;
 
@@ -19,7 +25,7 @@ export class Category {
   updated_at: Date;
 
   constructor() {
-      if (!this.created_at) {
+    if (!this.created_at) {
       this.created_at = new Date();
     }
     if (!this.updated_at) {
