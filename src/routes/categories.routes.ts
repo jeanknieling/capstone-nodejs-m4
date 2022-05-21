@@ -4,7 +4,7 @@ import categoryCreateController from "../controllers/category/categoryCreate.con
 import categoryListController from "../controllers/category/categoryList.controller";
 import categoryListOneController from "../controllers/category/categoryListOne.controller";
 import categoryUpdateController from "../controllers/category/categoryUpdate.controller";
-import categoryDeleteController from "../controllers/category/cetegoryDelete.controller";
+import categoryDeleteController from "../controllers/category/categoryDelete.controller";
 
 import alreadyCategoryExists from "../middlewares/categories/alreadyCategoryExists.middleware";
 import categoryNotFound from "../middlewares/categories/categoryNotFound.middleware";
