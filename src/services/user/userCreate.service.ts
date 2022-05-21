@@ -15,9 +15,9 @@ const userCreateService = async ({
   password,
   isAdm,
 }: IUserCreate) => {
-  const vaildDate = checkDate(birthday);
-  if (!vaildDate) {
-    throw new AppError(404, "Invalid date");
+  const validDate = checkDate(birthday);
+  if (!validDate) {
+    throw new AppError(400, "Invalid date - correct format - (yyyy-mm-dd)");
   }
 
   const userRepository = AppDataSource.getRepository(User);
