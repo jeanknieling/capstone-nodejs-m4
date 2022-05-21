@@ -7,9 +7,11 @@ import {
   UpdateDateColumn,
   OneToOne,
   JoinColumn,
+  OneToMany,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Category } from "./category.entity";
+import { Order } from "./order.entity";
 
 @Entity()
 export class Product {
@@ -28,8 +30,11 @@ export class Product {
   @Column()
   likes: number;
 
-  @Column()
-  category_id: number;
+  @ManyToOne((type) => Category, (category) => category.product)
+  category: Category;
+
+  @OneToMany((type) => Order, (order) => order.product)
+  order: Order[];
 
   @Column()
   created_at: Date;

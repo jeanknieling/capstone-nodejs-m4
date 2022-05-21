@@ -1,4 +1,13 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+  UpdateDateColumn,
+  CreateDateColumn,
+} from "typeorm";
+
 import { User } from "./user.entity";
 
 @Entity()
@@ -18,21 +27,17 @@ export class Address {
   @Column()
   neighborhood: string;
 
-
   @Column()
   complement: string;
 
-  @Column()
-  user_id: string;
-
-  @ManyToOne((type) => User, user => user.address)
+  @ManyToOne((type) => User, (user) => user.address)
   @JoinColumn()
-  user: User
+  user: User;
 
-  @Column()
+  @CreateDateColumn()
   created_at: Date;
 
-  @Column()
+  @UpdateDateColumn()
   updated_at: Date;
 
   constructor() {
@@ -43,4 +48,5 @@ export class Address {
       this.updated_at = new Date();
     }
   }
+  
 }

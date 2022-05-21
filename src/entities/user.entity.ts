@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryColumn, OneToMany } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryColumn,
+  OneToMany,
+  UpdateDateColumn,
+  CreateDateColumn,
+} from "typeorm";
+
 import { v4 as uuid } from "uuid";
 import { Address } from "./address.entity";
 import { Buys } from "./buys.entity";
@@ -26,19 +34,19 @@ export class User {
   @Column()
   isAdm: boolean;
 
-  @Column()
+  @CreateDateColumn()
   created_at: Date;
 
-  @Column()
+  @UpdateDateColumn()
   updated_at: Date;
 
-  @OneToMany((type) => Address, address => address.user, {
-    eager: true
+  @OneToMany((type) => Address, (address) => address.user, {
+    eager: true,
   })
   address: Address[];
 
-  @OneToMany(type => Buys, buys => buys.user, {
-    eager: true
+  @OneToMany((type) => Buys, (buys) => buys.user, {
+    eager: true,
   })
   buys: Buys[];
 
@@ -53,4 +61,5 @@ export class User {
       this.updated_at = new Date();
     }
   }
+
 }

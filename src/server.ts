@@ -1,11 +1,11 @@
-import app from "./app";
+/*import app from "./app";
 import { AppDataSource } from "./data-source";
 
 (async () => {
   /* await AppDataSource.initialize().catch((err) => {
     console.error("Error during Data Source initialization", err);
   }); */
-  AppDataSource.initialize()
+  /*AppDataSource.initialize()
   .then(() => {
     console.log("Data Source Initialized");
   })
@@ -17,4 +17,4 @@ import { AppDataSource } from "./data-source";
   app.listen(port, () => {
     console.log(`Server running ${port}`);
   });
-})();
+})();*/

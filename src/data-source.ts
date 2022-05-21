@@ -43,10 +43,10 @@ export const AppDataSource =
             : ["src/migrations/*.ts"],
       });
 
-/* AppDataSource.initialize()
+AppDataSource.initialize()
   .then(() => {
     console.log("Data Source Initialized");
   })
   .catch((err) => {
     console.error("Error during Data Source Initialization", err);
-  }); */
+  });

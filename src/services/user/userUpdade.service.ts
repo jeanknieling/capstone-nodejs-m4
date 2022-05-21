@@ -27,6 +27,7 @@ const userUpdateService = async (
 
     await userRepository.update(account!.id, { nickname: newNickName });
   }
+
   const usersUpdated = await userRepository.find();
   const accountUpdated = usersUpdated.find((user) => user.id === id);
 
