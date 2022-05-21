@@ -6,5 +6,4 @@ export interface ICategory {
 
 export interface ICategoryCreate {
   name: string;
-  discount_value: number;
 }
