@@ -28,4 +28,12 @@ DB              | data_capstone
 
 ## Insomnia - Importação para Testes de Requisições
 
+Variáveis do Insomnia  |   Valores
+-----------------------|----------
+baseURL                | "http://localhost:3000"
+baseHerokuURL          | "https://api-capstone-grupo8.herokuapp.com/"
+token                  | gerado automático pelo elemento 0
+userID                 | gerado automático pelo elemento 0
+productID              | gerado automático pelo elemento 0
+
 [![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Request%20Collection%20-%20Capstone%20Node%2FExpressJS&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fjeanknieling%2Fcapstone-nodejs-m4%2Ffeature%2Fentities-interfaces%2FInsomnia.json)
