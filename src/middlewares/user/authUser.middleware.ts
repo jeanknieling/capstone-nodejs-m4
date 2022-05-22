@@ -25,8 +25,18 @@ export const verifyisAdmMiddleware = (
   res: Response,
   next: NextFunction
 ) => {
-  if (req.userIsAdm === true) {
-    return next();
-  }
-  return res.status(401).json({ message: "Unauthorized" });
+  const token = req.headers.authorization;
+
+  jwt.verify(
+    token as string,
+    process.env.JWT_SECRET as string,
+    (err: any, decoded: any) => {
+      req.userIsAdm = decoded.isAdm;
+      if (req.userIsAdm === true) {
+        return next();
+      }
+        return res.status(401).json({ message: "Unauthorized" });
+    }
+  );
+
 };
