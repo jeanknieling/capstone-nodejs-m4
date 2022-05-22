@@ -49,14 +49,21 @@ describe("Testing the user routes", () => {
 
         const response = await request(app).post("/users/login").send(userdata);
 
-        // alterar o response.status para 200 após finalizar a criação de testes
-        expect(response.status).toBe(200);
+        expect(response.status).toBe(201);
         expect(response.body.token).toBeDefined();
     });
 
     it("Should return all users registered in the database", async () => {
-        const response = await request(app).get("/users");
+        const email = "email@mail.com";
+        const password = "12345678";
+        const userdata = { email, password };
 
+        const login = await request(app).post("/users/login").send(userdata);
+        const token = login.body.token;
+
+        const response = await request(app)
+            .get("/users")
+            .set({ Authorization: token });
         expect(response.status).toBe(200);
         expect(response.body).toBeDefined();
     });
