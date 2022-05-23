@@ -2,22 +2,24 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
 export const authUser = (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const token = req.headers.authorization;
+  const token = req.headers.authorization;
 
-    jwt.verify(
-      token as string,
-      process.env.JWT_SECRET as string,
-      (err: any, decoded: any) => {
-        req.userId = decoded.id;
-        req.userIsAdm = decoded.isAdm;
-
-        next();
+  jwt.verify(
+    token as string,
+    process.env.JWT_SECRET as string,
+    (err: any, decoded: any) => {
+      if (err) {
+        return res
+          .status(401)
+          .json({ message: "Invalid Token or missing token" });
       }
-    );
-  } catch (error) {
-    return res.status(401).json({ message: "Invalid Token" });
-  }
+
+      req.userId = decoded.id;
+      req.userIsAdm = decoded.isAdm;
+
+      next();
+    }
+  );
 };
 
 export const verifyisAdmMiddleware = (
@@ -32,6 +34,7 @@ export const verifyisAdmMiddleware = (
     (err: any, decoded: any) => {
       req.userId = decoded.id;
       req.userIsAdm = decoded.isAdm;
+      console.log(req.userIsAdm);
       if (req.userIsAdm === true) {
         return next();
       }
