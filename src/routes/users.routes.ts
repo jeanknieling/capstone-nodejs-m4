@@ -8,7 +8,7 @@ import userListOneController from "../controllers/user/userListOne.controller";
 import userLoginController from "../controllers/user/userLogin.controller";
 import userUpdateController from "../controllers/user/userUpdate.controller";
 
-import { authUser } from "../middlewares/user/authUser.middleware";
+import { authUser, verifyisAdmMiddleware } from "../middlewares/user/authUser.middleware";
 
 import createUserSchema from "../validations/users/createUser.validation";
 import updateUserSchema from "../validations/users/updateUser.validation";
@@ -27,7 +27,7 @@ export const usersRoutes = () => {
     expressYupMiddleware({ schemaValidator: userLoginSchema }),
     userLoginController
   );
-  routes.get("/", userListController);
+  routes.get("/", authUser, verifyisAdmMiddleware, userListController);
   routes.get("/me", authUser, userListOneController);
   routes.delete("/me", authUser, userDeleteSelfController);
   routes.patch(
