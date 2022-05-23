@@ -2,8 +2,11 @@ import { Request, Response } from "express";
 import addressListService from "../../services/address/addressList.service";
 
 const addressListController = async (req: Request, res: Response) => {
+  const id = req.userId
+  
   try {
-    const addresss = await addressListService();
+    const addresss = await addressListService(id);
+  
 
     return res.send(addresss);
   } catch (err) {
