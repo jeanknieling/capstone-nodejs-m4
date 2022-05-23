@@ -7,7 +7,7 @@ const addressListService = async (id: string) => {
 
 
   const adresses = addressRepository.find(
-    // where: {user : id },
+    // where: {user : id } teste,
   );
   return adresses;
 };
