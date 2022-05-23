@@ -12,8 +12,8 @@ const routes = Router();
 export const addressRoutes = () => {
   routes.post("/",authUser, addressCreateController);
   routes.get("/",authUser, addressListController);
-  routes.patch("/", addressUpdateController);
-  routes.delete("/", addressDeleteController);
+  // routes.patch("/", addressUpdateController);
+  // routes.delete("/", addressDeleteController);
 
   return routes;
 }
