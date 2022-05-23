@@ -3,7 +3,8 @@ import { AppDataSource } from "../../data-source";
 
 const productListService = async () => {
   const productRepository = AppDataSource.getRepository(Product);
-  const products = productRepository.find();
+  const products = await productRepository.find();
+
   return products;
 };
 
