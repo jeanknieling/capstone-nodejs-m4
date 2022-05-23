@@ -5,6 +5,8 @@ const productDeleteController = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
+    console.log(req.params)
+
     const product = await productDeleteService(id);
 
     return res.status(200).json({ message: "Product deleted with sucess!" });
