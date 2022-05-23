@@ -4,15 +4,14 @@ export interface IProduct {
   description: string;
   price: number;
   likes: number;
-  created_at: string;
-  updated_at: string;
-  category_id: number;
+  created_at: Date;
+  updated_at: Date;
+  category: number;
 }
 
 export interface IProductCreate {
   name: string;
   description: string;
   price: number;
-  likes: number;
-  category_id: number;
+  category: string;
 }
