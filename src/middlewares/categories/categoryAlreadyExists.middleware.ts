@@ -2,25 +2,25 @@ import { NextFunction, Request, Response } from "express";
 import { AppDataSource } from "../../data-source";
 import { Category } from "../../entities/category.entity";
 
-const categoryNotFound = async (
+const categoryAlreadyExists = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const { id } = req.params;
+  const { name } = req.body;
   const categoryRepository = AppDataSource.getRepository(Category);
   const categories = await categoryRepository.find();
 
-  const category = categories.find((category) => category.id === Number(id));
+  const category = categories.find((cat) => cat.name === name);
 
-  if (category === undefined) {
-    return res.status(404).json({
+  if (category !== undefined) {
+    return res.status(400).json({
       status: "error",
-      message: "Category not found",
+      message: "Category already exists",
     });
   }
 
   next();
 };
 
-export default categoryNotFound;
+export default categoryAlreadyExists;

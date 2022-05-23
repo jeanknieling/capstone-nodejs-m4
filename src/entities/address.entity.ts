@@ -34,10 +34,10 @@ export class Address {
   @JoinColumn()
   user: User;
 
-  @CreateDateColumn()
+  @Column()
   created_at: Date;
 
-  @UpdateDateColumn()
+  @Column()
   updated_at: Date;
 
   constructor() {

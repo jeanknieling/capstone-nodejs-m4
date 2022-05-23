@@ -6,7 +6,5 @@ import { categoriesRoutes } from "./categories.routes";
 export const appRoutes = (app: Express) => {
   app.use("/users", usersRoutes());
   app.use("/products", productsRoutes());
-  app.use("/categories", categoriesRoutes());
+  app.use("/category", categoriesRoutes());
 };
-
-export default appRoutes;

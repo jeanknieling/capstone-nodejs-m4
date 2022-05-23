@@ -6,19 +6,41 @@ import categoryListOneController from "../controllers/category/categoryListOne.c
 import categoryUpdateController from "../controllers/category/categoryUpdate.controller";
 import categoryDeleteController from "../controllers/category/categoryDelete.controller";
 
-import alreadyCategoryExists from "../middlewares/categories/alreadyCategoryExists.middleware";
+import categoryAlreadyExists from "../middlewares/categories/categoryAlreadyExists.middleware";
 import categoryNotFound from "../middlewares/categories/categoryNotFound.middleware";
-import withoutCategoriesRegistered from "../middlewares/categories/withoutCategoriesRegistered.middleware";
+import categoryNotRegistered from "../middlewares/categories/categoryNotRegistered.middleware";
+import {
+  authUser,
+  verifyisAdmMiddleware,
+} from "../middlewares/user/authUser.middleware";
 
 const routes = Router();
 
 export const categoriesRoutes = () => {
-  
-  routes.post("/", alreadyCategoryExists, categoryCreateController);
-  routes.get("/", withoutCategoriesRegistered,categoryListController);
-  routes.get("/:id", categoryNotFound, categoryListOneController);
-  routes.patch("/edit/:id", categoryNotFound, alreadyCategoryExists, categoryUpdateController);
-  routes.delete("/:id", categoryNotFound, categoryDeleteController);
+  routes.post(
+    "/",
+    authUser,
+    verifyisAdmMiddleware,
+    categoryAlreadyExists,
+    categoryCreateController
+  );
+  routes.get("/", authUser, categoryNotRegistered, categoryListController);
+  routes.get("/:id", authUser, categoryNotFound, categoryListOneController);
+  routes.patch(
+    "/changes/:id",
+    authUser,
+    verifyisAdmMiddleware,
+    categoryNotFound,
+    categoryAlreadyExists,
+    categoryUpdateController
+  );
+  routes.delete(
+    "/:id",
+    authUser,
+    verifyisAdmMiddleware,
+    categoryNotFound,
+    categoryDeleteController
+  );
 
   return routes;
-}
+};
