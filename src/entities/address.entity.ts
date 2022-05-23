@@ -36,10 +36,10 @@ export class Address {
   // user:User
   user: string;
 
-  @CreateDateColumn()
+  @Column()
   created_at: Date;
 
-  @UpdateDateColumn()
+  @Column()
   updated_at: Date;
 
   constructor() {
