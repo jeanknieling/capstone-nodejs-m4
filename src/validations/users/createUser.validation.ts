@@ -20,7 +20,7 @@ const createUserSchema = {
           .date()
           .max(new Date(minYear, minMonth, minDay), "You must be over 18 years old")
           .required("Birthday is required"),
-        email: yup.string().email().required("Email is required"),
+        email: yup.string().email("Invalid email").required("Email is required"),
         password: yup
         .string()
         .min(8, "Must be at least 8 characters long")
