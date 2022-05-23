@@ -7,7 +7,7 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 
-import { Product } from "./product.entity"; 
+import { Product } from "./product.entity";
 
 @Entity()
 export class Category {
@@ -20,20 +20,21 @@ export class Category {
   @Column({ default: 0 })
   discount_value: number;
 
-  @OneToMany((type) => Product, product => product.category)
-  product: Product
+  @OneToMany((type) => Product, (product) => product.category)
+  product: Product;
 
-  @CreateDateColumn({
-    type: "timestamp",
-    default: () => "CURRENT_TIMESTAMP(6)",
-  })
+  @Column()
   created_at: Date;
 
-  @UpdateDateColumn({
-    type: "timestamp",
-    default: () => "CURRENT_TIMESTAMP(6)",
-    onUpdate: "CURRENT_TIMESTAMP(6)",
-  })
+  @Column()
   updated_at: Date;
 
+  constructor() {
+    if (!this.created_at) {
+      this.created_at = new Date();
+    }
+    if (!this.updated_at) {
+      this.updated_at = new Date();
+    }
+  }
 }

@@ -5,9 +5,10 @@ import {
   ManyToOne,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToOne,
+  JoinColumn,
   OneToMany,
 } from "typeorm";
-
 import { v4 as uuid } from "uuid";
 import { Category } from "./category.entity";
 import { Order } from "./order.entity";
@@ -39,20 +40,19 @@ export class Product {
   })
   order: Order[];
 
-  @CreateDateColumn({
-    type: "timestamp",
-    default: () => "CURRENT_TIMESTAMP(6)",
-  })
+  @Column()
   created_at: Date;
 
-  @UpdateDateColumn({
-    type: "timestamp",
-    default: () => "CURRENT_TIMESTAMP(6)",
-    onUpdate: "CURRENT_TIMESTAMP(6)",
-  })
+  @Column()
   updated_at: Date;
 
   constructor() {
+    if (!this.created_at) {
+      this.created_at = new Date();
+    }
+    if (!this.updated_at) {
+      this.updated_at = new Date();
+    }
     if (!this.id) {
       this.id = uuid();
     }

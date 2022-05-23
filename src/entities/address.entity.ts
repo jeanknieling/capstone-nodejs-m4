@@ -34,17 +34,19 @@ export class Address {
   @JoinColumn()
   user: User;
 
-  @CreateDateColumn({
-    type: "timestamp",
-    default: () => "CURRENT_TIMESTAMP(6)",
-  })
+  @Column()
   created_at: Date;
 
-  @UpdateDateColumn({
-    type: "timestamp",
-    default: () => "CURRENT_TIMESTAMP(6)",
-    onUpdate: "CURRENT_TIMESTAMP(6)",
-  })
+  @Column()
   updated_at: Date;
+
+  constructor() {
+    if (!this.created_at) {
+      this.created_at = new Date();
+    }
+    if (!this.updated_at) {
+      this.updated_at = new Date();
+    }
+  }
   
 }

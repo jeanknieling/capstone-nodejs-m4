@@ -34,17 +34,10 @@ export class User {
   @Column()
   isAdm: boolean;
 
-  @CreateDateColumn({
-    type: "timestamp",
-    default: () => "CURRENT_TIMESTAMP(6)",
-  })
+  @Column()
   created_at: Date;
 
-  @UpdateDateColumn({
-    type: "timestamp",
-    default: () => "CURRENT_TIMESTAMP(6)",
-    onUpdate: "CURRENT_TIMESTAMP(6)",
-  })
+  @Column()
   updated_at: Date;
 
   @OneToMany((type) => Address, (address) => address.user, {
@@ -60,6 +53,12 @@ export class User {
   constructor() {
     if (!this.id) {
       this.id = uuid();
+    }
+    if (!this.created_at) {
+      this.created_at = new Date();
+    }
+    if (!this.updated_at) {
+      this.updated_at = new Date();
     }
   }
 
