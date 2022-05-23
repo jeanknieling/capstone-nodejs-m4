@@ -132,7 +132,7 @@ describe("Testing the user routes", () => {
         expect(response.status).toBe(200);
     });
 });
-
+// Lembrar de fazer o teste de erros das rotas do user.
 // a partir daqui será implementado os testes de rotas dos produtos.
 /* describe("Testing the product routes", () => {
     let connection: DataSource;
