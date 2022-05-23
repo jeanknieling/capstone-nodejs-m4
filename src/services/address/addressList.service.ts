@@ -1,9 +1,14 @@
 import { Address } from "../../entities/address.entity";
 import { AppDataSource } from "../../data-source";
 
-const addressListService = async () => {
+const addressListService = async (id: string) => {
+
   const addressRepository = AppDataSource.getRepository(Address);
-  const adresses = addressRepository.find();
+
+
+  const adresses = addressRepository.find(
+    // where: {user : id },
+  );
   return adresses;
 };
 
