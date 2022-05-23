@@ -1,3 +1,4 @@
+import { IUser } from "./../../interfaces/user/index";
 import { User } from "../../entities/user.entity";
 
 import { IUserCreate } from "../../interfaces/user/index";
@@ -30,18 +31,14 @@ const userCreateService = async ({
     throw new AppError(409, "Email Already Exists");
   }
 
-  const user = new User();
-
-  user.name = bcrypt.hashSync(name, 10);
-  user.nickname = nickname;
-  user.birthday = birthday;
-  user.email = email;
-  user.password = bcrypt.hashSync(password, 10);
-  user.isAdm = isAdm;
-  user.created_at = new Date();
-  user.updated_at = new Date();
-
-  userRepository.create(user);
+  const user = userRepository.create({
+    name: bcrypt.hashSync(name, 10),
+    nickname,
+    birthday,
+    email,
+    password: bcrypt.hashSync(password, 10),
+    isAdm: isAdm ? (isAdm = isAdm) : (isAdm = false)
+  });
 
   await userRepository.save(user);
 
