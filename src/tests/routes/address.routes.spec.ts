@@ -84,6 +84,13 @@ describe("Testing adress routes", () => {
         expect(response.status).toBe(200);
         expect(response.body).toBeDefined();
     });
+
+    it("Should update the address from de database", async () => {
+        const token = await userLoginAdmTrue();
+
+        
+
+    });
 });
 
 describe("Testing adress routes errors", () => {
