@@ -34,10 +34,10 @@ export class User {
   @Column()
   isAdm: boolean;
 
-  @CreateDateColumn()
+  @Column()
   created_at: Date;
 
-  @UpdateDateColumn()
+  @Column()
   updated_at: Date;
 
   @OneToMany((type) => Address, (address) => address.user, {

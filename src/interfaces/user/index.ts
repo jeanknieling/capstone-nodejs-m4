@@ -1,5 +1,3 @@
-// import { boolean } from "yup";
-
 export interface IUser {
   id: string;
   name: string;
@@ -18,7 +16,7 @@ export interface IUserCreate {
   birthday: Date;
   email: string;
   password: string;
-  isAdm: boolean;
+  isAdm?: boolean;
 }
 
 export interface IUserLogin {

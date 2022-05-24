@@ -30,7 +30,7 @@ const userLoginService = ({ email, password }) => __awaiter(void 0, void 0, void
     const token = jsonwebtoken_1.default.sign({ email: email, isAdm: account.isAdm }, String(process.env.JWT_SECRET), {
         expiresIn: "1d",
     });
-    console.log(token);
+    
     return token;
 });
 exports.default = userLoginService;

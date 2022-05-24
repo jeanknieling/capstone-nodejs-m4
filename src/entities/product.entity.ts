@@ -30,10 +30,14 @@ export class Product {
   @Column({ default: 0 })
   likes: number;
 
-  @ManyToOne((type) => Category, (category) => category.product)
+  @ManyToOne((type) => Category, (category) => category.product, {
+    eager: true,
+  })
   category: Category;
 
-  @OneToMany((type) => Order, (order) => order.product)
+  @OneToMany((type) => Order, (order) => order.product, {
+    eager: true,
+  })
   order: Order[];
 
   @Column()

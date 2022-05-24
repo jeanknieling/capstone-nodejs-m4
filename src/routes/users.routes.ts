@@ -30,7 +30,7 @@ export const usersRoutes = () => {
     expressYupMiddleware({ schemaValidator: userLoginSchema }),
     userLoginController
   );
-  routes.get("/", verifyisAdmMiddleware, userListController);
+  routes.get("/", authUser, verifyisAdmMiddleware, userListController);
   routes.get("/me", authUser, userListOneController);
   routes.delete("/me", authUser, userDeleteSelfController);
   routes.patch(

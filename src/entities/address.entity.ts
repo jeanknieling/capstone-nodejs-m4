@@ -30,14 +30,16 @@ export class Address {
   @Column()
   complement: string;
 
+  // nao permite criar endereco com user:User
   @ManyToOne((type) => User, (user) => user.address)
   @JoinColumn()
-  user: User;
+  // user:User
+  user: string;
 
-  @CreateDateColumn()
+  @Column()
   created_at: Date;
 
-  @UpdateDateColumn()
+  @Column()
   updated_at: Date;
 
   constructor() {

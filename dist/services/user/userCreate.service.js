@@ -18,7 +18,7 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const appError_1 = require("../../errors/appError");
 const userCreateService = ({ name, nickname, birthday, email, password, isAdm, }) => __awaiter(void 0, void 0, void 0, function* () {
     const userRepository = data_source_1.AppDataSource.getRepository(user_entity_1.User);
-    console.log(birthday);
+    
     const users = yield userRepository.find();
     const emailAlreadyExists = users.find((user) => user.email === email);
     if (emailAlreadyExists) {

@@ -26,7 +26,7 @@ const userLoginService = async ({ email, password }: IUserLogin) => {
       expiresIn: "1d",
     }
   );
-  //console.log(token);
+
   return token;
 };
 export default userLoginService;

@@ -25,7 +25,7 @@ const createUserSchema = {
         .string()
         .min(8, "Must be at least 8 characters long")
         .required("Password is required"),
-        isAdm: yup.boolean().required("isAdm is required"),
+        isAdm: yup.boolean()
       }),
       validateOptions: {
         abortEarly: false,
