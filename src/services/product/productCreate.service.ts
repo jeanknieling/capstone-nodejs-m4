@@ -18,7 +18,7 @@ const productCreateService = async ({
 
   const categoryName = categories.find((item) => item.name === category);
 
-  if (categoryName === undefined) {
+  if (!categoryName) {
     throw new AppError(404, "Category not found");
   }
 

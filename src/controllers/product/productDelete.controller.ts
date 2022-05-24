@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { AppError, handleError } from "../../errors/appError";
 import productDeleteService from "../../services/product/productDelete.service";
 
 const productDeleteController = async (req: Request, res: Response) => {
@@ -9,13 +10,11 @@ const productDeleteController = async (req: Request, res: Response) => {
 
     return res.status(200).send(product);
   } catch (err) {
-    if (err instanceof Error) {
-      return res.status(401).json({
-        error: err.name,
-        message: err.message,
-      });
+    if (err instanceof AppError) {
+      handleError(err, res);
     }
-  }
+    }
+  
 };
 
 export default productDeleteController;
