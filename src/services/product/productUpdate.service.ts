@@ -1,6 +1,7 @@
 import { AppDataSource } from "../../data-source";
 import { Category } from "../../entities/category.entity";
 import { Product } from "../../entities/product.entity";
+import { AppError } from "../../errors/appError";
 
 const productUpdateService = async (
   id: string,
@@ -19,13 +20,13 @@ const productUpdateService = async (
   const product = products.find((product) => product.id === id);
 
   if (product!.name === undefined) {
-    throw new Error("Product not found");
+    throw new AppError(404, "Product not found");
   }
 
   const newName = !name ? product!.name : name;
   const newDescription = !description ? product!.description : description;
   const newPrice = !price ? product!.price : price;
-  const newCategory = !category ? product!.category : categoryDatabase;
+  const newCategory = categoryDatabase;
 
   await productRepository.update(product!.id, {
     name: newName,

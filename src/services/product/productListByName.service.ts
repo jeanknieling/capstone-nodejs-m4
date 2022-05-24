@@ -6,7 +6,7 @@ const productListByNameService = async (name: string) => {
   const products = await AppDataSource.getRepository(Product).find({
     where: { name: Like(`%${name}%`) },
   }); // Caso queira saber mais: https://orkhan.gitbook.io/typeorm/docs/find-options
-
+  
   return products;
 };
 
