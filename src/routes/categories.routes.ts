@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { expressYupMiddleware } from "express-yup-middleware";
 
 import categoryCreateController from "../controllers/category/categoryCreate.controller";
 import categoryListController from "../controllers/category/categoryList.controller";
@@ -13,29 +14,68 @@ import {
   authUser,
   verifyisAdmMiddleware,
 } from "../middlewares/user/authUser.middleware";
+import createCategorySchema from "../validations/categories/createCategory.validation";
+import tokenValidatorSchema from "../validations/token.validator";
+import listCategoryByIdValidatorSchema from "../validations/categories/listCategoryById.validator";
+import deleteCategoryValidatorSchema from "../validations/categories/deleteCategory.validation";
+import updateCategoryValidatorSchema from "../validations/categories/updateCategory.validation";
 
 const routes = Router();
 
 export const categoriesRoutes = () => {
   routes.post(
     "/",
+    expressYupMiddleware({ schemaValidator: createCategorySchema }),
     authUser,
     verifyisAdmMiddleware,
     categoryAlreadyExists,
     categoryCreateController
   );
-  routes.get("/", authUser, categoryNotRegistered, categoryListController);
-  routes.get("/:id", authUser, categoryNotFound, categoryListOneController);
+
+  routes.get(
+    "/",
+    expressYupMiddleware({
+      schemaValidator: tokenValidatorSchema,
+      propertiesToValidate: ["headers"],
+    }),
+    authUser,
+    categoryNotRegistered,
+    categoryListController
+  );
+
+  routes.get(
+    "/:id",
+    expressYupMiddleware({
+      schemaValidator: tokenValidatorSchema,
+      propertiesToValidate: ["headers"],
+    }),
+    expressYupMiddleware({ schemaValidator: listCategoryByIdValidatorSchema }),
+    authUser,
+    categoryNotFound,
+    categoryListOneController
+  );
+
   routes.patch(
     "/changes/:id",
+    expressYupMiddleware({ schemaValidator: updateCategoryValidatorSchema }),
+    expressYupMiddleware({
+      schemaValidator: tokenValidatorSchema,
+      propertiesToValidate: ["headers"],
+    }),
     authUser,
     verifyisAdmMiddleware,
     categoryNotFound,
     categoryAlreadyExists,
     categoryUpdateController
   );
+
   routes.delete(
     "/:id",
+    expressYupMiddleware({ schemaValidator: deleteCategoryValidatorSchema }),
+    expressYupMiddleware({
+      schemaValidator: tokenValidatorSchema,
+      propertiesToValidate: ["headers"],
+    }),
     authUser,
     verifyisAdmMiddleware,
     categoryNotFound,
