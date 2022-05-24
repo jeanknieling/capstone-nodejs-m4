@@ -13,7 +13,7 @@ export const addressRoutes = () => {
   routes.post("/",authUser, addressCreateController);
   routes.get("/",authUser, addressListController);
   // routes.patch("/", addressUpdateController);
-  // routes.delete("/", addressDeleteController);
+  routes.delete("/", addressDeleteController);
 
   return routes;
 }

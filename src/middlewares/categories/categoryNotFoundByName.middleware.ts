@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { ILike } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { Category } from "../../entities/category.entity";
 
@@ -9,11 +10,14 @@ const categoryNotFoundByName = async (
 ) => {
   const { category } = req.body;
   const categoryRepository = AppDataSource.getRepository(Category);
-  const categories = await categoryRepository.find();
+ 
+  const categories = await categoryRepository.findBy({
+    name: ILike(`%${category}%`)
+  });
 
-  const categoryByName = categories.find((cat) => cat.name === category);
+  console.log("RECEBENDO AQUIIIIIII",categories)
 
-  if (categoryByName === undefined) {
+  if (!categories.length) {
     return res.status(404).json({
       status: "error",
       message: "Category not found",
