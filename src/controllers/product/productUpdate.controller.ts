@@ -4,21 +4,20 @@ import productUpdateService from "../../services/product/productUpdate.service";
 const productUpdateController = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { name, description, price, likes, category_id } = req.body;
+    const { name, description, price, likes, category } = req.body;
     
     const product = await productUpdateService(
       id,
       name,
       description,
       price,
-      likes,
-      category_id
+      category
     );
 
-    return res.status(201).json({ message: "product updated!" });
+    return res.status(200).send(product);
   } catch (err) {
     if (err instanceof Error) {
-      return res.status(400).send({
+      return res.status(400).json({
         error: err.name,
         message: err.message,
       });
