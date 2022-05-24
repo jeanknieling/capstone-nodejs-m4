@@ -40,10 +40,16 @@ export class User {
   @Column()
   updated_at: Date;
 
-  @OneToMany((type) => Address, (address) => address.user, {
+  @OneToMany((type) => Address, (address) => address.usuario, {
     eager: true,
+    onDelete: "SET NULL"
   })
   address: Address[];
+
+  // @OneToMany((type) => Address, (address) => address.usuario, {
+  //   eager: true,
+  // })
+  // address: Address[];
 
   @OneToMany((type) => Buys, (buys) => buys.user, {
     eager: true,

@@ -27,6 +27,7 @@ export const productsRoutes = () => {
     verifyisAdmMiddleware,
     productAlreadyExists,
     productWithoutCategory,
+    categoryNotFoundByName,
     productCreateController
   );
   routes.get("/", authUser, productListController);
