@@ -40,6 +40,28 @@ describe("Testing the user routes response with sucess", () => {
         return token;
     };
 
+    const userLoginAdmFalse = async () => {
+        const name = "name";
+        const nickname = "nickname";
+        const email = "email@mail.com";
+        const birthday = "1990-01-03";
+        const password = "12345678";
+        const isAdm = false;
+        //definindo variável com todas as chaves criadas
+        const createUser = { name, nickname, email, birthday, password, isAdm };
+        //enviando variável com dados de criação de usuário para a requisição.
+        await request(app).post("/users").send(createUser);
+        //fazendo login do usuário
+        const loginUser = { email, password };
+        //recebendo o token de usuário após login
+        const userLogin = await request(app)
+            .post("/users/login")
+            .send(loginUser);
+        const token = userLogin.body.token;
+
+        return token;
+    };
+
     it("Should be able to create a product", async () => {
         const token = await userLoginAdmTrue();
 
@@ -64,6 +86,13 @@ describe("Testing the user routes response with sucess", () => {
     });
 
     it("Should be able to list all products", async () => {
-        
+        const token = await userLoginAdmTrue();
+
+        const response = await request(app)
+            .get("/products")
+            .set({ Authorization: token });
+
+        expect(response.status).toBe(200);
+        expect(response.body).toBeDefined();
     });
 });
