@@ -120,7 +120,7 @@ Visão geral do projeto, um pouco das tecnologias usadas.
 
 Diagrama ER da API definindo bem as relações entre as tabelas do banco de dados.
 
-[DER](https://drive.google.com/file/d/1vAH-d-jvf_9KEGt3lMA3NEjyVgmnyWbD/view?usp=sharing)
+[DER](https://drive.google.com/file/d/1IHJYtbxzcYLkAXXtc7Uj7gYr8opKTQ67/view?usp=sharing)
 
 ---
 
@@ -930,12 +930,12 @@ Obs: é possível atualizar apenas o nickname ou apenas o password, além de pod
 
 ## Insomnia - Importação para Testes de Requisições
 
-Variáveis do Insomnia  |   Valores
------------------------|----------
-baseURL                | "http://localhost:3000"
-baseHerokuURL          | "https://api-capstone-grupo8.herokuapp.com/"
-token                  | gerado automático pelo elemento 0
-userID                 | gerado automático pelo elemento 0
-productID              | gerado automático pelo elemento 0
+| Variáveis do Insomnia | Valores                                      |
+| --------------------- | -------------------------------------------- |
+| baseURL               | "http://localhost:3000"                      |
+| baseHerokuURL         | "https://api-capstone-grupo8.herokuapp.com/" |
+| token                 | gerado automático pelo elemento 0            |
+| userID                | gerado automático pelo elemento 0            |
+| productID             | gerado automático pelo elemento 0            |
 
 [![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Request%20Collection%20-%20Capstone%20Node%2FExpressJS&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fjeanknieling%2Fcapstone-nodejs-m4%2Ffeature%2Fentities-interfaces%2FInsomnia.json)
