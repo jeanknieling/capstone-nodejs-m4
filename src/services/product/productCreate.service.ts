@@ -16,7 +16,8 @@ const productCreateService = async ({
   const categoryRepository = AppDataSource.getRepository(Category);
   const categories = await categoryRepository.find();
 
-  const categoryName = categories.find((item) => item.name === category);
+  const categoryName = categories.find((item) => {item.name === category});
+  console.log(categoryName)
 
   if (!categoryName) {
     throw new AppError(404, "Category not found");
