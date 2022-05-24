@@ -7,7 +7,7 @@ import categoryUpdateController from "../controllers/category/categoryUpdate.con
 import categoryDeleteController from "../controllers/category/categoryDelete.controller";
 
 import categoryAlreadyExists from "../middlewares/categories/categoryAlreadyExists.middleware";
-import categoryNotFound from "../middlewares/categories/categoryNotFound.middleware";
+import categoryNotFound from "../middlewares/categories/categoryNotFoundByID.middleware";
 import categoryNotRegistered from "../middlewares/categories/categoryNotRegistered.middleware";
 import {
   authUser,
