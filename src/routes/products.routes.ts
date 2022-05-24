@@ -41,7 +41,6 @@ export const productsRoutes = () => {
     verifyisAdmMiddleware,
     productAlreadyExists,
     productWithoutCategory,
-    categoryNotFoundByName,
     productCreateController
   );
 
