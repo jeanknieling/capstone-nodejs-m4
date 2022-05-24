@@ -6,12 +6,13 @@ import productListController from "../controllers/product/productList.controller
 import productListByCategoryController from "../controllers/product/productListByCategory.controller";
 import productListByNameController from "../controllers/product/productListByName.controller";
 import productUpdateController from "../controllers/product/productUpdate.controller";
-import categoryNotFound from "../middlewares/categories/categoryNotFound.middleware";
 
+import categoryNotFoundByName from "../middlewares/categories/categoryNotFoundByName.middleware";
 import productAlreadyExists from "../middlewares/products/productAlreadyExists.middleware";
 import productNotFound from "../middlewares/products/productNotFound.middleware";
 import productNotRegistered from "../middlewares/products/productNotRegistered.middleware";
 import productWithoutCategory from "../middlewares/products/productWithoutCategory.middleware";
+
 import {
   authUser,
   verifyisAdmMiddleware,
@@ -38,13 +39,14 @@ export const productsRoutes = () => {
   routes.post(
     "/category",
     authUser,
-    categoryNotFound,
+    categoryNotFoundByName,
     productListByCategoryController
   );
   routes.patch(
     "/changes/:id",
     authUser,
     verifyisAdmMiddleware,
+    categoryNotFoundByName,
     productNotRegistered,
     productUpdateController
   );

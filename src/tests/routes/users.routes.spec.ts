@@ -49,7 +49,7 @@ describe("Testing the user routes response with sucess", () => {
 
     const response = await request(app).post("/users/login").send(userdata);
 
-    expect(response.status).toBe(201);
+    expect(response.status).toBe(200);
     expect(response.body.token).toBeDefined();
   });
 
@@ -81,7 +81,7 @@ describe("Testing the user routes response with sucess", () => {
       .get("/users/me")
       .set({ Authorization: token });
 
-    expect(response.status).toBe(201);
+    expect(response.status).toBe(200);
     expect(response.body.id).toBeDefined();
     expect(response.body.name).toBeDefined();
     expect(response.body.isAdm).toBeDefined();

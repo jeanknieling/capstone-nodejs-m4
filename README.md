@@ -938,4 +938,4 @@ Obs: é possível atualizar apenas o nickname ou apenas o password, além de pod
 | userID                | gerado automático pelo elemento 0            |
 | productID             | gerado automático pelo elemento 0            |
 
-[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Request%20Collection%20-%20Capstone%20Node%2FExpressJS&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fjeanknieling%2Fcapstone-nodejs-m4%2Ffeature%2Fentities-interfaces%2FInsomnia.json)
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=CRUD%20Collection%20-%20Capstone%20NodeJS&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fjeanknieling%2Fcapstone-nodejs-m4%2Ffeature%2Fcrud-productcategory%2FInsomnia.json)

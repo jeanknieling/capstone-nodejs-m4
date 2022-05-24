@@ -32,6 +32,7 @@ export class Product {
 
   @ManyToOne((type) => Category, (category) => category.product, {
     eager: true,
+    onDelete: "SET NULL"
   })
   category: Category;
 

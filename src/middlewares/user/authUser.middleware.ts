@@ -34,7 +34,6 @@ export const verifyisAdmMiddleware = (
     (err: any, decoded: any) => {
       req.userId = decoded.id;
       req.userIsAdm = decoded.isAdm;
-      console.log(req.userIsAdm);
       if (req.userIsAdm === true) {
         return next();
       }
