@@ -7,20 +7,20 @@ const addressCreateService = async ({
   zipcode, street, number, neighborhood, complement, user_id}: IAddressCreate) => {
   const addressRepository = AppDataSource.getRepository(Address);  
 
-  const address = addressRepository.create({
-    zipcode,
-    street,
-    number,
-    neighborhood,
-    complement,
-    user : user_id
-  });
+  // const address = addressRepository.create({
+  //   zipcode,
+  //   street,
+  //   number,
+  //   neighborhood,
+  //   complement,
+  //   user : user_id
+  // });
 
 
 
-  await addressRepository.save(address);
+  // await addressRepository.save(address);
 
-  return address;
+  // return address;
 };
 
 export default addressCreateService;
