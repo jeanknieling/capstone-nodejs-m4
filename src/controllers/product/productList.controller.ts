@@ -5,7 +5,7 @@ const productListController = async (req: Request, res: Response) => {
   try {
     const products = await productListService();
 
-    return res.send(products);
+    return res.status(200).send(products);
   } catch (err) {
     if (err instanceof Error) {
       return res.status(400).send({
