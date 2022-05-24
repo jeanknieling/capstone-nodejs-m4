@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { AppError, handleError } from "../../errors/appError";
 import categoryUpdateService from "../../services/category/categoryUpdate.service";
 
 const categoryUpdateController = async (req: Request, res: Response) => {
@@ -10,11 +11,8 @@ const categoryUpdateController = async (req: Request, res: Response) => {
 
     return res.status(200).send(category);
   } catch (err) {
-    if (err instanceof Error) {
-      return res.status(400).json({
-        error: err.name,
-        message: err.message,
-      });
+    if (err instanceof AppError) {
+      handleError(err, res);
     }
   }
 };

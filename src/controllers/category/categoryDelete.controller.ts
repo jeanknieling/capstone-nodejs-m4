@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { AppError, handleError } from "../../errors/appError";
 import categoryDeleteService from "../../services/category/categoryDelete.service";
 
 const categoryDeleteController = async (req: Request, res: Response) => {
@@ -9,12 +10,10 @@ const categoryDeleteController = async (req: Request, res: Response) => {
 
     return res.status(200).send(category);
   } catch (err) {
-    if (err instanceof Error) {
-      return res.status(401).json({
-        error: err.name,
-        message: err.message,
-      });
+    if (err instanceof AppError) {
+      handleError(err, res);
     }
+    
   }
 };
 

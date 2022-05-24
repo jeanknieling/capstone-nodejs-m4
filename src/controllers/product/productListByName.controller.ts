@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { AppError, handleError } from "../../errors/appError";
 import productListByNameService from "../../services/product/productListByName.service";
 
 const productListByNameController = async (req: Request, res: Response) => {
@@ -9,12 +10,10 @@ const productListByNameController = async (req: Request, res: Response) => {
 
     return res.status(200).send(product);
   } catch (err) {
-    if (err instanceof Error) {
-      return res.status(401).send({
-        error: err.name,
-        message: err.message,
-      });
+    if (err instanceof AppError) {
+      handleError(err, res);
     }
+    
   }
 };
 
