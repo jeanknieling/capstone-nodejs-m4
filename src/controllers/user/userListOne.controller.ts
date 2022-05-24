@@ -8,7 +8,7 @@ const userListOneController = async (req: Request, res: Response) => {
 
     const user = await userListOneService(id);
 
-    return res.status(201).send(user);
+    return res.status(200).send(user);
   } catch (err) {
     if (err instanceof AppError) {
       handleError(err, res);
