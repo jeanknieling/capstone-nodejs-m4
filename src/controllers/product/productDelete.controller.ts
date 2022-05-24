@@ -7,10 +7,10 @@ const productDeleteController = async (req: Request, res: Response) => {
 
     const product = await productDeleteService(id);
 
-    return res.status(200).json({ message: "Product deleted with sucess!" });
+    return res.status(200).send(product);
   } catch (err) {
     if (err instanceof Error) {
-      return res.status(401).send({
+      return res.status(401).json({
         error: err.name,
         message: err.message,
       });
