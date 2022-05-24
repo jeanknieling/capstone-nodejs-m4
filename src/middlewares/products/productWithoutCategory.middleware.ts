@@ -7,7 +7,7 @@ const productWithoutCategory = async (
 ) => {
   const { category } = req.body;
 
-  if (category === undefined) {
+  if (!category) {
     return res.status(400).json({
       error: "Error",
       message: "Category was not informed"
