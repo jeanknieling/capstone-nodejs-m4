@@ -5,7 +5,7 @@ import { AppDataSource } from "../../data-source";
 
 const categoryCreateService = async ({ name }: ICategoryCreate) => {
   const categoryRepository = AppDataSource.getRepository(Category);
-
+  
   const category = new Category();
   category.name = name;
 
