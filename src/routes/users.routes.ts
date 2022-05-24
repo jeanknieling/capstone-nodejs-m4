@@ -8,7 +8,10 @@ import userListOneController from "../controllers/user/userListOne.controller";
 import userLoginController from "../controllers/user/userLogin.controller";
 import userUpdateController from "../controllers/user/userUpdate.controller";
 
-import { authUser, verifyisAdmMiddleware } from "../middlewares/user/authUser.middleware";
+import {
+  authUser,
+  verifyisAdmMiddleware,
+} from "../middlewares/user/authUser.middleware";
 
 import createUserSchema from "../validations/users/createUser.validation";
 import updateUserSchema from "../validations/users/updateUser.validation";
