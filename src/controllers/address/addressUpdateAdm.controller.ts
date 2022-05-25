@@ -1,15 +1,13 @@
 import { Request, Response } from "express";
 import { AppError, handleError } from "../../errors/appError";
-import addressUpdateService from "../../services/address/addressUpdate.service";
+import addressUpdateAdmService from "../../services/address/addressUpdateAdm.service";
 
-const addressUpdateController = async (req: Request, res: Response) => {
+const addressUpdateAdmController = async (req: Request, res: Response) => {
   try {
-    const userId = req.userId;
     const { addressId } = req.params;
     const { zipcode, street, number, neighborhood, complement } = req.body;
 
-    const address = await addressUpdateService(
-      userId,
+    const address = await addressUpdateAdmService(
       Number(addressId),
       zipcode,
       street,
@@ -26,4 +24,4 @@ const addressUpdateController = async (req: Request, res: Response) => {
   }
 };
 
-export default addressUpdateController;
+export default addressUpdateAdmController;

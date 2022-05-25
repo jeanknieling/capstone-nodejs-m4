@@ -42,7 +42,7 @@ export class User {
 
   @OneToMany((type) => Address, (address) => address.usuario, {
     eager: true,
-    onDelete: "SET NULL"
+    onDelete: "CASCADE"
   })
   address: Address[];
 
