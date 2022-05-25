@@ -1,20 +1,20 @@
-# Kenzie Academy - Back-End: Módulo 4 - Capstone - Documentação API
+# **Kenzie Academy - Back-End: Módulo 4 - Capstone - Documentação API**
 
 Documentação referente a interligação de uma API em Node/ExpressJS e um banco de dados PostgreSQL com suas tabelas.
 
 ## Tabela de Conteúdos
 
-- [Kenzie Academy - Back-End: Módulo 4 - Capstone - Documentação API](#kenzie-academy---back-end-módulo-4---capstone---documentação-api)
+- [**Kenzie Academy - Back-End: Módulo 4 - Capstone - Documentação API**](#kenzie-academy---back-end-módulo-4---capstone---documentação-api)
   - [Tabela de Conteúdos](#tabela-de-conteúdos)
-  - [1. Visão Geral](#1-visão-geral)
-  - [2. Diagrama ER](#2-diagrama-er)
-  - [3. Início Rápido](#3-início-rápido)
+  - [1. **Visão Geral**](#1-visão-geral)
+  - [2. **Diagrama ER**](#2-diagrama-er)
+  - [3. **Início Rápido**](#3-início-rápido)
     - [3.1. Instalando Dependências](#31-instalando-dependências)
     - [3.2. Variáveis de Ambiente](#32-variáveis-de-ambiente)
     - [3.3. Migrations](#33-migrations)
     - [3.4 Docker](#34-docker)
-  - [4. Autenticação](#4-autenticação)
-  - [5. Endpoints](#5-endpoints)
+  - [4. **Autenticação**](#4-autenticação)
+  - [5. **Endpoints**](#5-endpoints)
     - [Índice](#índice)
   - [6. **Usuários**](#6-usuários)
     - [6.1. **Criação de Usuário**](#61-criação-de-usuário)
@@ -74,6 +74,7 @@ Documentação referente a interligação de uma API em Node/ExpressJS e um banc
     - [Requisitos:](#requisitos-6)
     - [Exemplo de Request:](#exemplo-de-request-7)
     - [Corpo da Requisição:](#corpo-da-requisição-7)
+    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-3)
     - [Exemplo de Response:](#exemplo-de-response-7)
     - [Possíveis Erros:](#possíveis-erros-7)
     - [6.3. **Listando Produto por Nome**](#63-listando-produto-por-nome)
@@ -81,6 +82,7 @@ Documentação referente a interligação de uma API em Node/ExpressJS e um banc
     - [Requisitos:](#requisitos-7)
     - [Exemplo de Request:](#exemplo-de-request-8)
     - [Corpo da Requisição:](#corpo-da-requisição-8)
+    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-4)
     - [Exemplo de Response:](#exemplo-de-response-8)
     - [Possíveis Erros:](#possíveis-erros-8)
     - [6.4. **Listando Produtos por Categoria**](#64-listando-produtos-por-categoria)
@@ -88,12 +90,14 @@ Documentação referente a interligação de uma API em Node/ExpressJS e um banc
     - [Requisitos:](#requisitos-8)
     - [Exemplo de Request:](#exemplo-de-request-9)
     - [Corpo da Requisição:](#corpo-da-requisição-9)
+    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-5)
     - [Exemplo de Response:](#exemplo-de-response-9)
     - [Possíveis Erros:](#possíveis-erros-9)
     - [6.5. **Atualizando um Produto**](#65-atualizando-um-produto)
     - [`/porducts/changes/:id`](#porductschangesid)
     - [Requisitos:](#requisitos-9)
     - [Exemplo de Request:](#exemplo-de-request-10)
+    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-6)
     - [Corpo da Requisição:](#corpo-da-requisição-10)
     - [Exemplo de Response:](#exemplo-de-response-10)
     - [Possíveis Erros:](#possíveis-erros-10)
@@ -102,6 +106,7 @@ Documentação referente a interligação de uma API em Node/ExpressJS e um banc
     - [Requisitos:](#requisitos-10)
     - [Exemplo de Request:](#exemplo-de-request-11)
     - [Corpo da Requisição:](#corpo-da-requisição-11)
+    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-7)
     - [Exemplo de Response:](#exemplo-de-response-11)
     - [Possíveis Erros:](#possíveis-erros-11)
   - [8. **Categorias**](#8-categorias)
@@ -110,7 +115,7 @@ Documentação referente a interligação de uma API em Node/ExpressJS e um banc
     - [Requisitos:](#requisitos-11)
     - [Exemplo de Request:](#exemplo-de-request-12)
     - [Corpo da Requisição:](#corpo-da-requisição-12)
-    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-3)
+    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-8)
     - [Exemplo de Response:](#exemplo-de-response-12)
     - [Possíveis Erros:](#possíveis-erros-12)
     - [8.2. **Listando Categorias**](#82-listando-categorias)
@@ -125,7 +130,7 @@ Documentação referente a interligação de uma API em Node/ExpressJS e um banc
     - [Requisitos:](#requisitos-13)
     - [Exemplo de Request:](#exemplo-de-request-14)
     - [Corpo da Requisição:](#corpo-da-requisição-14)
-    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-4)
+    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-9)
     - [Exemplo de Response:](#exemplo-de-response-14)
     - [Possíveis Erros:](#possíveis-erros-14)
     - [8.4 **Deletando uma Categoria**](#84-deletando-uma-categoria)
@@ -133,7 +138,7 @@ Documentação referente a interligação de uma API em Node/ExpressJS e um banc
     - [Requisitos:](#requisitos-14)
     - [Exemplo de Request:](#exemplo-de-request-15)
     - [Corpo da Requisição:](#corpo-da-requisição-15)
-    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-5)
+    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-10)
     - [Exemplo de Response:](#exemplo-de-response-15)
     - [Possíveis Erros:](#possíveis-erros-15)
     - [8.5. **Atualizando uma Categoria**](#85-atualizando-uma-categoria)
@@ -141,14 +146,14 @@ Documentação referente a interligação de uma API em Node/ExpressJS e um banc
     - [Requisitos:](#requisitos-15)
     - [Exemplo de Request:](#exemplo-de-request-16)
     - [Corpo da Requisição:](#corpo-da-requisição-16)
-  - [Schema de Validação com Yup:](#schema-de-validação-com-yup-6)
+  - [Schema de Validação com Yup:](#schema-de-validação-com-yup-11)
     - [Exemplo de Response:](#exemplo-de-response-16)
     - [Possíveis Erros:](#possíveis-erros-16)
   - [Insomnia - Importação para Testes de Requisições](#insomnia---importação-para-testes-de-requisições)
 
 ---
 
-## 1. Visão Geral
+## 1. **Visão Geral**
 
 Visão geral do projeto, um pouco das tecnologias usadas.
 
@@ -162,7 +167,7 @@ Visão geral do projeto, um pouco das tecnologias usadas.
 
 ---
 
-## 2. Diagrama ER
+## 2. **Diagrama ER**
 
 [ Voltar para o topo ](#tabela-de-conteúdos)
 
@@ -172,7 +177,7 @@ Diagrama ER da API definindo bem as relações entre as tabelas do banco de dado
 
 ---
 
-## 3. Início Rápido
+## 3. **Início Rápido**
 
 [ Voltar para o topo ](#tabela-de-conteúdos)
 
@@ -236,7 +241,7 @@ sudo docker-compose up -d
 | Password        | 123456        |
 | DB              | data_capstone | -->
 
-## 4. Autenticação
+## 4. **Autenticação**
 
 [ Voltar para o topo ](#tabela-de-conteúdos)
 
@@ -244,7 +249,7 @@ Colocar autenticações aqui caso existam.
 
 ---
 
-## 5. Endpoints
+## 5. **Endpoints**
 
 [ Voltar para o topo ](#tabela-de-conteúdos)
 
@@ -709,24 +714,16 @@ Content-type: application/json
 ### Schema de Validação com Yup:
 
 ```javascript
-    name: yup
-      .string()
-      .min(3, "Must be at least 3 characters long")
-      .required("Name is required"),
-    nickname: yup
-      .string()
-      .min(3, "Must be at least 3 characters long")
-      .required("Nickname is required"),
-    birthday: yup
-      .date()
-      .max(new Date(minYear, minMonth, minDay), "You must be over 18 years old")
-      .required("Birthday is required"),
-    email: yup.string().email("Invalid email").required("Email is required"),
-    password: yup
-      .string()
-      .min(8, "Must be at least 8 characters long")
-      .required("Password is required"),
-    isAdm: yup.boolean().required("isAdm is required"),
+  name: yup
+    .string()
+    .min(3, "Must be at least 3 characters long")
+    .required("Name is required"),
+  description: yup.string().required("Description is required"),
+  price: yup.number().required("Description is required"),
+  category: yup
+    .string()
+    .min(3, "Must be at least 3 characters long")
+    .required("Description is required"),
 ```
 
 ### Exemplo de Response:
@@ -789,6 +786,15 @@ Content-type: application/json
 Vazio
 ```
 
+### Schema de Validação com Yup:
+
+```javascript
+  id: yup
+    .string()
+    .min(3, "Must be at least 3 characters long")
+    .required("Id is required in params"),
+```
+
 ### Exemplo de Response:
 
 ```
@@ -849,6 +855,15 @@ Content-type: application/json
 {
   "name": "produto 1"
 }
+```
+
+### Schema de Validação com Yup:
+
+```javascript
+  name: yup
+    .string()
+    .min(3, "Must be at least 3 characters long")
+    .required("Name is required"),
 ```
 
 ### Exemplo de Response:
@@ -914,6 +929,15 @@ Content-type: application/json
 }
 ```
 
+### Schema de Validação com Yup:
+
+```javascript
+  category: yup
+    .string()
+    .min(3, "Must be at least 3 characters long")
+    .required("Name is required"),
+```
+
 ### Exemplo de Response:
 
 ```
@@ -969,6 +993,30 @@ GET /users
 Host: http://localhost:3000
 Authorization: Token
 Content-type: application/json
+```
+
+### Schema de Validação com Yup:
+
+```javascript
+   params: {
+      yupSchema: yup.object().shape({
+        id: yup
+          .string()
+          .min(1, "Id must be greater then 0")
+          .required("Name is required"),
+      }),
+    },
+    body: {
+      yupSchema: yup.object().shape({
+        name: yup.string().min(3, "Must be at least 3 characters long"),
+        description: yup.string(),
+        price: yup.number(),
+        category: yup.string().min(3, "Must be at least 3 characters long"),
+      }),
+      validateOptions: {
+        abortEarly: false,
+      },
+    },
 ```
 
 ### Corpo da Requisição:
@@ -1031,6 +1079,15 @@ Content-type: application/json
 
 ```json
 Vazio
+```
+
+### Schema de Validação com Yup:
+
+```javascript
+   category: yup
+    .string()
+    .min(3, "Must be at least 3 characters long")
+    .required("Name is required"),
 ```
 
 ### Exemplo de Response:
