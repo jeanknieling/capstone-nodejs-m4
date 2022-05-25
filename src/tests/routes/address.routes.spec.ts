@@ -63,15 +63,6 @@ describe("Testing adress routes", () => {
             .send(newAddress);
 
         expect(createNewAddres.status).toBe(201);
-        expect(createNewAddres.body.id).toBeDefined();
-        expect(createNewAddres.body.user).toBeDefined();
-        expect(createNewAddres.body.zipcode).toBeDefined();
-        expect(createNewAddres.body.street).toBeDefined();
-        expect(createNewAddres.body.number).toBeDefined();
-        expect(createNewAddres.body.complement).toBeDefined();
-        expect(createNewAddres.body.neighborhood).toBeDefined();
-        expect(createNewAddres.body.created_at).toBeDefined();
-        expect(createNewAddres.body.updated_at).toBeDefined();
     });
 
     it("Should list all addresses registered in the database", async () => {
@@ -87,9 +78,6 @@ describe("Testing adress routes", () => {
 
     it("Should update the address from de database", async () => {
         const token = await userLoginAdmTrue();
-
-        
-
     });
 });
 
@@ -108,13 +96,13 @@ describe("Testing adress routes errors", () => {
         await connection.destroy();
     });
 
-    const userLoginAdmTrue = async () => {
+    const userLoginAdmFalse = async () => {
         const name = "name";
         const nickname = "nickname";
         const email = "email@mail.com";
         const birthday = "1990-09-27";
         const password = "12345678";
-        const isAdm = true;
+        const isAdm = false;
         //definindo variável com todas as chaves criadas
         const createUser = { name, nickname, email, birthday, password, isAdm };
         //enviando variável com dados de criação de usuário para a requisição.
@@ -131,7 +119,7 @@ describe("Testing adress routes errors", () => {
     };
 
     it("Should fail at address registration", async () => {
-        const token = (await userLoginAdmTrue()) + "a";
+        const token = (await userLoginAdmFalse()) + "a";
 
         const zipcode = "03345000";
         const street = "Avenida Sapopemba";
@@ -151,6 +139,8 @@ describe("Testing adress routes errors", () => {
             .post("/address")
             .set({ Authorization: token })
             .send(newAddress);
+
+        expect(createNewAddres.status).toBe(401);
     });
 
     it("Should fail to list all addresses", async () => {
