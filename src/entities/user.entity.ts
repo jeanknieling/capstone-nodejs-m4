@@ -5,11 +5,14 @@ import {
   OneToMany,
   UpdateDateColumn,
   CreateDateColumn,
+  OneToOne,
+  JoinColumn,
 } from "typeorm";
 
 import { v4 as uuid } from "uuid";
 import { Address } from "./address.entity";
 import { Buys } from "./buys.entity";
+import { Order } from "./order.entity";
 
 @Entity()
 export class User {
@@ -46,15 +49,15 @@ export class User {
   })
   address: Address[];
 
-  // @OneToMany((type) => Address, (address) => address.usuario, {
-  //   eager: true,
-  // })
-  // address: Address[];
-
   @OneToMany((type) => Buys, (buys) => buys.user, {
     eager: true,
   })
   buys: Buys[];
+
+  @OneToMany((type) => Order, (order) => order.usuario, {
+    eager: true
+  })
+  order: Order
 
   constructor() {
     if (!this.id) {

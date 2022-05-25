@@ -7,10 +7,14 @@ import {
   JoinColumn,
   UpdateDateColumn,
   CreateDateColumn,
+  ManyToMany,
+  JoinTable,
 } from "typeorm";
 
 import { Order } from "./order.entity";
+import { Product } from "./product.entity";
 import { User } from "./user.entity";
+import { v4 as uuid } from "uuid";
 
 @Entity()
 export class Buys {
@@ -18,14 +22,21 @@ export class Buys {
   readonly id: string;
 
   @ManyToOne((type) => User, (user) => user.buys)
-  @JoinColumn()
   user: User;
 
-  @OneToMany((type) => Order, (order) => order.buy)
-  order: Order[];
+  @ManyToMany((type) => Product, {
+    eager: true
+  })@JoinTable()
+  products: Product[]
 
-  @Column()
-  status: string;
+  @Column("float")
+  total: number
+
+  // @OneToMany((type) => Order, (order) => order.buy)
+  // order: Order[];
+
+  // @Column()
+  // status: string;
 
   @Column()
   created_at: Date;

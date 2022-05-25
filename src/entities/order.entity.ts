@@ -1,15 +1,29 @@
-import { Entity, ManyToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryColumn } from "typeorm";
 import { Buys } from "./buys.entity";
 import { Product } from "./product.entity";
+import { v4 as uuid } from "uuid";
+import { User } from "./user.entity";
 
 @Entity()
 export class Order {
   @PrimaryColumn("uuid")
   readonly id: string;
+  
+  @Column('float')
+  subtotal: number
 
-  @ManyToOne((type) => Buys, (buy) => buy.order, { nullable: false })
-  buy: Buys[];
+  @ManyToOne((type) => User, (user) => user.order)
+  usuario: User;
 
-  @ManyToOne((type) => Product, (product) => product.order, { nullable: false })
-  product: Product[];
+
+  @ManyToMany((type) => Product,  { 
+    eager: true,
+   })@JoinTable()
+  products: Product[];
+
+  constructor(){
+    if(!this.id){
+      this.id = uuid()
+    }
+  }
 }

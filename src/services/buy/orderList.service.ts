@@ -3,7 +3,7 @@ import { AppDataSource } from "../../data-source";
 import { AppError } from "../../errors/appError";
 import { User } from "../../entities/user.entity";
 
-const addressDeleteService = async (id: string) => {
+const addressListService = async (id: string) => {
   const userCheck = await AppDataSource.getRepository(User).findOne({
     where : { id : id}
     })
@@ -20,4 +20,4 @@ const addressDeleteService = async (id: string) => {
   return addressRepository;
 };
 
-export default addressDeleteService;
+export default addressListService;
