@@ -10,7 +10,7 @@ import addressUpdateAdmController from "../controllers/address/addressUpdateAdm.
 import { authUser } from "../middlewares/user/authUser.middleware";
 import { verifyisAdmMiddleware } from "../middlewares/user/authUser.middleware";
 import createAddressSchema from "../validations/address/createAddress.validator";
-import updateAddressSchema from "../validations/address/deleteAddress.validator copy";
+import updateAddressSchema from "../validations/address/deleteAddress.validator";
 import deleteAddressSchema from "../validations/address/updateAddress.validator";
 import tokenValidatorSchema from "../validations/token.validator";
 
