@@ -1,19 +1,18 @@
 import { Request, Response } from "express";
+import { AppError, handleError } from "../../errors/appError";
 import addressDeleteService from "../../services/address/addressDelete.service";
 
 const addressDeleteController = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const userId = req.userId;
+    const { addressId } = req.body;
 
-    const address = await addressDeleteService(parseInt(id));
+    const addresss = await addressDeleteService(userId, addressId);
 
-    return res.status(200).json({ message: "Address deleted with sucess!" });
+    return res.send(addresss);
   } catch (err) {
-    if (err instanceof Error) {
-      return res.status(401).send({
-        error: err.name,
-        message: err.message,
-      });
+    if (err instanceof AppError) {
+      handleError(err, res);
     }
   }
 };

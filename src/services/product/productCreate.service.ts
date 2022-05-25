@@ -11,30 +11,25 @@ const productCreateService = async ({
   category,
 }: IProductCreate) => {
   const catName = await AppDataSource.getRepository(Category).findOne({
-    where : {name :  ILike(`%${category}%`)} 
+    where: { name: ILike(`%${category}%`) },
   });
 
   if (!catName) {
     throw new AppError(404, "Category not found");
   }
 
-
-  console.log("ESSAA APORRA DE NOME", catName)
-
-  const productRepository = AppDataSource.getRepository(Product)
-
+  const productRepository = AppDataSource.getRepository(Product);
 
   const product = productRepository.create({
     name,
     description,
     price,
-    category : catName
+    category: catName,
   });
-
- 
 
   await productRepository.save(product);
 
   return product;
 };
+
 export default productCreateService;

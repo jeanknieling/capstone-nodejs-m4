@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-const deleteCategoryValidatorSchema = {
+const deleteCategorySchema = {
   schema: {
     params: {
       yupSchema: yup.object().shape({
@@ -12,4 +12,4 @@ const deleteCategoryValidatorSchema = {
     },
   },
 };
-export default deleteCategoryValidatorSchema;
+export default deleteCategorySchema;

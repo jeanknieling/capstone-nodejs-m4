@@ -6,7 +6,6 @@ const addressListController = async (req: Request, res: Response) => {
   
   try {
     const addresss = await addressListService(id);
-  
 
     return res.send(addresss);
   } catch (err) {
