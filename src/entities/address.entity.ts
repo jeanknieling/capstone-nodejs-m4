@@ -4,8 +4,6 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
   JoinColumn,
-  UpdateDateColumn,
-  CreateDateColumn,
 } from "typeorm";
 
 import { User } from "./user.entity";
