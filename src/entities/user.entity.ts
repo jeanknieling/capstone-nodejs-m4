@@ -3,13 +3,14 @@ import {
   Column,
   PrimaryColumn,
   OneToMany,
-  UpdateDateColumn,
-  CreateDateColumn,
+  OneToOne,
+  JoinColumn,
 } from "typeorm";
 
 import { v4 as uuid } from "uuid";
 import { Address } from "./address.entity";
-import { Buys } from "./buys.entity";
+import { Buy } from "./buy.entity";
+import { Cart } from "./cart.entity";
 
 @Entity()
 export class User {
@@ -45,10 +46,15 @@ export class User {
   })
   address: Address[];
 
-  @OneToMany((type) => Buys, (buys) => buys.user, {
+  @OneToMany((type) => Buy, (buys) => buys.user, {
     eager: true,
   })
-  buys: Buys[];
+  buys: Buy[];
+
+  @OneToOne((type) => Cart, {
+    eager: true
+  })@JoinColumn()
+  cart: Cart
 
   constructor() {
     if (!this.id) {
