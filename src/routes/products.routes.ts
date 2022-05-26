@@ -22,7 +22,6 @@ import {
 import createProductSchema from "../validations/products/createProduct.validation";
 import deleteProductSchema from "../validations/products/deleteProduct.validator";
 import likeProductSchema from "../validations/products/likeProducts.validation";
-import listAllProductsSchema from "../validations/products/listAllProducts.validation";
 import listProductByCategorySchema from "../validations/products/listProductByCategory.validation";
 import listProductByNameSchema from "../validations/products/listProductByName.validation";
 import updateProductSchema from "../validations/products/updateProduct.validator";
@@ -57,7 +56,6 @@ export const productsRoutes = () => {
 
   routes.get(
     "/",
-    expressYupMiddleware({ schemaValidator: listAllProductsSchema }),
     authUser,
     productListController
   );

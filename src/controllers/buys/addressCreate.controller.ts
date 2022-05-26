@@ -7,10 +7,10 @@ const buysCreateController = async (req: Request, res: Response) => {
   const { productId } = req.body;
   const userId = req.userId
 
-  const newaddress = await buyCreateService({
+  const newaddress = await buyCreateService(
     productId,
     userId
-  });
+  );
 
   return res.status(201).send(newaddress);
 };

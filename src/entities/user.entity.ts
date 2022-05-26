@@ -51,7 +51,7 @@ export class User {
   // })
   // address: Address[];
 
-  @OneToMany((type) => Buys, (buys) => buys.user, {
+  @OneToMany((type) => Buys, (buys) => buys.usuario, {
     eager: true,
   })
   buys: Buys[];

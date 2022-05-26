@@ -10,6 +10,7 @@ import {
   OneToMany,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { Buys } from "./buys.entity";
 import { Category } from "./category.entity";
 import { Order } from "./order.entity";
 
@@ -36,10 +37,8 @@ export class Product {
   })
   category: Category;
 
-  @ManyToOne((type) => Order, (order) => order.product, {
-    eager: true,
-  })
-  // order: Order[];
+  @ManyToOne((type) => Buys, (buys) => buys.product)
+   buys: Buys
 
   @Column()
   created_at: Date;
@@ -48,12 +47,15 @@ export class Product {
   updated_at: Date;
 
   constructor() {
+
     if (!this.created_at) {
       this.created_at = new Date();
     }
+
     if (!this.updated_at) {
       this.updated_at = new Date();
     }
+
     if (!this.id) {
       this.id = uuid();
     }

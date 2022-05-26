@@ -1,5 +1,5 @@
 import { AppDataSource } from "../../data-source";
-import { AppError } from "../../errors/appError";
+import { AppError } from "../../errors/appError"; 
 import { User } from "../../entities/user.entity";
 import { Order } from "../../entities/order.entity";
 import { categoriesRoutes } from "../../routes/categories.routes";
@@ -16,91 +16,58 @@ const buyCreateService = async (productId:string, userId:string) => {
     throw new AppError(400, "User not Found!")
   }
 
-  console.log("MEU USUARUIO", userRepo)
+  console.log("MEU USUARUIO", productId)
 
   // BUSCAR COMPRAS COM ID DO USUARIO
   const repoBuys = AppDataSource.getRepository(Buys)
-  const buys = await repoBuys.findOne({
-    where : {
-      user: userRepo?.buys
-    }
-  })
+  const buys = await repoBuys.findBy({
+         usuario: userRepo
 
+  })
+ console.log("AQUIIIIIIIIII SOCORRRRRRRO",buys)
 
   //BUSCAR PRODUTO
   const prodRepo = await AppDataSource.getRepository(Product).findOne({
     where : {id : productId }
   })
 
-  console.log("AQUIIIIIIIIIIIIIII ESTAAAAA PRODUTO", prodRepo)
 
-  //GERAR ID DE COMPRA E STATUS
-  //CRIAR ORDER COM ID DA COMPRA E O PRODUTO QUE RECEBI
+  if(!prodRepo){
+    throw new AppError(400, "Vai tomae no cu!")
+  }
 
   // SE NAOOOOO TIVER COMPRA DO USUARIO, CRIA UMA ORDER, E ADICIONA O PRODUTO
-  if(!buys){
+  if(!buys.length){
     // cria compra
     console.log("OTARIOOOOOOOOO")
-    AppDataSource.getRepository(Buys).create({
-      user: userRepo,
-    })
+    const buyNew = AppDataSource.getRepository(Buys)
+    const compra = buyNew.create({
+      usuario: userRepo,
+      product: [prodRepo]
+   })
+   await buyNew.save(compra);
+
+   return compra
 
   }
-    // busca compra criada
-    // const repoBuy = AppDataSource.getRepository(Buys)
-    const repoBuy = await AppDataSource.getRepository(Buys).findOne({
-      where : {user: userRepo?.buys}
-    })
+    
 
-    console.log("REGINALDO",repoBuy)
+  // if (buys.length) {
+  //   console.log("BUYSSSS NO IFFFFFFFFFFF", buys)
 
-    // if (!repoBuy) {
-    //   throw new AppError(404, "Category not found");
-    // }
+    if (buys[0].product.filter(prod => prod.id === prodRepo.id).length > 0) {
+        throw new AppError(409, "Product is already in the buys")
+    }
 
-    // cria order com a compra criada
-    //   const orderRepo = AppDataSource.getRepository(Order)
-    //   const order = orderRepo.create({
-    //     buy: [repoBuy],
-    //     product: [prodRepo]
-    //  })
-    // }
+    buys[0].product = [...buys[0].product, prodRepo]
+    // buys.total = (orderRepo.subtotal + prodRepo.price)
 
-  
-  
+    await repoBuys.save(buys)
 
-
-     // CRIANDO ORDER
-     
-        //ID DA BUY : ASDASDFAA123456
-        // orderRepo.products = [...orderRepo.products, prodRepo]
-        // orderRepo.subtotal = (orderRepo.subtotal + prodRepo.price)
-        
-      // }) 
-
-
-//       await orderRepo.save(order);
-
-//       return order;
-//   }
-
-
-// if (orderRepo && prodRepo) {
-
-//     if (orderRepo.products.filter(prod => prod.id === prodRepo.id).length > 0) {
-//         throw new AppError(409, "Product is already in the cart")
-//     }
-
-//     orderRepo.products = [...orderRepo.products, prodRepo]
-//     orderRepo.subtotal = (orderRepo.subtotal + prodRepo.price)
-
-//     await repo.save(orderRepo)
-
-    return repoBuy
+    return buys[0]
 
 
 
- 
-};
+}
 
 export default buyCreateService;

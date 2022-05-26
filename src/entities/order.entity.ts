@@ -7,8 +7,8 @@ export class Order {
   @PrimaryColumn("uuid")
   readonly id: string;
 
-  @ManyToOne((type) => Buys, (buy) => buy.order, { nullable: false })
-  buy: Buys[];
+  // @ManyToOne((type) => Buys, (buy) => buy.order, { nullable: false })
+  // buy: Buys[];
 
   @OneToMany((type) => Product, (product) => product.id, { nullable: false })
   product: Product[];

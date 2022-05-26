@@ -13,6 +13,7 @@ import {
 
 import { Order } from "./order.entity";
 import { User } from "./user.entity";
+import { Product } from "./product.entity";
 
 @Entity()
 export class Buys {
@@ -20,11 +21,13 @@ export class Buys {
   readonly id: string;
 
   @ManyToOne((type) => User, (user) => user.buys)
-  @JoinColumn()
-  user: User;
+  // @JoinColumn()
+  usuario: User;
 
-  @OneToMany((type) => Order, (order) => order.buy)
-  order: Order[];
+  @OneToMany((type) => Product, (product) => product.buys,{
+    eager: true,
+  })
+  product: Product[];
 
   @Column({
     default:"Em aberto."
