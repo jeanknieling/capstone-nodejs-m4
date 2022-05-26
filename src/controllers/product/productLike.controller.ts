@@ -5,12 +5,9 @@ import productLikeService from "../../services/product/productLike.service";
 const productLikeController = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
+    const { like } = req.body;
 
-    
-    const product = await productLikeService(
-      id,
-    
-    );
+    const product = await productLikeService(id, like);
 
     return res.status(200).send(product);
   } catch (err) {

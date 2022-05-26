@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-const deleteCategorySchema = {
+const listAllProductsSchema = {
   schema: {
     params: {
       yupSchema: yup.object().shape({
@@ -12,4 +12,4 @@ const deleteCategorySchema = {
     },
   },
 };
-export default deleteCategorySchema;
+export default listAllProductsSchema;

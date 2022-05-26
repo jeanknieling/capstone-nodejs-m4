@@ -3,6 +3,7 @@ import { expressYupMiddleware } from "express-yup-middleware";
 
 import productCreateController from "../controllers/product/productCreate.controller";
 import productDeleteController from "../controllers/product/productDelete.controller";
+import productLikeController from "../controllers/product/productLike.controller";
 import productListController from "../controllers/product/productList.controller";
 import productListByCategoryController from "../controllers/product/productListByCategory.controller";
 import productListByNameController from "../controllers/product/productListByName.controller";
@@ -20,6 +21,8 @@ import {
 } from "../middlewares/user/authUser.middleware";
 import createProductSchema from "../validations/products/createProduct.validation";
 import deleteProductSchema from "../validations/products/deleteProduct.validator";
+import likeProductSchema from "../validations/products/likeProducts.validation";
+import listAllProductsSchema from "../validations/products/listAllProducts.validation";
 import listProductByCategorySchema from "../validations/products/listProductByCategory.validation";
 import listProductByNameSchema from "../validations/products/listProductByName.validation";
 import updateProductSchema from "../validations/products/updateProduct.validator";
@@ -34,6 +37,7 @@ export const productsRoutes = () => {
       propertiesToValidate: ["headers"],
     })
   );
+
   routes.post(
     "/",
     expressYupMiddleware({ schemaValidator: createProductSchema }),
@@ -44,7 +48,19 @@ export const productsRoutes = () => {
     productCreateController
   );
 
-  routes.get("/", authUser, productListController);
+  routes.post(
+    "/like/:id",
+    expressYupMiddleware({ schemaValidator: likeProductSchema }),
+    authUser,
+    productLikeController
+  );
+
+  routes.get(
+    "/",
+    expressYupMiddleware({ schemaValidator: listAllProductsSchema }),
+    authUser,
+    productListController
+  );
 
   routes.get(
     "/product",
@@ -76,7 +92,7 @@ export const productsRoutes = () => {
 
   routes.delete(
     "/:id",
-    expressYupMiddleware({ schemaValidator : deleteProductSchema }),
+    expressYupMiddleware({ schemaValidator: deleteProductSchema }),
     authUser,
     verifyisAdmMiddleware,
     productNotRegistered,
