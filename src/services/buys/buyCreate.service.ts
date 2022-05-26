@@ -40,18 +40,23 @@ const buyCreateService = async (productId:string, userId:string) => {
   // SE NAOOOOO TIVER COMPRA DO USUARIO, CRIA UMA ORDER, E ADICIONA O PRODUTO
   if(!buys){
     // cria compra
+    console.log("OTARIOOOOOOOOO")
     AppDataSource.getRepository(Buys).create({
       user: userRepo,
     })
+
   }
     // busca compra criada
+    // const repoBuy = AppDataSource.getRepository(Buys)
     const repoBuy = await AppDataSource.getRepository(Buys).findOne({
       where : {user: userRepo?.buys}
     })
 
-    if (!repoBuy) {
-      throw new AppError(404, "Category not found");
-    }
+    console.log("REGINALDO",repoBuy)
+
+    // if (!repoBuy) {
+    //   throw new AppError(404, "Category not found");
+    // }
 
     // cria order com a compra criada
     //   const orderRepo = AppDataSource.getRepository(Order)

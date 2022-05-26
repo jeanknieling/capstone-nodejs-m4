@@ -6,6 +6,7 @@ import addressListController from "../controllers/address/addressList.controller
 import addressListOneController from "../controllers/address/addressListOne.controller";
 import addressUpdateController from "../controllers/address/addressUpdate.controller";
 import addressUpdateAdmController from "../controllers/address/addressUpdateAdm.controller";
+import buysCreateController from "../controllers/buys/buysCreate.controller";
 
 import { authUser } from "../middlewares/user/authUser.middleware";
 import { verifyisAdmMiddleware } from "../middlewares/user/authUser.middleware";
@@ -27,12 +28,9 @@ export const buysRoutes = () => {
 
   routes.post(
     "/",
-    // expressYupMiddleware({
-    //   schemaValidator: createAddressSchema,
-    // }),
     authUser,
-    addressCreateController
-  );
+    buysCreateController 
+    );
 
   routes.get("/", verifyisAdmMiddleware, addressListController);
 

@@ -36,10 +36,10 @@ export class Product {
   })
   category: Category;
 
-  @OneToMany((type) => Order, (order) => order.product, {
+  @ManyToOne((type) => Order, (order) => order.product, {
     eager: true,
   })
-  order: Order[];
+  // order: Order[];
 
   @Column()
   created_at: Date;
