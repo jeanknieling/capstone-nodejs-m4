@@ -10,7 +10,7 @@ const userLoginService = async ({ email, password }: IUserLogin) => {
   const users = await userRepository.find();
 
   const account = users.find((user) => user.email === email);
-
+  
   if (!account) {
     throw new AppError(403, "Wrong email/password");
   }
@@ -20,13 +20,13 @@ const userLoginService = async ({ email, password }: IUserLogin) => {
   }
 
   const token = jwt.sign(
-    { email: email, isAdm: account.isAdm },
+    { id: account.id, isAdm: account.isAdm },
     String(process.env.JWT_SECRET),
     {
       expiresIn: "1d",
     }
   );
-  console.log(token);
+
   return token;
 };
 export default userLoginService;

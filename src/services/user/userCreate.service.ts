@@ -1,3 +1,4 @@
+import { IUser } from "./../../interfaces/user/index";
 import { User } from "../../entities/user.entity";
 
 import { IUserCreate } from "../../interfaces/user/index";
@@ -6,6 +7,7 @@ import { AppDataSource } from "../../data-source";
 import bcrypt from "bcrypt";
 import { AppError } from "../../errors/appError";
 import { checkDate } from "../../utils/checkDate";
+import { Cart } from "../../entities/cart.entity";
 
 const userCreateService = async ({
   name,
@@ -15,12 +17,13 @@ const userCreateService = async ({
   password,
   isAdm,
 }: IUserCreate) => {
-  const vaildDate = checkDate(birthday);
-  if (!vaildDate) {
-    throw new AppError(404, "Invalid date");
+  const validDate = checkDate(birthday);
+  if (!validDate) {
+    throw new AppError(400, "Invalid date - correct format - (yyyy-mm-dd)");
   }
 
   const userRepository = AppDataSource.getRepository(User);
+  const cartRepository = AppDataSource.getRepository(Cart);
 
   const users = await userRepository.find();
 
@@ -30,18 +33,21 @@ const userCreateService = async ({
     throw new AppError(409, "Email Already Exists");
   }
 
-  const user = new User();
+  const cart = new Cart();
+  cart.total = 0;
 
-  user.name = name;
-  user.nickname = nickname;
-  user.birthday = birthday;
-  user.email = email;
-  user.password = bcrypt.hashSync(password, 10);
-  user.isAdm = isAdm;
-  user.created_at = new Date();
-  user.updated_at = new Date();
+  cartRepository.create(cart);
+  await cartRepository.save(cart);
 
-  userRepository.create(user);
+  const user = userRepository.create({
+    name: bcrypt.hashSync(name, 10),
+    nickname,
+    birthday,
+    email,
+    password: bcrypt.hashSync(password, 10),
+    cart: cart,
+    isAdm: isAdm ? true : false,
+  });
 
   await userRepository.save(user);
 
