@@ -13,7 +13,7 @@ const addressListService = async (userId: string) => {
     }
 
   const addressRepository = await AppDataSource.getRepository(Address).findBy({
-    usuario: userCheck
+    user: userCheck
   });
 
 

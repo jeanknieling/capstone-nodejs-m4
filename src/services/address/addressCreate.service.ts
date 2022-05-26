@@ -13,11 +13,11 @@ const addressCreateService = async ({
   user_id,
 }: IAddressCreate) => {
   const addressRepository = AppDataSource.getRepository(Address);
-  const usuario = await AppDataSource.getRepository(User).findOne({
+  const user = await AppDataSource.getRepository(User).findOne({
     where: { id: user_id },
   });
 
-  if (!usuario) {
+  if (!user) {
     throw new AppError(400, "User not found!");
   }
   const address = addressRepository.create({
@@ -26,7 +26,7 @@ const addressCreateService = async ({
     number,
     neighborhood,
     complement,
-    usuario: usuario,
+    user: user,
   });
 
   await addressRepository.save(address);

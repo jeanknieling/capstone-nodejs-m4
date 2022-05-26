@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import addressCreateService from "../../services/address/addressCreate.service";
-// import jwt_decode from "jwt-decode"
 
 const addressCreateController = async (req: Request, res: Response) => {
   const { zipcode, street, number, neighborhood, complement } = req.body;

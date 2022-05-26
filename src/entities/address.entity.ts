@@ -28,11 +28,10 @@ export class Address {
   @Column()
   complement: string;
 
-  // nao permite criar endereco com user:User
   @ManyToOne((type) => User, (user) => user.address, {
     onDelete: "CASCADE",
   })
-  usuario: User;
+  user: User;
 
   @Column()
   created_at: Date;

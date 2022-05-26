@@ -16,7 +16,7 @@ const buyCreateService = async (productId: string, userId: string) => {
 
   const buyRepository = AppDataSource.getRepository(Buy);
   const buys = await buyRepository.findBy({
-    usuario: userRepository,
+    user: userRepository,
   });
 
   const productRepository = await AppDataSource.getRepository(Product).findOne({
@@ -30,7 +30,7 @@ const buyCreateService = async (productId: string, userId: string) => {
   if (!buys.length) {
     const buyNew = AppDataSource.getRepository(Buy);
     const buy = buyNew.create({
-      usuario: userRepository,
+      user: userRepository,
       product: [productRepository],
     });
     await buyNew.save(buy);

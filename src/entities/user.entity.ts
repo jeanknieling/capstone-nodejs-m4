@@ -41,7 +41,7 @@ export class User {
   @Column()
   updated_at: Date;
 
-  @OneToMany((type) => Address, (address) => address.usuario, {
+  @OneToMany((type) => Address, (address) => address.user, {
     eager: true,
     onDelete: "CASCADE",
   })
