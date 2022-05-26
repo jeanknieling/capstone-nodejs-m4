@@ -30,8 +30,7 @@ export class Address {
 
   // nao permite criar endereco com user:User
   @ManyToOne((type) => User, (user) => user.address)
-  @JoinColumn()
-  user: User;
+  usuario: User;
 
   @Column()
   created_at: Date;
