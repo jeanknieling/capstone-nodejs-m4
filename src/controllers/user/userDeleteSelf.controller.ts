@@ -6,7 +6,6 @@ import userDeleteSelfService from "../../services/user/userDeleteSelf.service";
 const userDeleteSelfController = async (req: Request, res: Response) => {
   try {
     const id = req.userId;
-    console.log(id)
 
     const user = await userDeleteSelfService(id);
 
