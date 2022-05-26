@@ -1,18 +1,7 @@
-import {
-  Entity,
-  Column,
-  PrimaryColumn,
-  ManyToOne,
-  CreateDateColumn,
-  UpdateDateColumn,
-  OneToOne,
-  JoinColumn,
-  OneToMany,
-} from "typeorm";
-import { v4 as uuid } from "uuid";
-import { Buys } from "./buys.entity";
+import { Entity, Column, PrimaryColumn, ManyToOne } from "typeorm";
 import { Category } from "./category.entity";
-import { Order } from "./order.entity";
+import { Buy } from "./buy.entity";
+import { v4 as uuid } from "uuid";
 
 @Entity()
 export class Product {
@@ -31,14 +20,14 @@ export class Product {
   @Column({ default: 0 })
   likes: number;
 
+  @ManyToOne((type) => Buy, (buy) => buy.products)
+  buy: Buy;
+
   @ManyToOne((type) => Category, (category) => category.product, {
     eager: true,
-    onDelete: "SET NULL"
+    onDelete: "SET NULL",
   })
   category: Category;
-
-  @ManyToOne((type) => Buys, (buys) => buys.product)
-   buys: Buys
 
   @Column()
   created_at: Date;
@@ -47,17 +36,14 @@ export class Product {
   updated_at: Date;
 
   constructor() {
-
+    if (!this.id) {
+      this.id = uuid();
+    }
     if (!this.created_at) {
       this.created_at = new Date();
     }
-
     if (!this.updated_at) {
       this.updated_at = new Date();
-    }
-
-    if (!this.id) {
-      this.id = uuid();
     }
   }
 }

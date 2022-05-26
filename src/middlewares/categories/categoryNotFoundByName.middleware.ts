@@ -15,7 +15,6 @@ const categoryNotFoundByName = async (
     name: ILike(`%${category}%`)
   });
 
-
   if (!categories.length) {
     return res.status(404).json({
       status: "error",

@@ -1,73 +1,51 @@
 import { AppDataSource } from "../../data-source";
-import { AppError } from "../../errors/appError"; 
+import { AppError } from "../../errors/appError";
+
 import { User } from "../../entities/user.entity";
-import { Order } from "../../entities/order.entity";
-import { categoriesRoutes } from "../../routes/categories.routes";
 import { Product } from "../../entities/product.entity";
-import { Buys } from "../../entities/buys.entity";
+import { Buy } from "../../entities/buy.entity";
 
-const buyCreateService = async (productId:string, userId:string) => {
-  // BUSCAR USUARIO
-  const userRepo = await AppDataSource.getRepository(User).findOne({
-    where: {id: userId}
-  })
+const buyCreateService = async (productId: string, userId: string) => {
+  const userRepository = await AppDataSource.getRepository(User).findOne({
+    where: { id: userId },
+  });
 
-  if(!userRepo){
-    throw new AppError(400, "User not Found!")
+  if (!userRepository) {
+    throw new AppError(400, "User not Found!");
   }
 
-  console.log("MEU USUARUIO", productId)
+  const buyRepository = AppDataSource.getRepository(Buy);
+  const buys = await buyRepository.findBy({
+    usuario: userRepository,
+  });
 
-  // BUSCAR COMPRAS COM ID DO USUARIO
-  const repoBuys = AppDataSource.getRepository(Buys)
-  const buys = await repoBuys.findBy({
-         usuario: userRepo
+  const productRepository = await AppDataSource.getRepository(Product).findOne({
+    where: { id: productId },
+  });
 
-  })
- console.log("AQUIIIIIIIIII SOCORRRRRRRO",buys)
-
-  //BUSCAR PRODUTO
-  const prodRepo = await AppDataSource.getRepository(Product).findOne({
-    where : {id : productId }
-  })
-
-
-  if(!prodRepo){
-    throw new AppError(400, "Vai tomae no cu!")
+  if (!productRepository) {
+    throw new AppError(400, "Product not found");
   }
 
-  // SE NAOOOOO TIVER COMPRA DO USUARIO, CRIA UMA ORDER, E ADICIONA O PRODUTO
-  if(!buys.length){
-    // cria compra
-    console.log("OTARIOOOOOOOOO")
-    const buyNew = AppDataSource.getRepository(Buys)
-    const compra = buyNew.create({
-      usuario: userRepo,
-      product: [prodRepo]
-   })
-   await buyNew.save(compra);
+  if (!buys.length) {
+    const buyNew = AppDataSource.getRepository(Buy);
+    const buy = buyNew.create({
+      usuario: userRepository,
+      product: [productRepository],
+    });
+    await buyNew.save(buy);
 
-   return compra
-
+    return buy;
   }
-    
 
-  // if (buys.length) {
-  //   console.log("BUYSSSS NO IFFFFFFFFFFF", buys)
+  if (buys[0].product.filter((prod) => prod.id === productRepository.id).length > 0) {
+    throw new AppError(409, "Product is already in the buys");
+  }
 
-    if (buys[0].product.filter(prod => prod.id === prodRepo.id).length > 0) {
-        throw new AppError(409, "Product is already in the buys")
-    }
+  buys[0].product = [...buys[0].product, productRepository];
+  await buyRepository.save(buys);
 
-    buys[0].product = [...buys[0].product, prodRepo]
-    // buys.total = (orderRepo.subtotal + prodRepo.price)
-
-    await repoBuys.save(buys)
-
-    return buys[0]
-
-
-
-}
+  return buys[0];
+};
 
 export default buyCreateService;
