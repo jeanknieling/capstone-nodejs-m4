@@ -5,6 +5,7 @@ import { User } from "../../entities/user.entity";
 import { AppError } from "../../errors/appError";
 import { fixedFloat } from "../../utils/checkDate";
 
+
 const addProductService = async (userId: string, productName: string) => {
   const userRepostory = AppDataSource.getRepository(User);
   const user = await userRepostory.findOne({
