@@ -6,32 +6,31 @@ import addressListController from "../controllers/address/addressList.controller
 import addressListOneController from "../controllers/address/addressListOne.controller";
 import addressUpdateController from "../controllers/address/addressUpdate.controller";
 import addressUpdateAdmController from "../controllers/address/addressUpdateAdm.controller";
+import buysCreateController from "../controllers/buys/buysCreate.controller";
 
 import { authUser } from "../middlewares/user/authUser.middleware";
 import { verifyisAdmMiddleware } from "../middlewares/user/authUser.middleware";
 import createAddressSchema from "../validations/address/createAddress.validator";
-import updateAddressSchema from "../validations/address/deleteAddress.validator";
+import updateAddressSchema from "../validations/address/deleteAddress.validator copy";
 import deleteAddressSchema from "../validations/address/updateAddress.validator";
 import tokenValidatorSchema from "../validations/token.validator";
 
 const routes = Router();
 
-export const addressRoutes = () => {
-  routes.use(
-    expressYupMiddleware({
-      schemaValidator: tokenValidatorSchema,
-      propertiesToValidate: ["headers"],
-    }),
-    authUser
-  );
+export const buysRoutes = () => {
+  // routes.use(
+  //   expressYupMiddleware({
+  //     schemaValidator: tokenValidatorSchema,
+  //     propertiesToValidate: ["headers"],
+  //   }),
+  //   authUser
+  // );
 
   routes.post(
     "/",
-    expressYupMiddleware({
-      schemaValidator: createAddressSchema,
-    }),
-    addressCreateController
-  );
+    authUser,
+    buysCreateController 
+    );
 
   routes.get("/", verifyisAdmMiddleware, addressListController);
 

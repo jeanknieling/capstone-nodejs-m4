@@ -28,9 +28,10 @@ export class Address {
   @Column()
   complement: string;
 
-  // nao permite criar endereco com user:User
-  @ManyToOne((type) => User, (user) => user.address)
-  usuario: User;
+  @ManyToOne((type) => User, (user) => user.address, {
+    onDelete: "CASCADE",
+  })
+  user: User;
 
   @Column()
   created_at: Date;
@@ -46,5 +47,4 @@ export class Address {
       this.updated_at = new Date();
     }
   }
-  
 }

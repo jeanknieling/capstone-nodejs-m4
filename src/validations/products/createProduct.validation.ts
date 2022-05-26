@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-const createProductValidatorSchema = {
+const createProductSchema = {
   schema: {
     body: {
       yupSchema: yup.object().shape({
@@ -22,4 +22,4 @@ const createProductValidatorSchema = {
   },
 };
 
-export default createProductValidatorSchema;
+export default createProductSchema;

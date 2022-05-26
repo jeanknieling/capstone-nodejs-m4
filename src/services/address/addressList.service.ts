@@ -4,20 +4,9 @@ import { AppError } from "../../errors/appError";
 import { User } from "../../entities/user.entity";
 
 const addressListService = async (id: string) => {
-  const userCheck = await AppDataSource.getRepository(User).findOne({
-    where : { id : id}
-    })
+  const address = AppDataSource.getRepository(Address).find()
 
-    if(!userCheck){
-    throw new AppError(400, "User not found!")
-    }
-
-  const addressRepository = await AppDataSource.getRepository(Address).findBy({
-    usuario: userCheck
-  });
-
-
-  return addressRepository;
+  return address;
 };
 
 export default addressListService;

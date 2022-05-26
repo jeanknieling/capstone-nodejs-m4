@@ -41,21 +41,22 @@ export class User {
   @Column()
   updated_at: Date;
 
-  @OneToMany((type) => Address, (address) => address.usuario, {
+  @OneToMany((type) => Address, (address) => address.user, {
     eager: true,
-    onDelete: "SET NULL"
+    onDelete: "CASCADE",
   })
   address: Address[];
 
-  @OneToMany((type) => Buy, (buys) => buys.user, {
+  @OneToMany((type) => Buy, (buy) => buy.user, {
     eager: true,
   })
   buys: Buy[];
 
   @OneToOne((type) => Cart, {
-    eager: true
-  })@JoinColumn()
-  cart: Cart
+    eager: true,
+  })
+  @JoinColumn()
+  cart: Cart;
 
   constructor() {
     if (!this.id) {
@@ -68,5 +69,4 @@ export class User {
       this.updated_at = new Date();
     }
   }
-
 }

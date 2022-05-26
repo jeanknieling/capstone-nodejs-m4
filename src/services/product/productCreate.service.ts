@@ -4,26 +4,27 @@ import { IProductCreate } from "../../interfaces/product/index";
 import { AppDataSource } from "../../data-source";
 import { AppError } from "../../errors/appError";
 import { ILike } from "typeorm";
+
 const productCreateService = async ({
   name,
   description,
   price,
   category,
 }: IProductCreate) => {
-  const catName = await AppDataSource.getRepository(Category).findOne({
-    where : {name :  ILike(`%${category}%`)} 
+  const categoryName = await AppDataSource.getRepository(Category).findOne({
+    where: { name: ILike(`%${category}%`) },
   });
 
-  if (!catName) {
+  if (!categoryName) {
     throw new AppError(404, "Category not found");
   }
 
-  const productRepository = AppDataSource.getRepository(Product)
+  const productRepository = AppDataSource.getRepository(Product);
   const product = productRepository.create({
     name,
     description,
     price,
-    category : catName
+    category: categoryName,
   });
 
   await productRepository.save(product);
