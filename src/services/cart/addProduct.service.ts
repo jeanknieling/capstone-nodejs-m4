@@ -6,7 +6,6 @@ import { AppError } from "../../errors/appError";
 import { fixedFloat } from "../../utils/checkDate";
 
 const addProductService = async (userId: string, productName: string) => {
-  // USUARIO CONFIRMADO
   const userRepostory = AppDataSource.getRepository(User);
   const user = await userRepostory.findOne({
     where: {
@@ -14,8 +13,6 @@ const addProductService = async (userId: string, productName: string) => {
     },
   });
 
-
-  // CART LOCALIZADO
   const cartRepository = AppDataSource.getRepository(Cart);
   const cart = await cartRepository.findOne({
     where: {
@@ -23,7 +20,6 @@ const addProductService = async (userId: string, productName: string) => {
     },
   });
 
-  // PRODUTO IDENTIFICADO POR ID
   const productRepository = AppDataSource.getRepository(Product);
   const product = await productRepository.findOne({
     where: {
@@ -37,27 +33,16 @@ const addProductService = async (userId: string, productName: string) => {
 
   if (cart && product) {
 
-    console.log("CART", cart)
     if (cart.products.filter((prod) => prod.name === product.name).length) {
-      console.log("PROD", product.name )
       throw new AppError(400, "Product is already in the cart");
     }
 
     cart.products = [...cart.products, product];
     cart.total = fixedFloat(cart.total + product.price);
 
-
     await cartRepository.save(cart);
 
-    const updatedCart = await cartRepository.findOne({
-      where: {
-        id: user?.cart.id,
-      },
-    });
-
-    console.log("UPDATED", updatedCart)
-
-    return updatedCart;
+    return cart;
   }
 };
 
