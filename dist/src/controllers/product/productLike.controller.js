@@ -35,30 +35,32 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var address_entity_1 = require("../../entities/address.entity");
-var data_source_1 = require("../../data-source");
 var appError_1 = require("../../errors/appError");
-var user_entity_1 = require("../../entities/user.entity");
-var addressListService = function (userId) { return __awaiter(void 0, void 0, void 0, function () {
-    var userCheck, addressRepository;
+var productLike_service_1 = __importDefault(require("../../services/product/productLike.service"));
+var productLikeController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var id, like, product, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, data_source_1.AppDataSource.getRepository(user_entity_1.User).findOne({
-                    where: { id: userId }
-                })];
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                id = req.params.id;
+                like = req.body.like;
+                return [4 /*yield*/, (0, productLike_service_1.default)(id, like)];
             case 1:
-                userCheck = _a.sent();
-                if (!userCheck) {
-                    throw new appError_1.AppError(400, "User not found!");
-                }
-                return [4 /*yield*/, data_source_1.AppDataSource.getRepository(address_entity_1.Address).findBy({
-                        user: userCheck
-                    })];
+                product = _a.sent();
+                return [2 /*return*/, res.status(200).send(product)];
             case 2:
-                addressRepository = _a.sent();
-                return [2 /*return*/, addressRepository];
+                err_1 = _a.sent();
+                if (err_1 instanceof appError_1.AppError) {
+                    (0, appError_1.handleError)(err_1, res);
+                }
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); };
-exports.default = addressListService;
+exports.default = productLikeController;

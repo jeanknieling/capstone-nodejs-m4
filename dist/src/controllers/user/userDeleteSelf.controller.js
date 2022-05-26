@@ -48,6 +48,7 @@ var userDeleteSelfController = function (req, res) { return __awaiter(void 0, vo
             case 0:
                 _a.trys.push([0, 2, , 3]);
                 id = req.userId;
+                console.log(id);
                 return [4 /*yield*/, (0, userDeleteSelf_service_1.default)(id)];
             case 1:
                 user = _a.sent();

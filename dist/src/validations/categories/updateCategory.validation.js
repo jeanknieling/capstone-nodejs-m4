@@ -29,7 +29,7 @@ var updateCategoryValidatorSchema = {
         params: {
             yupSchema: yup.object().shape({
                 id: yup
-                    .number()
+                    .string()
                     .min(1, "Id must be greater then 0")
                     .required("Id is required in params"),
             }),

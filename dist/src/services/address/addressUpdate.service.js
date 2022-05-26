@@ -38,36 +38,53 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var data_source_1 = require("../../data-source");
 var address_entity_1 = require("../../entities/address.entity");
-var addressUpdateService = function (id, zipcode, street, number, neighborhood, complement, user_id) { return __awaiter(void 0, void 0, void 0, function () {
-    var addressRepository, adresses, address, newZipcode, newStreet, newNumber, newNeighborhood, newComplement, newUser_id;
+var user_entity_1 = require("../../entities/user.entity");
+var appError_1 = require("../../errors/appError");
+var addressUpdateService = function (userId, addressId, zipcode, street, number, neighborhood, complement) { return __awaiter(void 0, void 0, void 0, function () {
+    var userCheck, addressCheck, userAddressCheck, message;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                addressRepository = data_source_1.AppDataSource.getRepository(address_entity_1.Address);
-                return [4 /*yield*/, addressRepository.find()];
+            case 0: return [4 /*yield*/, data_source_1.AppDataSource.getRepository(user_entity_1.User).findOne({
+                    where: { id: userId },
+                })];
             case 1:
-                adresses = _a.sent();
-                address = adresses.find(function (address) { return address.id === id; });
-                if (address.id !== id) {
-                    throw new Error("Address not found");
+                userCheck = _a.sent();
+                if (!userCheck) {
+                    throw new appError_1.AppError(400, "User not found!");
                 }
-                newZipcode = !zipcode ? address.zipcode : zipcode;
-                newStreet = !street ? address.street : street;
-                newNumber = !number ? address.number : number;
-                newNeighborhood = !neighborhood ? address.neighborhood : neighborhood;
-                newComplement = !complement ? address.complement : complement;
-                newUser_id = !user_id ? address.user_id : user_id;
-                return [4 /*yield*/, addressRepository.update(address.id, {
-                        zipcode: newZipcode,
-                        street: newStreet,
-                        number: newNumber,
-                        neighborhood: newNeighborhood,
-                        complement: newComplement,
-                        user_id: newUser_id,
+                return [4 /*yield*/, data_source_1.AppDataSource.getRepository(address_entity_1.Address).findOne({
+                        where: {
+                            id: addressId,
+                        },
                     })];
             case 2:
-                _a.sent();
-                return [2 /*return*/, true];
+                addressCheck = _a.sent();
+                if (!addressCheck) {
+                    throw new appError_1.AppError(400, "Address not found");
+                }
+                userAddressCheck = userCheck.address.some(function (address) {
+                    return address.id === addressCheck.id;
+                });
+                if (!userAddressCheck) {
+                    throw new appError_1.AppError(401, "This address does not belong to you");
+                }
+                zipcode && (addressCheck.zipcode = zipcode);
+                street && (addressCheck.street = street);
+                number && (addressCheck.number = number);
+                neighborhood && (addressCheck.neighborhood = neighborhood);
+                complement && (addressCheck.complement = complement);
+                data_source_1.AppDataSource.getRepository(address_entity_1.Address).update(addressCheck.id, {
+                    zipcode: zipcode,
+                    street: street,
+                    number: number,
+                    neighborhood: neighborhood,
+                    complement: complement,
+                });
+                message = {
+                    status: true,
+                    message: "Address updated with success!",
+                };
+                return [2 /*return*/, message];
         }
     });
 }); };

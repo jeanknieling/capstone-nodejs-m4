@@ -43,17 +43,17 @@ var user_entity_1 = require("../../entities/user.entity");
 var addressCreateService = function (_a) {
     var zipcode = _a.zipcode, street = _a.street, number = _a.number, neighborhood = _a.neighborhood, complement = _a.complement, user_id = _a.user_id;
     return __awaiter(void 0, void 0, void 0, function () {
-        var addressRepository, usuario, address;
+        var addressRepository, user, address;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     addressRepository = data_source_1.AppDataSource.getRepository(address_entity_1.Address);
                     return [4 /*yield*/, data_source_1.AppDataSource.getRepository(user_entity_1.User).findOne({
-                            where: { id: user_id }
+                            where: { id: user_id },
                         })];
                 case 1:
-                    usuario = _b.sent();
-                    if (!usuario) {
+                    user = _b.sent();
+                    if (!user) {
                         throw new appError_1.AppError(400, "User not found!");
                     }
                     address = addressRepository.create({
@@ -62,7 +62,7 @@ var addressCreateService = function (_a) {
                         number: number,
                         neighborhood: neighborhood,
                         complement: complement,
-                        usuario: usuario
+                        user: user,
                     });
                     return [4 /*yield*/, addressRepository.save(address)];
                 case 2:

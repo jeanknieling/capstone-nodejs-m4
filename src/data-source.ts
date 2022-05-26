@@ -43,12 +43,3 @@ export const AppDataSource =
             : ["src/migrations/*.ts"],
       });
 
-if (process.env.NODE_ENV !== "test") {
-  AppDataSource.initialize()
-    .then(() => {
-      console.log("Data Source Initialized");
-    })
-    .catch((err) => {
-      console.error("Error during Data Source Initialization", err);
-    });
-}

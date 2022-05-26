@@ -36,12 +36,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createTableMigration1653593408854 = void 0;
-var createTableMigration1653593408854 = /** @class */ (function () {
-    function createTableMigration1653593408854() {
-        this.name = 'createTableMigration1653593408854';
+exports.createTableMigration1653594898581 = void 0;
+var createTableMigration1653594898581 = /** @class */ (function () {
+    function createTableMigration1653594898581() {
+        this.name = 'createTableMigration1653594898581';
     }
-    createTableMigration1653593408854.prototype.up = function (queryRunner) {
+    createTableMigration1653594898581.prototype.up = function (queryRunner) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -60,7 +60,7 @@ var createTableMigration1653593408854 = /** @class */ (function () {
                         return [4 /*yield*/, queryRunner.query("CREATE TABLE \"user\" (\"id\" uuid NOT NULL, \"name\" character varying NOT NULL, \"nickname\" character varying NOT NULL, \"birthday\" TIMESTAMP NOT NULL, \"email\" character varying NOT NULL, \"password\" character varying NOT NULL, \"isAdm\" boolean NOT NULL, \"created_at\" TIMESTAMP NOT NULL, \"updated_at\" TIMESTAMP NOT NULL, \"cartId\" uuid, CONSTRAINT \"REL_342497b574edb2309ec8c6b62a\" UNIQUE (\"cartId\"), CONSTRAINT \"PK_cace4a159ff9f2512dd42373760\" PRIMARY KEY (\"id\"))")];
                     case 5:
                         _a.sent();
-                        return [4 /*yield*/, queryRunner.query("CREATE TABLE \"address\" (\"id\" SERIAL NOT NULL, \"zipcode\" character varying NOT NULL, \"street\" character varying NOT NULL, \"number\" character varying NOT NULL, \"neighborhood\" character varying NOT NULL, \"complement\" character varying NOT NULL, \"created_at\" TIMESTAMP NOT NULL, \"updated_at\" TIMESTAMP NOT NULL, \"usuarioId\" uuid, CONSTRAINT \"PK_d92de1f82754668b5f5f5dd4fd5\" PRIMARY KEY (\"id\"))")];
+                        return [4 /*yield*/, queryRunner.query("CREATE TABLE \"address\" (\"id\" SERIAL NOT NULL, \"zipcode\" character varying NOT NULL, \"street\" character varying NOT NULL, \"number\" character varying NOT NULL, \"neighborhood\" character varying NOT NULL, \"complement\" character varying NOT NULL, \"created_at\" TIMESTAMP NOT NULL, \"updated_at\" TIMESTAMP NOT NULL, \"userId\" uuid, CONSTRAINT \"PK_d92de1f82754668b5f5f5dd4fd5\" PRIMARY KEY (\"id\"))")];
                     case 6:
                         _a.sent();
                         return [4 /*yield*/, queryRunner.query("CREATE TABLE \"buy_products_product\" (\"buyId\" uuid NOT NULL, \"productId\" uuid NOT NULL, CONSTRAINT \"PK_436080770c60352a2023667f456\" PRIMARY KEY (\"buyId\", \"productId\"))")];
@@ -90,7 +90,7 @@ var createTableMigration1653593408854 = /** @class */ (function () {
                         return [4 /*yield*/, queryRunner.query("ALTER TABLE \"user\" ADD CONSTRAINT \"FK_342497b574edb2309ec8c6b62aa\" FOREIGN KEY (\"cartId\") REFERENCES \"cart\"(\"id\") ON DELETE NO ACTION ON UPDATE NO ACTION")];
                     case 15:
                         _a.sent();
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE \"address\" ADD CONSTRAINT \"FK_9e353879c35303eb6530a92654b\" FOREIGN KEY (\"usuarioId\") REFERENCES \"user\"(\"id\") ON DELETE NO ACTION ON UPDATE NO ACTION")];
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE \"address\" ADD CONSTRAINT \"FK_d25f1ea79e282cc8a42bd616aa3\" FOREIGN KEY (\"userId\") REFERENCES \"user\"(\"id\") ON DELETE CASCADE ON UPDATE NO ACTION")];
                     case 16:
                         _a.sent();
                         return [4 /*yield*/, queryRunner.query("ALTER TABLE \"buy_products_product\" ADD CONSTRAINT \"FK_65c27917774c9df0d3d2fb929d9\" FOREIGN KEY (\"buyId\") REFERENCES \"buy\"(\"id\") ON DELETE CASCADE ON UPDATE CASCADE")];
@@ -110,7 +110,7 @@ var createTableMigration1653593408854 = /** @class */ (function () {
             });
         });
     };
-    createTableMigration1653593408854.prototype.down = function (queryRunner) {
+    createTableMigration1653594898581.prototype.down = function (queryRunner) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -126,7 +126,7 @@ var createTableMigration1653593408854 = /** @class */ (function () {
                         return [4 /*yield*/, queryRunner.query("ALTER TABLE \"buy_products_product\" DROP CONSTRAINT \"FK_65c27917774c9df0d3d2fb929d9\"")];
                     case 4:
                         _a.sent();
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE \"address\" DROP CONSTRAINT \"FK_9e353879c35303eb6530a92654b\"")];
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE \"address\" DROP CONSTRAINT \"FK_d25f1ea79e282cc8a42bd616aa3\"")];
                     case 5:
                         _a.sent();
                         return [4 /*yield*/, queryRunner.query("ALTER TABLE \"user\" DROP CONSTRAINT \"FK_342497b574edb2309ec8c6b62aa\"")];
@@ -179,6 +179,6 @@ var createTableMigration1653593408854 = /** @class */ (function () {
             });
         });
     };
-    return createTableMigration1653593408854;
+    return createTableMigration1653594898581;
 }());
-exports.createTableMigration1653593408854 = createTableMigration1653593408854;
+exports.createTableMigration1653594898581 = createTableMigration1653594898581;

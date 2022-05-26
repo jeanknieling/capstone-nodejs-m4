@@ -36,29 +36,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var address_entity_1 = require("../../entities/address.entity");
-var data_source_1 = require("../../data-source");
-var appError_1 = require("../../errors/appError");
-var user_entity_1 = require("../../entities/user.entity");
-var addressListService = function (userId) { return __awaiter(void 0, void 0, void 0, function () {
-    var userCheck, addressRepository;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, data_source_1.AppDataSource.getRepository(user_entity_1.User).findOne({
-                    where: { id: userId }
-                })];
-            case 1:
-                userCheck = _a.sent();
-                if (!userCheck) {
-                    throw new appError_1.AppError(400, "User not found!");
-                }
-                return [4 /*yield*/, data_source_1.AppDataSource.getRepository(address_entity_1.Address).findBy({
-                        user: userCheck
-                    })];
-            case 2:
-                addressRepository = _a.sent();
-                return [2 /*return*/, addressRepository];
-        }
-    });
-}); };
-exports.default = addressListService;
+exports.CreateUserTable1653594437239 = void 0;
+var CreateUserTable1653594437239 = /** @class */ (function () {
+    function CreateUserTable1653594437239() {
+    }
+    CreateUserTable1653594437239.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    CreateUserTable1653594437239.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return CreateUserTable1653594437239;
+}());
+exports.CreateUserTable1653594437239 = CreateUserTable1653594437239;

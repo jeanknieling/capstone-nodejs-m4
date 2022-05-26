@@ -46,9 +46,11 @@ var Address = /** @class */ (function () {
         __metadata("design:type", String)
     ], Address.prototype, "complement", void 0);
     __decorate([
-        (0, typeorm_1.ManyToOne)(function (type) { return user_entity_1.User; }, function (user) { return user.address; }),
+        (0, typeorm_1.ManyToOne)(function (type) { return user_entity_1.User; }, function (user) { return user.address; }, {
+            onDelete: "CASCADE",
+        }),
         __metadata("design:type", user_entity_1.User)
-    ], Address.prototype, "usuario", void 0);
+    ], Address.prototype, "user", void 0);
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", Date)

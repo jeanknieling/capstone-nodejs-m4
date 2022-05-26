@@ -36,29 +36,41 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var address_entity_1 = require("../../entities/address.entity");
 var data_source_1 = require("../../data-source");
+var address_entity_1 = require("../../entities/address.entity");
 var appError_1 = require("../../errors/appError");
-var user_entity_1 = require("../../entities/user.entity");
-var addressListService = function (userId) { return __awaiter(void 0, void 0, void 0, function () {
-    var userCheck, addressRepository;
+var addressUpdateAdmService = function (addressId, zipcode, street, number, neighborhood, complement) { return __awaiter(void 0, void 0, void 0, function () {
+    var addressCheck, message;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, data_source_1.AppDataSource.getRepository(user_entity_1.User).findOne({
-                    where: { id: userId }
+            case 0: return [4 /*yield*/, data_source_1.AppDataSource.getRepository(address_entity_1.Address).findOne({
+                    where: {
+                        id: addressId,
+                    },
                 })];
             case 1:
-                userCheck = _a.sent();
-                if (!userCheck) {
-                    throw new appError_1.AppError(400, "User not found!");
+                addressCheck = _a.sent();
+                if (!addressCheck) {
+                    throw new appError_1.AppError(400, "Address not found");
                 }
-                return [4 /*yield*/, data_source_1.AppDataSource.getRepository(address_entity_1.Address).findBy({
-                        user: userCheck
-                    })];
-            case 2:
-                addressRepository = _a.sent();
-                return [2 /*return*/, addressRepository];
+                zipcode && (addressCheck.zipcode = zipcode);
+                street && (addressCheck.street = street);
+                number && (addressCheck.number = number);
+                neighborhood && (addressCheck.neighborhood = neighborhood);
+                complement && (addressCheck.complement = complement);
+                data_source_1.AppDataSource.getRepository(address_entity_1.Address).update(addressCheck.id, {
+                    zipcode: zipcode,
+                    street: street,
+                    number: number,
+                    neighborhood: neighborhood,
+                    complement: complement,
+                });
+                message = {
+                    status: true,
+                    message: "Address updated with success!",
+                };
+                return [2 /*return*/, message];
         }
     });
 }); };
-exports.default = addressListService;
+exports.default = addressUpdateAdmService;

@@ -35,30 +35,32 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var address_entity_1 = require("../../entities/address.entity");
-var data_source_1 = require("../../data-source");
 var appError_1 = require("../../errors/appError");
-var user_entity_1 = require("../../entities/user.entity");
-var addressListService = function (userId) { return __awaiter(void 0, void 0, void 0, function () {
-    var userCheck, addressRepository;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, data_source_1.AppDataSource.getRepository(user_entity_1.User).findOne({
-                    where: { id: userId }
-                })];
+var addressUpdateAdm_service_1 = __importDefault(require("../../services/address/addressUpdateAdm.service"));
+var addressUpdateAdmController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var addressId, _a, zipcode, street, number, neighborhood, complement, address, err_1;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _b.trys.push([0, 2, , 3]);
+                addressId = req.params.addressId;
+                _a = req.body, zipcode = _a.zipcode, street = _a.street, number = _a.number, neighborhood = _a.neighborhood, complement = _a.complement;
+                return [4 /*yield*/, (0, addressUpdateAdm_service_1.default)(Number(addressId), zipcode, street, number, neighborhood, complement)];
             case 1:
-                userCheck = _a.sent();
-                if (!userCheck) {
-                    throw new appError_1.AppError(400, "User not found!");
-                }
-                return [4 /*yield*/, data_source_1.AppDataSource.getRepository(address_entity_1.Address).findBy({
-                        user: userCheck
-                    })];
+                address = _b.sent();
+                return [2 /*return*/, res.json(address)];
             case 2:
-                addressRepository = _a.sent();
-                return [2 /*return*/, addressRepository];
+                err_1 = _b.sent();
+                if (err_1 instanceof appError_1.AppError) {
+                    (0, appError_1.handleError)(err_1, res);
+                }
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); };
-exports.default = addressListService;
+exports.default = addressUpdateAdmController;

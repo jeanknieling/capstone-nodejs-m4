@@ -24,22 +24,24 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var yup = __importStar(require("yup"));
-var updateProductValidatorSchema = {
+var updateProductSchema = {
     schema: {
         params: {
             yupSchema: yup.object().shape({
                 id: yup
                     .string()
-                    .min(1, "Id must be greater then 0")
-                    .required("Name is required"),
+                    .min(36, "Id must be a uuid valid format"),
             }),
         },
         body: {
             yupSchema: yup.object().shape({
                 name: yup.string().min(3, "Must be at least 3 characters long"),
-                description: yup.string(),
-                price: yup.number(),
-                category: yup.string().min(3, "Must be at least 3 characters long"),
+                description: yup.string().min(3, "Must be at least 3 characters long"),
+                price: yup.number().min(0, "Price must be greater than 0"),
+                category: yup
+                    .string()
+                    .min(3, "Must be at least 3 characters long")
+                    .required("Category is required"),
             }),
             validateOptions: {
                 abortEarly: false,
@@ -47,4 +49,4 @@ var updateProductValidatorSchema = {
         },
     },
 };
-exports.default = updateProductValidatorSchema;
+exports.default = updateProductSchema;

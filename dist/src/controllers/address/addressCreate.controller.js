@@ -40,7 +40,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var addressCreate_service_1 = __importDefault(require("../../services/address/addressCreate.service"));
-// import jwt_decode from "jwt-decode"
 var addressCreateController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, zipcode, street, number, neighborhood, complement, newaddress;
     return __generator(this, function (_b) {

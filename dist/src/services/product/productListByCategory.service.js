@@ -46,12 +46,12 @@ var productListByCategoryService = function (categoryName) { return __awaiter(vo
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, data_source_1.AppDataSource.getRepository(category_entity_1.Category).findBy({
-                    name: (0, typeorm_1.ILike)("%".concat(categoryName, "%"))
+                    name: (0, typeorm_1.ILike)("%".concat(categoryName, "%")),
                 })];
             case 1:
                 catId = _a.sent();
                 return [4 /*yield*/, data_source_1.AppDataSource.getRepository(product_entity_1.Product).findBy({
-                        category: catId
+                        category: catId,
                     })];
             case 2:
                 prod = _a.sent();

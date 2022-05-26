@@ -38,20 +38,40 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var data_source_1 = require("../../data-source");
 var address_entity_1 = require("../../entities/address.entity");
-var addressDeleteService = function (id) { return __awaiter(void 0, void 0, void 0, function () {
-    var addressRepository, adresses, address;
+var user_entity_1 = require("../../entities/user.entity");
+var appError_1 = require("../../errors/appError");
+var addressDeleteService = function (userId, addressId) { return __awaiter(void 0, void 0, void 0, function () {
+    var userCheck, addressCheck, userAddressCheck;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                addressRepository = data_source_1.AppDataSource.getRepository(address_entity_1.Address);
-                return [4 /*yield*/, addressRepository.find()];
+            case 0: return [4 /*yield*/, data_source_1.AppDataSource.getRepository(user_entity_1.User).findOne({
+                    where: { id: userId },
+                })];
             case 1:
-                adresses = _a.sent();
-                address = adresses.find(function (address) { return address.id === id; });
-                return [4 /*yield*/, addressRepository.delete(address.id)];
+                userCheck = _a.sent();
+                if (!userCheck) {
+                    throw new appError_1.AppError(400, "User not found!");
+                }
+                return [4 /*yield*/, data_source_1.AppDataSource.getRepository(address_entity_1.Address).findOne({
+                        where: {
+                            id: addressId,
+                        },
+                    })];
             case 2:
+                addressCheck = _a.sent();
+                if (!addressCheck) {
+                    throw new appError_1.AppError(400, "Address not found!");
+                }
+                userAddressCheck = userCheck.address.some(function (address) { return address.id === addressCheck.id; });
+                if (!userAddressCheck) {
+                    throw new appError_1.AppError(400, "This address does not belong to you");
+                }
+                return [4 /*yield*/, data_source_1.AppDataSource.getRepository(address_entity_1.Address).delete(addressCheck)];
+            case 3:
                 _a.sent();
-                return [2 /*return*/, true];
+                return [2 /*return*/, {
+                        message: "Address deleted with success!",
+                    }];
         }
     });
 }); };

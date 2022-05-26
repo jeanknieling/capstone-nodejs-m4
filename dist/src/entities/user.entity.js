@@ -64,21 +64,21 @@ var User = /** @class */ (function () {
         __metadata("design:type", Date)
     ], User.prototype, "updated_at", void 0);
     __decorate([
-        (0, typeorm_1.OneToMany)(function (type) { return address_entity_1.Address; }, function (address) { return address.usuario; }, {
+        (0, typeorm_1.OneToMany)(function (type) { return address_entity_1.Address; }, function (address) { return address.user; }, {
             eager: true,
-            onDelete: "SET NULL"
+            onDelete: "CASCADE",
         }),
         __metadata("design:type", Array)
     ], User.prototype, "address", void 0);
     __decorate([
-        (0, typeorm_1.OneToMany)(function (type) { return buy_entity_1.Buy; }, function (buys) { return buys.user; }, {
+        (0, typeorm_1.OneToMany)(function (type) { return buy_entity_1.Buy; }, function (buy) { return buy.user; }, {
             eager: true,
         }),
         __metadata("design:type", Array)
     ], User.prototype, "buys", void 0);
     __decorate([
         (0, typeorm_1.OneToOne)(function (type) { return cart_entity_1.Cart; }, {
-            eager: true
+            eager: true,
         }),
         (0, typeorm_1.JoinColumn)(),
         __metadata("design:type", cart_entity_1.Cart)

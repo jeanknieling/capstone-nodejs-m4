@@ -36,29 +36,40 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var address_entity_1 = require("../../entities/address.entity");
 var data_source_1 = require("../../data-source");
+var product_entity_1 = require("../../entities/product.entity");
 var appError_1 = require("../../errors/appError");
-var user_entity_1 = require("../../entities/user.entity");
-var addressListService = function (userId) { return __awaiter(void 0, void 0, void 0, function () {
-    var userCheck, addressRepository;
+var productLikeService = function (id, like) { return __awaiter(void 0, void 0, void 0, function () {
+    var productRepository, products, product, newLike, message;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, data_source_1.AppDataSource.getRepository(user_entity_1.User).findOne({
-                    where: { id: userId }
-                })];
+            case 0:
+                productRepository = data_source_1.AppDataSource.getRepository(product_entity_1.Product);
+                return [4 /*yield*/, productRepository.find()];
             case 1:
-                userCheck = _a.sent();
-                if (!userCheck) {
-                    throw new appError_1.AppError(400, "User not found!");
+                products = _a.sent();
+                product = products.find(function (product) { return product.id === id; });
+                if (product.name === undefined) {
+                    throw new appError_1.AppError(400, "Product not found");
                 }
-                return [4 /*yield*/, data_source_1.AppDataSource.getRepository(address_entity_1.Address).findBy({
-                        user: userCheck
+                newLike = 0;
+                if (like) {
+                    newLike = product.likes + 1;
+                }
+                else {
+                    newLike = product.likes - 1;
+                }
+                return [4 /*yield*/, productRepository.update(product.id, {
+                        likes: newLike,
                     })];
             case 2:
-                addressRepository = _a.sent();
-                return [2 /*return*/, addressRepository];
+                _a.sent();
+                message = {
+                    status: true,
+                    message: "Product likes incremented with success!",
+                };
+                return [2 /*return*/, message];
         }
     });
 }); };
-exports.default = addressListService;
+exports.default = productLikeService;

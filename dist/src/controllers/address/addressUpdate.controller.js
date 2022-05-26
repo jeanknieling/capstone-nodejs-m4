@@ -39,26 +39,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var appError_1 = require("../../errors/appError");
 var addressUpdate_service_1 = __importDefault(require("../../services/address/addressUpdate.service"));
 var addressUpdateController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var id, _a, name, discount_value, address, err_1;
+    var userId, addressId, _a, zipcode, street, number, neighborhood, complement, address, err_1;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _b.trys.push([0, 2, , 3]);
-                id = req.params.id;
-                _a = req.body, name = _a.name, discount_value = _a.discount_value;
-                return [4 /*yield*/, (0, addressUpdate_service_1.default)(parseInt(id), name, discount_value)];
+                userId = req.userId;
+                addressId = req.params.addressId;
+                _a = req.body, zipcode = _a.zipcode, street = _a.street, number = _a.number, neighborhood = _a.neighborhood, complement = _a.complement;
+                return [4 /*yield*/, (0, addressUpdate_service_1.default)(userId, Number(addressId), zipcode, street, number, neighborhood, complement)];
             case 1:
                 address = _b.sent();
-                return [2 /*return*/, res.status(201).json({ message: "address updated!" })];
+                return [2 /*return*/, res.json(address)];
             case 2:
                 err_1 = _b.sent();
-                if (err_1 instanceof Error) {
-                    return [2 /*return*/, res.status(400).send({
-                            error: err_1.name,
-                            message: err_1.message,
-                        })];
+                if (err_1 instanceof appError_1.AppError) {
+                    (0, appError_1.handleError)(err_1, res);
                 }
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];

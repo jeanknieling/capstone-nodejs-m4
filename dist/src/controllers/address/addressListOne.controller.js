@@ -39,25 +39,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var appError_1 = require("../../errors/appError");
 var addressListOne_service_1 = __importDefault(require("../../services/address/addressListOne.service"));
 var addressListOneController = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var id, address, err_1;
+    var userId, addresss, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                id = req.params.id;
-                return [4 /*yield*/, (0, addressListOne_service_1.default)(parseInt(id))];
+                userId = req.userId;
+                return [4 /*yield*/, (0, addressListOne_service_1.default)(userId)];
             case 1:
-                address = _a.sent();
-                return [2 /*return*/, res.status(200).send(address)];
+                addresss = _a.sent();
+                return [2 /*return*/, res.send(addresss)];
             case 2:
                 err_1 = _a.sent();
-                if (err_1 instanceof Error) {
-                    return [2 /*return*/, res.status(401).send({
-                            error: err_1.name,
-                            message: err_1.message,
-                        })];
+                if (err_1 instanceof appError_1.AppError) {
+                    (0, appError_1.handleError)(err_1, res);
                 }
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];

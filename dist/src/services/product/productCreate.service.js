@@ -44,15 +44,15 @@ var typeorm_1 = require("typeorm");
 var productCreateService = function (_a) {
     var name = _a.name, description = _a.description, price = _a.price, category = _a.category;
     return __awaiter(void 0, void 0, void 0, function () {
-        var catName, productRepository, product;
+        var categoryName, productRepository, product;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0: return [4 /*yield*/, data_source_1.AppDataSource.getRepository(category_entity_1.Category).findOne({
-                        where: { name: (0, typeorm_1.ILike)("%".concat(category, "%")) }
+                        where: { name: (0, typeorm_1.ILike)("%".concat(category, "%")) },
                     })];
                 case 1:
-                    catName = _b.sent();
-                    if (!catName) {
+                    categoryName = _b.sent();
+                    if (!categoryName) {
                         throw new appError_1.AppError(404, "Category not found");
                     }
                     productRepository = data_source_1.AppDataSource.getRepository(product_entity_1.Product);
@@ -60,7 +60,7 @@ var productCreateService = function (_a) {
                         name: name,
                         description: description,
                         price: price,
-                        category: catName
+                        category: categoryName,
                     });
                     return [4 /*yield*/, productRepository.save(product)];
                 case 2:

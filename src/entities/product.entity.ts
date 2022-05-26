@@ -1,6 +1,5 @@
 import { Entity, Column, PrimaryColumn, ManyToOne } from "typeorm";
 import { Category } from "./category.entity";
-import { Buy } from "./buy.entity";
 import { v4 as uuid } from "uuid";
 
 @Entity()
@@ -19,9 +18,6 @@ export class Product {
 
   @Column({ default: 0 })
   likes: number;
-
-  // @ManyToOne((type) => Buy, (buy) => buy.products)
-  // buy: Buy;
 
   @ManyToOne((type) => Category, (category) => category.product, {
     eager: true,

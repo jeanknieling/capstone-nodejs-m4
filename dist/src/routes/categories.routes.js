@@ -22,23 +22,15 @@ var deleteCategory_validation_1 = __importDefault(require("../validations/catego
 var updateCategory_validation_1 = __importDefault(require("../validations/categories/updateCategory.validation"));
 var routes = (0, express_1.Router)();
 var categoriesRoutes = function () {
+    routes.use((0, express_yup_middleware_1.expressYupMiddleware)({
+        schemaValidator: token_validator_1.default,
+        propertiesToValidate: ["headers"],
+    }));
     routes.post("/", (0, express_yup_middleware_1.expressYupMiddleware)({ schemaValidator: createCategory_validation_1.default }), authUser_middleware_1.authUser, authUser_middleware_1.verifyisAdmMiddleware, categoryAlreadyExists_middleware_1.default, categoryCreate_controller_1.default);
-    routes.get("/", (0, express_yup_middleware_1.expressYupMiddleware)({
-        schemaValidator: token_validator_1.default,
-        propertiesToValidate: ["headers"],
-    }), authUser_middleware_1.authUser, categoryNotRegistered_middleware_1.default, categoryList_controller_1.default);
-    routes.get("/:id", (0, express_yup_middleware_1.expressYupMiddleware)({
-        schemaValidator: token_validator_1.default,
-        propertiesToValidate: ["headers"],
-    }), (0, express_yup_middleware_1.expressYupMiddleware)({ schemaValidator: listCategoryById_validator_1.default }), authUser_middleware_1.authUser, categoryNotFoundByID_middleware_1.default, categoryListOne_controller_1.default);
-    routes.patch("/changes/:id", (0, express_yup_middleware_1.expressYupMiddleware)({ schemaValidator: updateCategory_validation_1.default }), (0, express_yup_middleware_1.expressYupMiddleware)({
-        schemaValidator: token_validator_1.default,
-        propertiesToValidate: ["headers"],
-    }), authUser_middleware_1.authUser, authUser_middleware_1.verifyisAdmMiddleware, categoryNotFoundByID_middleware_1.default, categoryAlreadyExists_middleware_1.default, categoryUpdate_controller_1.default);
-    routes.delete("/:id", (0, express_yup_middleware_1.expressYupMiddleware)({ schemaValidator: deleteCategory_validation_1.default }), (0, express_yup_middleware_1.expressYupMiddleware)({
-        schemaValidator: token_validator_1.default,
-        propertiesToValidate: ["headers"],
-    }), authUser_middleware_1.authUser, authUser_middleware_1.verifyisAdmMiddleware, categoryNotFoundByID_middleware_1.default, categoryDelete_controller_1.default);
+    routes.get("/", authUser_middleware_1.authUser, categoryNotRegistered_middleware_1.default, categoryList_controller_1.default);
+    routes.get("/:id", (0, express_yup_middleware_1.expressYupMiddleware)({ schemaValidator: listCategoryById_validator_1.default }), authUser_middleware_1.authUser, categoryNotFoundByID_middleware_1.default, categoryListOne_controller_1.default);
+    routes.patch("/changes/:id", (0, express_yup_middleware_1.expressYupMiddleware)({ schemaValidator: updateCategory_validation_1.default }), authUser_middleware_1.authUser, authUser_middleware_1.verifyisAdmMiddleware, categoryNotFoundByID_middleware_1.default, categoryAlreadyExists_middleware_1.default, categoryUpdate_controller_1.default);
+    routes.delete("/:id", (0, express_yup_middleware_1.expressYupMiddleware)({ schemaValidator: deleteCategory_validation_1.default }), authUser_middleware_1.authUser, authUser_middleware_1.verifyisAdmMiddleware, categoryNotFoundByID_middleware_1.default, categoryDelete_controller_1.default);
     return routes;
 };
 exports.categoriesRoutes = categoriesRoutes;

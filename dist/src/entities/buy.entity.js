@@ -32,7 +32,7 @@ var Buy = /** @class */ (function () {
     ], Buy.prototype, "id", void 0);
     __decorate([
         (0, typeorm_1.Column)({
-            default: "Em aberto"
+            default: "Em aberto",
         }),
         __metadata("design:type", String)
     ], Buy.prototype, "status", void 0);
@@ -42,7 +42,7 @@ var Buy = /** @class */ (function () {
     ], Buy.prototype, "total", void 0);
     __decorate([
         (0, typeorm_1.ManyToMany)(function (type) { return product_entity_1.Product; }, {
-            eager: true
+            eager: true,
         }),
         (0, typeorm_1.JoinTable)(),
         __metadata("design:type", Array)

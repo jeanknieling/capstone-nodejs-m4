@@ -38,12 +38,3 @@ exports.AppDataSource = process.env.NODE_ENV === "test"
                 ? ["dist/migrations/*.js"]
                 : ["src/migrations/*.ts"],
         });
-if (process.env.NODE_ENV !== "test") {
-    exports.AppDataSource.initialize()
-        .then(function () {
-        console.log("Data Source Initialized");
-    })
-        .catch(function (err) {
-        console.error("Error during Data Source Initialization", err);
-    });
-}

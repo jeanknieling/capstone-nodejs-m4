@@ -24,7 +24,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var yup = __importStar(require("yup"));
-var listProductByCategoryValidatorSchema = {
+var listProductByCategorySchema = {
     schema: {
         body: {
             yupSchema: yup.object().shape({
@@ -39,4 +39,4 @@ var listProductByCategoryValidatorSchema = {
         },
     },
 };
-exports.default = listProductByCategoryValidatorSchema;
+exports.default = listProductByCategorySchema;

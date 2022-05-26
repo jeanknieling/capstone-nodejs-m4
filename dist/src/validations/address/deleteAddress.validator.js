@@ -24,16 +24,19 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var yup = __importStar(require("yup"));
-var deleteCategoryValidatorSchema = {
+var updateAddressSchema = {
     schema: {
         params: {
             yupSchema: yup.object().shape({
-                id: yup
-                    .string()
-                    .min(3, "Must be at least 3 characters long")
-                    .required("Id is required in params"),
+                addressId: yup
+                    .number()
+                    .min(1, "AddressId must be greater than 0")
+                    .required("AddressId is required")
             }),
+            validateOptions: {
+                abortEarly: false,
+            },
         },
     },
 };
-exports.default = deleteCategoryValidatorSchema;
+exports.default = updateAddressSchema;

@@ -11,18 +11,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Product = void 0;
 var typeorm_1 = require("typeorm");
-var uuid_1 = require("uuid");
 var category_entity_1 = require("./category.entity");
+var uuid_1 = require("uuid");
 var Product = /** @class */ (function () {
     function Product() {
+        if (!this.id) {
+            this.id = (0, uuid_1.v4)();
+        }
         if (!this.created_at) {
             this.created_at = new Date();
         }
         if (!this.updated_at) {
             this.updated_at = new Date();
-        }
-        if (!this.id) {
-            this.id = (0, uuid_1.v4)();
         }
     }
     __decorate([

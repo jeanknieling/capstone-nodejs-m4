@@ -24,14 +24,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var yup = __importStar(require("yup"));
-var deleteProductValidatorSchema = {
+var deleteProductSchema = {
     schema: {
-        body: {
+        params: {
             yupSchema: yup.object().shape({
-                category: yup
-                    .string()
-                    .min(3, "Must be at least 3 characters long")
-                    .required("Name is required"),
+                id: yup.string().min(36, "Id must be a uuid valid format"),
             }),
             validateOptions: {
                 abortEarly: false,
@@ -39,4 +36,4 @@ var deleteProductValidatorSchema = {
         },
     },
 };
-exports.default = deleteProductValidatorSchema;
+exports.default = deleteProductSchema;

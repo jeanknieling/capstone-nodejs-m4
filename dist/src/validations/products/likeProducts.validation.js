@@ -24,25 +24,23 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var yup = __importStar(require("yup"));
-var createProductSchema = {
+var likeProductSchema = {
     schema: {
+        params: {
+            yupSchema: yup.object().shape({
+                id: yup
+                    .string()
+                    .min(36, "Id must be a uuid valid format")
+                    .required("Id is required in params"),
+            }),
+        },
         body: {
             yupSchema: yup.object().shape({
-                name: yup
-                    .string()
-                    .min(3, "Must be at least 3 characters long")
-                    .required("Name is required"),
-                description: yup.string().required("Description is required"),
-                price: yup.number().required("Description is required"),
-                category: yup
-                    .string()
-                    .min(3, "Must be at least 3 characters long")
-                    .required("Description is required"),
+                like: yup
+                    .boolean()
+                    .required("Like is required"),
             }),
-            validateOptions: {
-                abortEarly: false,
-            },
         },
     },
 };
-exports.default = createProductSchema;
+exports.default = likeProductSchema;

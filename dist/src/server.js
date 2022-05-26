@@ -44,20 +44,17 @@ var data_source_1 = require("./data-source");
 (function () { return __awaiter(void 0, void 0, void 0, function () {
     var port;
     return __generator(this, function (_a) {
-        /*await AppDataSource.initialize().catch((err) => {
-         console.error("Error during Data Source initialization", err);
-       }); */
-        data_source_1.AppDataSource.initialize()
-            .then(function () {
-            console.log("Data Source Initialized");
-        })
-            .catch(function (err) {
-            console.error("Error during Data Source Initialization", err);
-        });
-        port = process.env.PORT || 3000;
-        app_1.default.listen(port, function () {
-            console.log("Server running ".concat(port));
-        });
-        return [2 /*return*/];
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, data_source_1.AppDataSource.initialize().catch(function (err) {
+                    console.error("Error during Data Source initialization", err);
+                })];
+            case 1:
+                _a.sent();
+                port = process.env.PORT || 3000;
+                app_1.default.listen(port, function () {
+                    console.log("Server running ".concat(port));
+                });
+                return [2 /*return*/];
+        }
     });
 }); })();
