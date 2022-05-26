@@ -96,30 +96,8 @@ describe("Testing adress routes errors", () => {
         await connection.destroy();
     });
 
-    const userLoginAdmFalse = async () => {
-        const name = "name";
-        const nickname = "nickname";
-        const email = "email@mail.com";
-        const birthday = "1990-09-27";
-        const password = "12345678";
-        const isAdm = false;
-        //definindo variável com todas as chaves criadas
-        const createUser = { name, nickname, email, birthday, password, isAdm };
-        //enviando variável com dados de criação de usuário para a requisição.
-        await request(app).post("/users").send(createUser);
-        //fazendo login do usuário
-        const loginUser = { email, password };
-        //recebendo o token de usuário após login
-        const userLogin = await request(app)
-            .post("/users/login")
-            .send(loginUser);
-        const token = userLogin.body.token;
-
-        return token;
-    };
-
     it("Should fail at address registration", async () => {
-        const token = (await userLoginAdmFalse()) + "a";
+        const token = "a";
 
         const zipcode = "03345000";
         const street = "Avenida Sapopemba";
@@ -144,7 +122,26 @@ describe("Testing adress routes errors", () => {
     });
 
     it("Should fail to list all addresses", async () => {
-        const createNewAddres = await request(app).post("/address");
+        const token = "a";
+
+        const zipcode = "03345000";
+        const street = "Avenida Sapopemba";
+        const number = 3740;
+        const neighborhood = "null";
+        const complement = "null";
+
+        const newAddress = {
+            zipcode,
+            street,
+            number,
+            neighborhood,
+            complement,
+        };
+
+        const createNewAddres = await request(app)
+            .post("/address")
+            .set({ Authorization: token })
+            .send(newAddress);
 
         expect(createNewAddres.status).toBe(401);
     });

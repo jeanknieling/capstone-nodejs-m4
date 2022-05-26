@@ -91,12 +91,22 @@ describe("Testing the user routes response with sucess", () => {
     it("Should be able to list product by name", async () => {
         const token = await userLoginAdmTrue();
 
-        const nameToFilter = "opala";
+        // Criando produto
+        const name = "Sultan";
+        const price = 8001;
+        const category = "carros";
+        const description = "carro incrivel";
 
+        const newProduct = { name, description, price, category };
+
+        const a = await request(app)
+            .post("/products")
+            .set({ Authorization: token })
+            .send(newProduct);
         const response = await request(app)
             .post("/products/product")
             .set({ Authorization: token })
-            .send({ name: nameToFilter });
+            .send({ name });
 
         expect(response.status).toBe(200);
         expect(response.body).toBeDefined();
@@ -104,9 +114,9 @@ describe("Testing the user routes response with sucess", () => {
 
     it("Should be able to list product by category", async () => {
         const token = await userLoginAdmTrue();
-        
+
         // Criando produto
-        const name = "opala";
+        const name = "Turismo";
         const price = 8001;
         const category = "carros";
         const description = "carro incrivel";
@@ -118,12 +128,10 @@ describe("Testing the user routes response with sucess", () => {
             .set({ Authorization: token })
             .send(newProduct);
 
-        const categoryToFilter = "carros";
-
         const response = await request(app)
             .post("/products/category")
             .set({ Authorization: token })
-            .send({ category: categoryToFilter });
+            .send({ category });
 
         expect(response.status).toBe(200);
         expect(response.body).toBeDefined();
@@ -184,7 +192,7 @@ describe("Testing the user routes response with sucess", () => {
         const productId = productCreated.body.id;
 
         const response = await request(app)
-            .delete(`/products/changes/${productId}`)
+            .delete(`/products/${productId}`)
             .set({ Authorization: token });
 
         expect(response.status).toBe(200);
@@ -243,7 +251,23 @@ describe("Testing the user routes response with sucess", () => {
     };
 
     it("Shouldn't be able to list all products", async () => {
-        const response = await request(app).get("/products");
+        const token = await userLoginAdmTrue();
+        await createCategory();
+        const name = "opala";
+        const price = 8001;
+        const category = "carros";
+        const description = "carro incrivel";
+
+        const newProduct = { name, description, price, category };
+
+        await request(app)
+            .post("/products")
+            .set({ Authorization: token })
+            .send(newProduct);
+
+        const response = await request(app)
+            .get("/products")
+            .set({ Authorization: "na" });
 
         expect(response.status).toBe(401);
     });
@@ -251,7 +275,10 @@ describe("Testing the user routes response with sucess", () => {
     it("Shouldn't be able to list filtered by name", async () => {
         const name = "random";
 
-        const response = await request(app).get("/products").send({ name });
+        const response = await request(app)
+            .get("/products")
+            .set({ Authorization: "na" })
+            .send({ name });
 
         expect(response.status).toBe(401);
     });
@@ -259,20 +286,23 @@ describe("Testing the user routes response with sucess", () => {
     it("Shouldn't be able to list the products filtered by category", async () => {
         const category = "random";
 
-        const response = await request(app).get("/products").send({ category });
+        const response = await request(app)
+            .get("/products")
+            .set({ Authorization: "na" })
+            .send({ category });
 
         expect(response.status).toBe(401);
     });
 
     it("Shouldn't be possible to update the product", async () => {
-        const token = (await userLoginAdmTrue()) + "a";
+        const token = await userLoginAdmTrue();
 
         await createCategory();
 
-        const name = "opala";
+        const name = "Jester";
         const price = 4000;
         const category = "carros";
-        const description = "opalao";
+        const description = "GTA";
 
         const newProduct = { name, price, category, description };
 
@@ -285,7 +315,7 @@ describe("Testing the user routes response with sucess", () => {
         const newName = "celta";
         const newPrice = 1500;
         const newCategory = "carros";
-        const newDescription = "just a simple console";
+        const newDescription = "just a simple car";
 
         const updatedProduct = {
             name: newName,
@@ -296,17 +326,17 @@ describe("Testing the user routes response with sucess", () => {
 
         const response = await request(app)
             .patch(`/products/changes/${productId}`)
-            .set({ Authorization: token })
+            .set({ Authorization: "a" })
             .send(updatedProduct);
 
         expect(response.status).toBe(401);
     });
 
     it("Shouldn't be possible to delete the product", async () => {
-        const token = (await userLoginAdmTrue()) + "a";
+        const token = await userLoginAdmTrue();
 
-        const name = "opala";
-        const price = 8001;
+        const name = "Raiden";
+        const price = 90000;
         const category = "carros";
         const description = "carro incrivel";
 
@@ -319,8 +349,8 @@ describe("Testing the user routes response with sucess", () => {
         const productId = productCreate.body.id;
 
         const response = await request(app)
-            .delete(`/products/changes/${productId}`)
-            .set({ Authorization: token });
+            .delete(`/products/${productId}`)
+            .set({ Authorization: "a" });
 
         expect(response.status).toBe(401);
     });
