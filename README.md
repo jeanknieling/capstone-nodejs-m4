@@ -68,87 +68,143 @@ Documentação referente a interligação de uma API em Node/ExpressJS e um banc
     - [Corpo da Requisição:](#corpo-da-requisição-6)
     - [Schema de Validação com Yup:](#schema-de-validação-com-yup-2)
     - [Exemplo de Response:](#exemplo-de-response-6)
+    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-3)
+    - [Exemplo de Response:](#exemplo-de-response-7)
     - [Possíveis Erros:](#possíveis-erros-6)
-    - [7.2. **Listando Produtos**](#72-listando-produtos)
-    - [`/products`](#products-1)
+    - [7.3. **Listando Produto por Nome**](#73-listando-produto-por-nome)
+    - [`/products/product`](#productsproduct)
     - [Requisitos:](#requisitos-6)
     - [Exemplo de Request:](#exemplo-de-request-7)
     - [Corpo da Requisição:](#corpo-da-requisição-7)
-    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-3)
-    - [Exemplo de Response:](#exemplo-de-response-7)
+    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-4)
+    - [Exemplo de Response:](#exemplo-de-response-8)
     - [Possíveis Erros:](#possíveis-erros-7)
-    - [6.3. **Listando Produto por Nome**](#63-listando-produto-por-nome)
-    - [`/products/product`](#productsproduct)
+    - [7.4. **Listando Produtos por Categoria**](#74-listando-produtos-por-categoria)
+    - [`/porducts/category`](#porductscategory)
     - [Requisitos:](#requisitos-7)
     - [Exemplo de Request:](#exemplo-de-request-8)
     - [Corpo da Requisição:](#corpo-da-requisição-8)
-    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-4)
-    - [Exemplo de Response:](#exemplo-de-response-8)
-    - [Possíveis Erros:](#possíveis-erros-8)
-    - [6.4. **Listando Produtos por Categoria**](#64-listando-produtos-por-categoria)
-    - [`/porducts/category`](#porductscategory)
-    - [Requisitos:](#requisitos-8)
-    - [Exemplo de Request:](#exemplo-de-request-9)
-    - [Corpo da Requisição:](#corpo-da-requisição-9)
     - [Schema de Validação com Yup:](#schema-de-validação-com-yup-5)
     - [Exemplo de Response:](#exemplo-de-response-9)
-    - [Possíveis Erros:](#possíveis-erros-9)
-    - [6.5. **Atualizando um Produto**](#65-atualizando-um-produto)
+    - [Possíveis Erros:](#possíveis-erros-8)
+    - [7.5. **Atualizando um Produto**](#75-atualizando-um-produto)
     - [`/porducts/changes/:id`](#porductschangesid)
+    - [Requisitos:](#requisitos-8)
+    - [Exemplo de Request:](#exemplo-de-request-9)
+    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-6)
+    - [Corpo da Requisição:](#corpo-da-requisição-9)
+    - [Exemplo de Response:](#exemplo-de-response-10)
+    - [Possíveis Erros:](#possíveis-erros-9)
+    - [7.6. **Deletando um Produto**](#76-deletando-um-produto)
+    - [`/products/:id`](#productsid)
     - [Requisitos:](#requisitos-9)
     - [Exemplo de Request:](#exemplo-de-request-10)
-    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-6)
     - [Corpo da Requisição:](#corpo-da-requisição-10)
-    - [Exemplo de Response:](#exemplo-de-response-10)
-    - [Possíveis Erros:](#possíveis-erros-10)
-    - [7.6. **Deletando um Produto**](#76-deletando-um-produto)
-    - [`/users/me`](#usersme-3)
-    - [Requisitos:](#requisitos-10)
-    - [Exemplo de Request:](#exemplo-de-request-11)
-    - [Corpo da Requisição:](#corpo-da-requisição-11)
     - [Schema de Validação com Yup:](#schema-de-validação-com-yup-7)
     - [Exemplo de Response:](#exemplo-de-response-11)
-    - [Possíveis Erros:](#possíveis-erros-11)
+    - [Possíveis Erros:](#possíveis-erros-10)
   - [8. **Categorias**](#8-categorias)
     - [8.1. **Criação de Categoria**](#81-criação-de-categoria)
     - [`/category`](#category)
+    - [Requisitos:](#requisitos-10)
+    - [Exemplo de Request:](#exemplo-de-request-11)
+    - [Corpo da Requisição:](#corpo-da-requisição-11)
+    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-8)
+    - [Exemplo de Response:](#exemplo-de-response-12)
+    - [Possíveis Erros:](#possíveis-erros-11)
+    - [8.2. **Listando Categorias**](#82-listando-categorias)
+    - [`/category`](#category-1)
     - [Requisitos:](#requisitos-11)
     - [Exemplo de Request:](#exemplo-de-request-12)
     - [Corpo da Requisição:](#corpo-da-requisição-12)
-    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-8)
-    - [Exemplo de Response:](#exemplo-de-response-12)
+    - [Exemplo de Response:](#exemplo-de-response-13)
     - [Possíveis Erros:](#possíveis-erros-12)
-    - [8.2. **Listando Categorias**](#82-listando-categorias)
-    - [`/category`](#category-1)
+    - [8.3 **Listando uma Categoria**](#83-listando-uma-categoria)
+    - [`/category/:id`](#categoryid)
     - [Requisitos:](#requisitos-12)
     - [Exemplo de Request:](#exemplo-de-request-13)
     - [Corpo da Requisição:](#corpo-da-requisição-13)
-    - [Exemplo de Response:](#exemplo-de-response-13)
+    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-9)
+    - [Exemplo de Response:](#exemplo-de-response-14)
     - [Possíveis Erros:](#possíveis-erros-13)
-    - [8.3 **Listando uma Categoria**](#83-listando-uma-categoria)
-    - [`/category/:id`](#categoryid)
+    - [8.4 **Deletando uma Categoria**](#84-deletando-uma-categoria)
+    - [`/category/:id`](#categoryid-1)
     - [Requisitos:](#requisitos-13)
     - [Exemplo de Request:](#exemplo-de-request-14)
     - [Corpo da Requisição:](#corpo-da-requisição-14)
-    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-9)
-    - [Exemplo de Response:](#exemplo-de-response-14)
+    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-10)
+    - [Exemplo de Response:](#exemplo-de-response-15)
     - [Possíveis Erros:](#possíveis-erros-14)
-    - [8.4 **Deletando uma Categoria**](#84-deletando-uma-categoria)
-    - [`/category/:id`](#categoryid-1)
+    - [8.5. **Atualizando uma Categoria**](#85-atualizando-uma-categoria)
+    - [`/category/:id`](#categoryid-2)
     - [Requisitos:](#requisitos-14)
     - [Exemplo de Request:](#exemplo-de-request-15)
     - [Corpo da Requisição:](#corpo-da-requisição-15)
-    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-10)
-    - [Exemplo de Response:](#exemplo-de-response-15)
+  - [Schema de Validação com Yup:](#schema-de-validação-com-yup-11)
+    - [Exemplo de Response:](#exemplo-de-response-16)
     - [Possíveis Erros:](#possíveis-erros-15)
-    - [8.5. **Atualizando uma Categoria**](#85-atualizando-uma-categoria)
-    - [`/category/:id`](#categoryid-2)
+  - [9. **Endereços**](#9-endereços)
+    - [9.1. **Criação de Endereços**](#91-criação-de-endereços)
+    - [`/address`](#address)
     - [Requisitos:](#requisitos-15)
     - [Exemplo de Request:](#exemplo-de-request-16)
     - [Corpo da Requisição:](#corpo-da-requisição-16)
-  - [Schema de Validação com Yup:](#schema-de-validação-com-yup-11)
-    - [Exemplo de Response:](#exemplo-de-response-16)
+    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-12)
+    - [Exemplo de Response:](#exemplo-de-response-17)
     - [Possíveis Erros:](#possíveis-erros-16)
+    - [9.2. **Listando Endereços**](#92-listando-endereços)
+    - [`/address`](#address-1)
+    - [Requisitos:](#requisitos-16)
+    - [Exemplo de Request:](#exemplo-de-request-17)
+    - [Corpo da Requisição:](#corpo-da-requisição-17)
+    - [Exemplo de Response:](#exemplo-de-response-18)
+    - [Possíveis Erros:](#possíveis-erros-17)
+    - [9.3 **Listando Endereços de um Usuário**](#93-listando-endereços-de-um-usuário)
+    - [`/address/self`](#addressself)
+    - [Requisitos:](#requisitos-17)
+    - [Exemplo de Request:](#exemplo-de-request-18)
+    - [Corpo da Requisição:](#corpo-da-requisição-18)
+    - [Exemplo de Response:](#exemplo-de-response-19)
+    - [Possíveis Erros:](#possíveis-erros-18)
+    - [9.4 **Deletando um Endereço**](#94-deletando-um-endereço)
+    - [`/address/`](#address-2)
+    - [Requisitos:](#requisitos-18)
+    - [Exemplo de Request:](#exemplo-de-request-19)
+    - [Corpo da Requisição:](#corpo-da-requisição-19)
+    - [Schema de Validação com Yup:](#schema-de-validação-com-yup-13)
+    - [Exemplo de Response:](#exemplo-de-response-20)
+    - [Possíveis Erros:](#possíveis-erros-19)
+    - [9.5. **Atualizando um Endereço**](#95-atualizando-um-endereço)
+    - [`/address/adm/:id`](#addressadmid)
+    - [Requisitos:](#requisitos-19)
+    - [Exemplo de Request:](#exemplo-de-request-20)
+    - [Corpo da Requisição:](#corpo-da-requisição-20)
+  - [Schema de Validação com Yup:](#schema-de-validação-com-yup-14)
+    - [Exemplo de Response:](#exemplo-de-response-21)
+    - [Possíveis Erros:](#possíveis-erros-20)
+  - [10. **Carrinho**](#10-carrinho)
+    - [10.1. **Adicionando Produto no Carrinho**](#101-adicionando-produto-no-carrinho)
+    - [`/cart`](#cart)
+    - [Requisitos:](#requisitos-20)
+    - [Exemplo de Request:](#exemplo-de-request-21)
+    - [Corpo da Requisição:](#corpo-da-requisição-21)
+    - [Exemplo de Response:](#exemplo-de-response-22)
+    - [Possíveis Erros:](#possíveis-erros-21)
+    - [10.2. **Deletando Produto do Carrinho**](#102-deletando-produto-do-carrinho)
+    - [`/cart/:id`](#cartid)
+    - [Requisitos:](#requisitos-21)
+    - [Exemplo de Request:](#exemplo-de-request-22)
+    - [Corpo da Requisição:](#corpo-da-requisição-22)
+    - [Exemplo de Response:](#exemplo-de-response-23)
+    - [Possíveis Erros:](#possíveis-erros-22)
+  - [11. **Compras efetuadas**](#11-compras-efetuadas)
+    - [11.1. **Comprando Produtos do Carrinho**](#111-comprando-produtos-do-carrinho)
+    - [`/buy`](#buy)
+    - [Requisitos:](#requisitos-22)
+    - [Exemplo de Request:](#exemplo-de-request-23)
+    - [Corpo da Requisição:](#corpo-da-requisição-23)
+    - [Exemplo de Response:](#exemplo-de-response-24)
+    - [Possíveis Erros:](#possíveis-erros-23)
   - [Insomnia - Importação para Testes de Requisições](#insomnia---importação-para-testes-de-requisições)
 
 ---
@@ -173,7 +229,7 @@ Visão geral do projeto, um pouco das tecnologias usadas.
 
 Diagrama ER da API definindo bem as relações entre as tabelas do banco de dados.
 
-[DER](https://drive.google.com/file/d/1IHJYtbxzcYLkAXXtc7Uj7gYr8opKTQ67/view?usp=sharing)
+[DER](https://drive.google.com/file/d/1W5sM-t1v2M0DDM4UURy40SogYfjyYPv9/view)
 
 ---
 
@@ -231,21 +287,11 @@ sudo docker-compose up -d
 
 ---
 
-<!-- ## Variáveis de Ambiente
-
-| Dados           | Chaves        |
-| --------------- | ------------- |
-| Porta externa   | 5435          |
-| Porta aplicação | 5432          |
-| User            | postgres      |
-| Password        | 123456        |
-| DB              | data_capstone | -->
-
 ## 4. **Autenticação**
 
 [ Voltar para o topo ](#tabela-de-conteúdos)
 
-Colocar autenticações aqui caso existam.
+Autenticação deve ser feita pelo usuário ao inserir os dados exigidos do arquivo .env.example.
 
 ---
 
@@ -255,25 +301,39 @@ Colocar autenticações aqui caso existam.
 
 ### Índice
 
-- [Users](#1-users)
+- [Users](#6-users)
   - [POST - /users](#61-criação-de-usuário)
   - [POST - /users/login](#62-login-de-usuário)
   - [GET - /users](#63-listando-usuários)
   - [GET - /users/me](#64-listando-um-usuário)
   - [DELETE - /users/me](#65-deletando-um-usuário)
   - [PATCH - /users/me](#66-atualizando-um-usuário)
-- [Products](#2-products)
-  - [POST - /products](#21-criação-de-produto)
-  - [GET - /products](#22-listar-os-produtos)
-  - [GET - /products](#23-listando-um-produto)
-  - [DELETE - /products](#24-deletando-um-produto)
-  - [PATCH - /products](#25-atualizando-um-produto)
-- [Categories](#3-categories)
-  - [POST - /categories](#31-criação-de-categoria)
-  - [GET - /categories](#32-listar-de-categoria)
-  - [GET - /categories/:id](#33-listar-um-categoria)
-  - [DELETE - /categories/:id](#34-deletar-um-categoria)
-  - [PATCH - /categories/edit/:id](#35-atualizar-um-categoria)
+- [Products](#7-produtos)
+  - [POST - /products](#71-criação-de-produtos)
+  - [GET - /products](#72-listando-produtos)
+  - [GET - /products/product](#73-listando-produto-por-nome)
+  - [GET - /products/category](#74-listando-produtos-por-categoria)
+  - [PATCH - /porducts/changes/:id](#75-atualizando-um-produto)
+  - [DELETE - /products/:id](#76-deletando-um-produto)
+- [Categories](#8-categories)
+  - [POST - /categories](#81-criação-de-categoria)
+  - [GET - /categories](#82-listar-de-categoria)
+  - [GET - /categories/:id](#83-listar-um-categoria)
+  - [DELETE - /categories/:id](#84-deletar-um-categoria)
+  - [PATCH - /categories/edit/:id](#85-atualizar-um-categoria)
+- [Address](#9-endereços)
+  - [POST - /address](#91-criação-de-endereços)
+  - [GET - /address](#92-listando-endereços)
+  - [GET - /address/self](#93-listando-endereços-de-um-usuário)
+  - [DELETE - /address/:addressId](#94-deletando-um-endereço)
+  - [PATCH - /address/:addressId](#95-atualizando-um-endereço)
+- [Cart](#10-carrinho)
+
+  - [POST - /cart](#101-adicionando-produto-no-carrinho)
+  - [DELETE - /cart/:id](#102-deletando-produto-do-carrinho)
+
+- [Buy](#11-compras-efetuadas)
+  - [POST - /cart](#111-comprando-produtos-do-carrinho)
 
 ---
 
@@ -283,17 +343,20 @@ Colocar autenticações aqui caso existam.
 
 O objeto User é definido como:
 
-| Campo      | Tipo    | Descrição                                    |
-| ---------- | ------- | -------------------------------------------- |
-| id         | string  | Identificador único do usuário               |
-| name       | string  | O nome do usuário.                           |
-| nickname   | string  | O apelido do usuário.                        |
-| birthday   | date    | A data de nascimento do usuário.             |
-| email      | string  | O e-mail do usuário.                         |
-| password   | string  | A senha de acesso do usuário                 |
-| isAdm      | boolean | Define se um usuário é Administrador ou não. |
-| creaetd_at | date    | A data de criação do usuário.                |
-| updated_at | date    | A data de atualização do usuário.            |
+| Campo      | Tipo    | Descrição                                         |
+| ---------- | ------- | ------------------------------------------------- |
+| id         | string  | Identificador único do usuário                    |
+| name       | string  | O nome do usuário.                                |
+| nickname   | string  | O apelido do usuário.                             |
+| birthday   | date    | A data de nascimento do usuário.                  |
+| email      | string  | O e-mail do usuário.                              |
+| password   | string  | A senha de acesso do usuário                      |
+| isAdm      | boolean | Define se um usuário é Administrador ou não       |
+| address    | Array   | Contém os endereços cadastrados do usuário        |
+| buys       | Array   | Contém as compras efetuadas do usuário            |
+| cart       | Array   | Contém os produtos do usuário para efetuar compra |
+| creaetd_at | date    | A data de criação do usuário.                     |
+| updated_at | date    | A data de atualização do usuário.                 |
 
 Obs: os campos name e password vêem encriptogrados na resposta, por motivos de privacidade do usuário.
 
@@ -474,17 +537,33 @@ Vazio
 
 ```json
 {
-  "id": "7519b538-0df9-4a07-9dde-387c96c342c2",
-  "created_at": "2022-05-23T17:26:00.193Z",
-  "updated_at": "2022-05-23T17:26:00.193Z",
-  "name": "$2b$10$bTtduMVoS8F2mtowDosSqOIBFZQ.KVziuM.ysqfywlpho32PDiraO",
-  "nickname": "apelido usuario 1",
-  "birthday": "2000-02-02T02:00:00.000Z",
-  "email": "usuario1@kenzie.com",
-  "password": "$2b$10$wfnhldrB6iFECAQtWW7n8eYyV0DFl5yOezsWjpixLNjrmaMzO0d0y",
+  "id": "e1b880ab-a368-4659-a1b1-f428b4527737",
+  "created_at": "2022-05-26T14:54:10.488Z",
+  "updated_at": "2022-05-26T14:54:10.488Z",
+  "name": "$2b$10$UfznE6UeDPER8tBMzRMZv.JBJ/72nImkdU1Zh7af2T7YPnv1puqqy",
+  "nickname": "apelido do usuario 2",
+  "birthday": "2000-12-12T02:00:00.000Z",
+  "email": "usuario2@hotmail.com",
+  "password": "$2b$10$9MHdNY7b0NuXH8..vfxSeuBpNcF/fEz59u8gv5L6KhDa2OVfs8sPK",
   "isAdm": true,
-  "address": [],
-  "buys": []
+  "address": [
+    {
+      "created_at": "2022-05-26T16:08:17.069Z",
+      "updated_at": "2022-05-26T16:08:17.069Z",
+      "id": 1,
+      "zipcode": "00000000",
+      "street": "nome da rua do usuario 1",
+      "number": "10",
+      "neighborhood": "Bairro do usuario 1",
+      "complement": "ex: casa"
+    }
+  ],
+  "buys": [],
+  "cart": {
+    "id": "89d790e5-b054-4946-883b-ba0e584a045e",
+    "total": 0,
+    "products": []
+  }
 }
 ```
 
@@ -529,17 +608,33 @@ Vazio
 
 ```json
 {
-  "id": "7519b538-0df9-4a07-9dde-387c96c342c2",
-  "created_at": "2022-05-23T17:26:00.193Z",
-  "updated_at": "2022-05-23T17:26:00.193Z",
-  "name": "$2b$10$bTtduMVoS8F2mtowDosSqOIBFZQ.KVziuM.ysqfywlpho32PDiraO",
-  "nickname": "apelido usuario 1",
-  "birthday": "2000-02-02T02:00:00.000Z",
-  "email": "usuario1@kenzie.com",
-  "password": "$2b$10$wfnhldrB6iFECAQtWW7n8eYyV0DFl5yOezsWjpixLNjrmaMzO0d0y",
+  "id": "e1b880ab-a368-4659-a1b1-f428b4527737",
+  "created_at": "2022-05-26T14:54:10.488Z",
+  "updated_at": "2022-05-26T14:54:10.488Z",
+  "name": "$2b$10$UfznE6UeDPER8tBMzRMZv.JBJ/72nImkdU1Zh7af2T7YPnv1puqqy",
+  "nickname": "apelido do usuario 2",
+  "birthday": "2000-12-12T02:00:00.000Z",
+  "email": "usuario2@hotmail.com",
+  "password": "$2b$10$9MHdNY7b0NuXH8..vfxSeuBpNcF/fEz59u8gv5L6KhDa2OVfs8sPK",
   "isAdm": true,
-  "address": [],
-  "buys": []
+  "address": [
+    {
+      "created_at": "2022-05-26T16:08:17.069Z",
+      "updated_at": "2022-05-26T16:08:17.069Z",
+      "id": 1,
+      "zipcode": "00000000",
+      "street": "nome da rua do usuario 1",
+      "number": "10",
+      "neighborhood": "Bairro do usuario 1",
+      "complement": "ex: casa"
+    }
+  ],
+  "buys": [],
+  "cart": {
+    "id": "89d790e5-b054-4946-883b-ba0e584a045e",
+    "total": 0,
+    "products": []
+  }
 }
 ```
 
@@ -664,7 +759,7 @@ Obs: é possível atualizar apenas o nickname ou apenas o password, além de pod
 
 [ Voltar para os Endpoints ](#5-endpoints)
 
-O objeto User é definido como:
+O objeto Produtos é definido como:
 
 | Campo       | Tipo   | Descrição                                   |
 | ----------- | ------ | ------------------------------------------- |
@@ -728,10 +823,9 @@ Content-type: application/json
 
 ### Exemplo de Response:
 
-```
+````
 201 Created
-```
-
+``
 ```json
 {
   "created_at": "2022-05-24T14:51:19.520Z",
@@ -749,7 +843,7 @@ Content-type: application/json
   },
   "likes": 0
 }
-```
+````
 
 ### Possíveis Erros:
 
@@ -761,7 +855,7 @@ Content-type: application/json
 
 ---
 
-### 7.2. **Listando Produtos**
+### 7.2 **Listando Produtos**
 
 [ Voltar aos Endpoints ](#5-endpoints)
 
@@ -829,7 +923,7 @@ Vazio
 
 ---
 
-### 6.3. **Listando Produto por Nome**
+### 7.3. **Listando Produto por Nome**
 
 [ Voltar aos Endpoints ](#5-endpoints)
 
@@ -901,7 +995,7 @@ Content-type: application/json
 
 ---
 
-### 6.4. **Listando Produtos por Categoria**
+### 7.4. **Listando Produtos por Categoria**
 
 [ Voltar aos Endpoints ](#5-endpoints)
 
@@ -973,7 +1067,7 @@ Content-type: application/json
 
 ---
 
-### 6.5. **Atualizando um Produto**
+### 7.5. **Atualizando um Produto**
 
 [ Voltar aos Endpoints ](#5-endpoints)
 
@@ -1058,7 +1152,7 @@ Obs: é possível atualizar apenas o nickname ou apenas o password, além de pod
 
 [ Voltar aos Endpoints ](#5-endpoints)
 
-### `/users/me`
+### `/products/:id`
 
 ### Requisitos:
 
@@ -1115,7 +1209,7 @@ Vazio
 
 [ Voltar para os Endpoints ](#5-endpoints)
 
-O objeto User é definido como:
+O objeto Categorias é definido como:
 
 | Campo          | Tipo   | Descrição                                  |
 | -------------- | ------ | ------------------------------------------ |
@@ -1431,6 +1525,574 @@ Content-type: application/json
 | 404 Not Found    | Category not found                 |
 | 400 Bad Request  | Category already exists            |
 | 400 Bad Request  | Must be at least 3 characters long |
+
+---
+
+## 9. **Endereços**
+
+[ Voltar para os Endpoints ](#5-endpoints)
+
+O objeto User é definido como:
+
+| Campo        | Tipo   | Descrição                                    |
+| ------------ | ------ | -------------------------------------------- |
+| id           | number | Identificador da categoria                   |
+| street       | string | O nome da rua do usuário.                    |
+| number       | number | Número da casa do usuário.                   |
+| neighborhood | string | Nome do bairro do usuário.                   |
+| zipcode      | string | Cep da rua/cidade do usuário.                |
+| complement   | string | Complemento opcional de endereço do usuário. |
+| creaetd_at   | date   | A data de criação da categoria.              |
+| updated_at   | date   | A data de atualização da categoria.          |
+
+---
+
+### 9.1. **Criação de Endereços**
+
+[ Voltar para os Endpoints ](#5-endpoints)
+
+### `/address`
+
+### Requisitos:
+
+O usuário deve estar logado e o token gerado deve ser inserido no Header.
+
+### Exemplo de Request:
+
+```
+POST /address
+Host: http://localhost:3000
+Authorization: Token
+Content-type: application/json
+```
+
+### Corpo da Requisição:
+
+```json
+{
+  "street": "nome da rua do usuario 2",
+  "number": 10,
+  "neighborhood": "Bairro do usuario 2",
+  "zipcode": "00000000",
+  "complement": "ex: casa"
+}
+```
+
+### Schema de Validação com Yup:
+
+```javascript
+zipcode: yup
+  .string().min(8, "CEP inválido, digite apenas números").max(8, "CEP inválido, digite apenas números").required("CEP is required"),
+street: yup
+  .string().min(8, "Street must be at least 8 characters long").required("Street is required"),
+number: yup.string().required("Number is required"),
+neighborhood: yup.string().required("Neighborhood is required"),
+complement:yup.string().required("Complement is required"),
+```
+
+### Exemplo de Response:
+
+```
+201 Created
+```
+
+```json
+{
+  "created_at": "2022-05-26T16:12:01.037Z",
+  "updated_at": "2022-05-26T16:12:01.037Z",
+  "zipcode": "00000000",
+  "street": "nome da rua do usuario 2",
+  "number": 10,
+  "neighborhood": "Bairro do usuario 2",
+  "complement": "ex: casa",
+  "user": {
+    "id": "e1b880ab-a368-4659-a1b1-f428b4527737",
+    "created_at": "2022-05-26T14:54:10.488Z",
+    "updated_at": "2022-05-26T14:54:10.488Z",
+    "name": "$2b$10$UfznE6UeDPER8tBMzRMZv.JBJ/72nImkdU1Zh7af2T7YPnv1puqqy",
+    "nickname": "apelido do usuario 2",
+    "birthday": "2000-12-12T02:00:00.000Z",
+    "email": "usuario2@hotmail.com",
+    "password": "$2b$10$9MHdNY7b0NuXH8..vfxSeuBpNcF/fEz59u8gv5L6KhDa2OVfs8sPK",
+    "isAdm": true,
+    "address": [
+      {
+        "created_at": "2022-05-26T16:08:17.069Z",
+        "updated_at": "2022-05-26T16:08:17.069Z",
+        "id": 1,
+        "zipcode": "00000000",
+        "street": "nome da rua do usuario 1",
+        "number": "10",
+        "neighborhood": "Bairro do usuario 1",
+        "complement": "ex: casa"
+      }
+    ],
+    "buys": [],
+    "cart": {
+      "id": "89d790e5-b054-4946-883b-ba0e584a045e",
+      "total": 0,
+      "products": []
+    }
+  },
+  "id": 2
+}
+```
+
+### Possíveis Erros:
+
+| Código do Erro   | Descrição                |
+| ---------------- | ------------------------ |
+| 401 Unauthorized | Invalid Token.           |
+| 400 Bad Request  | CEP is required          |
+| 400 Bad Request  | Neighborhood is required |
+| 400 Bad Request  | Complement is required   |
+
+---
+
+### 9.2. **Listando Endereços**
+
+[ Voltar aos Endpoints ](#5-endpoints)
+
+### `/address`
+
+### Requisitos:
+
+O usuário deve estar logado.<br>
+Apenas usuário administrador pode fazer esta requisição. (isAdm: true)
+
+### Exemplo de Request:
+
+```
+GET /address
+Host: http://localhost:3000
+Authorization: Token
+Content-type: None
+```
+
+### Corpo da Requisição:
+
+```json
+Vazio
+```
+
+### Exemplo de Response:
+
+```
+200 OK
+```
+
+```json
+[
+  {
+    "created_at": "2022-05-26T16:08:17.069Z",
+    "updated_at": "2022-05-26T16:08:17.069Z",
+    "id": 1,
+    "zipcode": "00000000",
+    "street": "nome da rua do usuario 1",
+    "number": "10",
+    "neighborhood": "Bairro do usuario 1",
+    "complement": "ex: casa"
+  }
+]
+```
+
+### Possíveis Erros:
+
+| Código do Erro   | Descrição      |
+| ---------------- | -------------- |
+| 401 Unauthorized | Invalid Token. |
+
+---
+
+### 9.3 **Listando Endereços de um Usuário**
+
+[ Voltar aos Endpoints ](#5-endpoints)
+
+### `/address/self`
+
+### Requisitos:
+
+O usuário deve estar logado e o token gerado deve ser inserido no Header.
+
+### Exemplo de Request:
+
+```
+GET /address/self
+Host: http://localhost:3000
+Authorization: Token
+Content-type: None
+```
+
+### Corpo da Requisição:
+
+```json
+Vazio
+```
+
+### Exemplo de Response:
+
+```
+200 OK
+```
+
+```json
+[
+  {
+    "created_at": "2022-05-26T16:08:17.069Z",
+    "updated_at": "2022-05-26T16:08:17.069Z",
+    "id": 1,
+    "zipcode": "00000000",
+    "street": "nome da rua do usuario 1",
+    "number": "10",
+    "neighborhood": "Bairro do usuario 1",
+    "complement": "ex: casa"
+  }
+]
+```
+
+### Possíveis Erros:
+
+| Código do Erro   | Descrição      |
+| ---------------- | -------------- |
+| 401 Unauthorized | Invalid Token. |
+
+---
+
+### 9.4 **Deletando um Endereço**
+
+[ Voltar aos Endpoints ](#5-endpoints)
+
+### `/address/`
+
+### Requisitos:
+
+O usuário deve estar logado e o token gerado deve ser inserido no Header.
+
+### Exemplo de Request:
+
+```
+GET /address
+Host: http://localhost:3000
+Authorization: Token
+Content-type: application/json
+```
+
+### Corpo da Requisição:
+
+```json
+{
+  "addressId": 1
+}
+```
+
+### Schema de Validação com Yup:
+
+```javascript
+addressId: yup
+  .number()
+  .min(1, "AddressId must be greater than 0")
+  .required("AddressId is required");
+```
+
+### Exemplo de Response:
+
+```
+200 OK
+```
+
+```json
+{
+  "message": "Address deleted with success!"
+}
+```
+
+### Possíveis Erros:
+
+| Código do Erro   | Descrição             |
+| ---------------- | --------------------- |
+| 401 Unauthorized | Invalid Token.        |
+| 400 Bad Request  | Address not found!    |
+| 400 Bad Request  | AddressId is required |
+
+---
+
+### 9.5. **Atualizando um Endereço**
+
+[ Voltar aos Endpoints ](#5-endpoints)
+
+### `/address/adm/:id`
+
+### Requisitos:
+
+O usuário deve estar logado e o token gerado deve ser inserido no Header.<br>
+O id do endereço deve ser inserido nos parâmetros e deve ser maior que 0.
+
+### Exemplo de Request:
+
+```
+GET /address/adm/:id
+Host: http://localhost:3000
+Authorization: Token
+Content-type: application/json
+```
+
+### Corpo da Requisição:
+
+```json
+{
+  "street": "nome da rua do usuario 1",
+  "number": 10,
+  "neighborhood": "Bairro do usuario 1",
+  "zipcode": "00000000",
+  "complement": "ex: casa"
+}
+```
+
+## Schema de Validação com Yup:
+
+```javascript
+addressId: yup
+  .number()
+  .min(1, "AddressId must be greater than 0")
+  .required("AddressId is required");
+```
+
+### Exemplo de Response:
+
+```
+200 OK
+```
+
+```json
+{
+  "status": true,
+  "message": "Address updated with success!"
+}
+```
+
+### Possíveis Erros:
+
+| Código do Erro   | Descrição                        |
+| ---------------- | -------------------------------- |
+| 401 Unauthorized | Invalid Token.                   |
+| 400 Bad Request  | AddressId is required            |
+| 400 Bad Request  | AddressId must be greater than 0 |
+
+---
+
+## 10. **Carrinho**
+
+[ Voltar para os Endpoints ](#5-endpoints)
+
+O objeto Carrinho é definido como:
+
+| Campo    | Tipo   | Descrição                                  |
+| -------- | ------ | ------------------------------------------ |
+| id       | number | Identificador da categoria                 |
+| total    | number | Valor da soma de todosprodutos do carrinho |
+| products | array  | Todos produtos adicionados no carrinho     |
+
+---
+
+### 10.1. **Adicionando Produto no Carrinho**
+
+[ Voltar para os Endpoints ](#5-endpoints)
+
+### `/cart`
+
+### Requisitos:
+
+O usuário deve estar logado e o token gerado deve ser inserido no Header.
+
+### Exemplo de Request:
+
+```
+POST /cart
+Host: http://localhost:3000
+Authorization: Token
+Content-type: application/json
+```
+
+### Corpo da Requisição:
+
+```json
+{
+  "productName": "produto 1"
+}
+```
+
+### Exemplo de Response:
+
+```
+200 Ok
+```
+
+```json
+{
+  "id": "15309547-a757-44f0-be48-580d616e3d0a",
+  "total": 50,
+  "products": [
+    {
+      "id": "f54bc25b-2a64-4c3f-94b5-d246694dcc8a",
+      "created_at": "2022-05-26T16:47:27.181Z",
+      "updated_at": "2022-05-26T16:47:27.181Z",
+      "name": "produto 1",
+      "description": "descricao do produto 1",
+      "price": 50,
+      "likes": 0,
+      "category": {
+        "created_at": "2022-05-26T14:58:04.933Z",
+        "updated_at": "2022-05-26T14:58:04.933Z",
+        "id": 1,
+        "name": "categoria 1",
+        "discount_value": 0
+      }
+    }
+  ]
+}
+```
+
+### Possíveis Erros:
+
+| Código do Erro   | Descrição                      |
+| ---------------- | ------------------------------ |
+| 401 Unauthorized | Invalid Token.                 |
+| 400 Bad Request  | Product is already in the cart |
+| 400 Bad Request  | Product not found              |
+
+---
+
+### 10.2. **Deletando Produto do Carrinho**
+
+[ Voltar aos Endpoints ](#5-endpoints)
+
+### `/cart/:id`
+
+### Requisitos:
+
+O usuário deve estar logado e o token gerado deve ser inserido no Header.
+
+### Exemplo de Request:
+
+```
+GET /cart/:id
+Host: http://localhost:3000
+Authorization: Token
+Content-type: None
+```
+
+### Corpo da Requisição:
+
+```json
+Vazio
+```
+
+### Exemplo de Response:
+
+```
+204 No Content
+```
+
+```
+No body retruned for response
+
+```
+
+### Possíveis Erros:
+
+| Código do Erro   | Descrição      |
+| ---------------- | -------------- |
+| 401 Unauthorized | Invalid Token. |
+| 400 Bad Request  | Invalid Id     |
+
+---
+
+## 11. **Compras efetuadas**
+
+[ Voltar para os Endpoints ](#5-endpoints)
+
+O objeto Buy é definido como:
+
+| Campo      | Tipo   | Descrição                           |
+| ---------- | ------ | ----------------------------------- |
+| id         | string | Identificador da compra do usuário  |
+| status     | string | Status da compra do usuário         |
+| total      | number | Valor total da compra do usuário    |
+| products   | array  | Produtos comprados pelo usuário     |
+| creaetd_at | date   | A data de criação da categoria.     |
+| updated_at | date   | A data de atualização da categoria. |
+
+---
+
+### 11.1. **Comprando Produtos do Carrinho**
+
+[ Voltar para os Endpoints ](#5-endpoints)
+
+### `/buy`
+
+### Requisitos:
+
+O usuário deve estar logado e o token gerado deve ser inserido no Header.
+
+### Exemplo de Request:
+
+```
+POST /buy
+Host: http://localhost:3000
+Authorization: Token
+Content-type: application/json
+```
+
+### Corpo da Requisição:
+
+```json
+{
+  "productName": "produto 1"
+}
+```
+
+### Exemplo de Response:
+
+```
+201 Created
+```
+
+```json
+[
+  {
+    "id": "6f8c479b-d1c1-4b93-a3da-bdc73df1fbb8",
+    "created_at": "2022-05-26T17:57:32.466Z",
+    "updated_at": "2022-05-26T17:57:32.466Z",
+    "status": "Em aberto",
+    "total": 50,
+    "products": [
+      {
+        "id": "f54bc25b-2a64-4c3f-94b5-d246694dcc8a",
+        "created_at": "2022-05-26T16:47:27.181Z",
+        "updated_at": "2022-05-26T16:47:27.181Z",
+        "name": "produto 1",
+        "description": "descricao do produto 1",
+        "price": 50,
+        "likes": 0,
+        "category": {
+          "created_at": "2022-05-26T14:58:04.933Z",
+          "updated_at": "2022-05-26T14:58:04.933Z",
+          "id": 1,
+          "name": "categoria 1",
+          "discount_value": 0
+        }
+      }
+    ],
+    "product": []
+  }
+]
+```
+
+### Possíveis Erros:
+
+| Código do Erro   | Descrição      |
+| ---------------- | -------------- |
+| 401 Unauthorized | Invalid Token. |
 
 ---
 

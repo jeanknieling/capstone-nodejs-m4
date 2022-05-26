@@ -54,11 +54,7 @@ export const productsRoutes = () => {
     productLikeController
   );
 
-  routes.get(
-    "/",
-    authUser,
-    productListController
-  );
+  routes.get("/", authUser, productListController);
 
   routes.get(
     "/product",
