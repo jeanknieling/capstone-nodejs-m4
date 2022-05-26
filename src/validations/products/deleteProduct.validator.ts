@@ -8,9 +8,9 @@ const deleteProductSchema = {
           .string()
           .min(36, "Id must be a uuid valid format"),
       }),
-    },
-    validateOptions: {
-      abortEarly: false,
+      validateOptions: {
+        abortEarly: false,
+      },
     },
   },
 };

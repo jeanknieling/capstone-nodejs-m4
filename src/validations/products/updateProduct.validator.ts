@@ -19,9 +19,9 @@ const updateProductSchema = {
           .min(3, "Must be at least 3 characters long")
           .required("Category is required"),
       }),
-    },
-    validateOptions: {
-      abortEarly: false,
+      validateOptions: {
+        abortEarly: false,
+      },
     },
   },
 };

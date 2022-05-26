@@ -2,7 +2,7 @@ import * as yup from "yup";
 
 const deleteAddressSchema = {
   schema: {
-    body: {
+    params: {
       yupSchema: yup.object().shape({
         addressId: yup
           .number()
