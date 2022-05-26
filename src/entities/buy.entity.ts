@@ -4,28 +4,40 @@ import {
   PrimaryColumn,
   OneToMany,
   ManyToOne,
-  JoinColumn,
-  UpdateDateColumn,
-  CreateDateColumn,
+  ManyToMany,
+  JoinTable,
 } from "typeorm";
 
-import { Order } from "./order.entity";
+import { v4 as uuid } from "uuid";
+import { Product } from "./product.entity";
 import { User } from "./user.entity";
 
 @Entity()
-export class Buys {
+export class Buy {
   @PrimaryColumn("uuid")
   readonly id: string;
-
-  @ManyToOne((type) => User, (user) => user.buys)
-  @JoinColumn()
-  user: User;
-
-  @OneToMany((type) => Order, (order) => order.buy)
-  order: Order[];
+  
+  @Column({
+    default: "Em aberto"
+  })
+  status: string;
 
   @Column()
-  status: string;
+  total: number;
+
+  @ManyToMany((type) => Product, {
+    eager: true
+  })
+  @JoinTable()
+  products: Product []
+
+  @ManyToOne((type) => User, (user) => user.buys)
+  user: User;
+
+  @OneToMany((type) => Product, (product) => product.buy,{
+    eager: true,
+  })
+  product: Product[];
 
   @Column()
   created_at: Date;
@@ -34,6 +46,9 @@ export class Buys {
   updated_at: Date;
 
   constructor() {
+    if (!this.id) {
+      this.id = uuid();
+    }
     if (!this.created_at) {
       this.created_at = new Date();
     }

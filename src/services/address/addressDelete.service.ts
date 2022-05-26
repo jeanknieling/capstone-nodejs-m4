@@ -1,16 +1,40 @@
 import { AppDataSource } from "../../data-source";
 import { Address } from "../../entities/address.entity";
+import { User } from "../../entities/user.entity";
+import { AppError } from "../../errors/appError";
 
-const addressDeleteService = async (id: number) => {
-  const addressRepository = AppDataSource.getRepository(Address);
+const addressDeleteService = async (userId: string, addressId: number) => {
+  const userCheck = await AppDataSource.getRepository(User).findOne({
+    where: { id: userId },
+  });
 
-  const adresses = await addressRepository.find();
+  if (!userCheck) {
+    throw new AppError(400, "User not found!");
+  }
 
-  const address = adresses.find((address) => address.id === id);
+  const addressCheck = await AppDataSource.getRepository(Address).findOne({
+    where: {
+      id: addressId,
+    },
+  });
 
-  await addressRepository.delete(address!.id);
+  if (!addressCheck) {
+    throw new AppError(400, "Address not found!");
+  }
 
-  return true;
+  const userAddressCheck = userCheck.address.some(
+    (address) => address.id === addressCheck.id
+  );
+
+  if (!userAddressCheck) {
+    throw new AppError(400, "This address does not belong to you");
+  }
+
+  await AppDataSource.getRepository(Address).delete(addressCheck);
+
+  return {
+    message: "Address deleted with success!",
+  };
 };
 
 export default addressDeleteService;
