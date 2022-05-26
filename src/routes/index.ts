@@ -9,5 +9,6 @@ export const appRoutes = (app: Express) => {
   app.use("/products", productsRoutes());
   app.use("/address", addressRoutes());
   app.use("/category", categoriesRoutes());
+  app.use("/buys", categoriesRoutes());
 
 };

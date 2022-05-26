@@ -1,3 +1,5 @@
+import { v4 as uuid } from "uuid";
+
 import {
   Entity,
   Column,
@@ -24,7 +26,9 @@ export class Buys {
   @OneToMany((type) => Order, (order) => order.buy)
   order: Order[];
 
-  @Column()
+  @Column({
+    default:"Em aberto."
+  })
   status: string;
 
   @Column()
@@ -39,6 +43,9 @@ export class Buys {
     }
     if (!this.updated_at) {
       this.updated_at = new Date();
+    }
+    if (!this.id){
+      this.id = uuid()
     }
   }
   
