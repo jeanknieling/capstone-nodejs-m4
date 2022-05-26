@@ -20,8 +20,8 @@ export class Product {
   @Column({ default: 0 })
   likes: number;
 
-  @ManyToOne((type) => Buy, (buy) => buy.products)
-  buy: Buy;
+  // @ManyToOne((type) => Buy, (buy) => buy.products)
+  // buy: Buy;
 
   @ManyToOne((type) => Category, (category) => category.product, {
     eager: true,
