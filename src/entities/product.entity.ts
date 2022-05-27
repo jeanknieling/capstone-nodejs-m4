@@ -1,17 +1,6 @@
-import {
-  Entity,
-  Column,
-  PrimaryColumn,
-  ManyToOne,
-  CreateDateColumn,
-  UpdateDateColumn,
-  OneToOne,
-  JoinColumn,
-  OneToMany,
-} from "typeorm";
+import { Entity, Column, PrimaryColumn, ManyToOne, OneToMany } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Category } from "./category.entity";
-import { Order } from "./order.entity";
 
 @Entity()
 export class Product {
@@ -32,14 +21,9 @@ export class Product {
 
   @ManyToOne((type) => Category, (category) => category.product, {
     eager: true,
-    onDelete: "SET NULL"
+    onDelete: "SET NULL",
   })
   category: Category;
-
-  @OneToMany((type) => Order, (order) => order.product, {
-    eager: true,
-  })
-  order: Order[];
 
   @Column()
   created_at: Date;

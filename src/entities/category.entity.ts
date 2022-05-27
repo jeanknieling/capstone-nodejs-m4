@@ -3,8 +3,6 @@ import {
   Column,
   PrimaryGeneratedColumn,
   OneToMany,
-  CreateDateColumn,
-  UpdateDateColumn,
 } from "typeorm";
 
 import { Product } from "./product.entity";

@@ -3,6 +3,7 @@ import { expressYupMiddleware } from "express-yup-middleware";
 
 import productCreateController from "../controllers/product/productCreate.controller";
 import productDeleteController from "../controllers/product/productDelete.controller";
+import productLikeController from "../controllers/product/productLike.controller";
 import productListController from "../controllers/product/productList.controller";
 import productListByCategoryController from "../controllers/product/productListByCategory.controller";
 import productListByNameController from "../controllers/product/productListByName.controller";
@@ -18,11 +19,12 @@ import {
   authUser,
   verifyisAdmMiddleware,
 } from "../middlewares/user/authUser.middleware";
-import createProductValidatorSchema from "../validations/products/createProduct.validation";
-import deleteProductValidatorSchema from "../validations/products/deleteProduct.validator";
-import listProductByCategoryValidatorSchema from "../validations/products/listProductByCategory.validation";
-import listProductByNameValidatorSchema from "../validations/products/listProductByName.validation";
-import updateProductValidatorSchema from "../validations/products/updateProduct.validator";
+import createProductSchema from "../validations/products/createProduct.validation";
+import deleteProductSchema from "../validations/products/deleteProduct.validator";
+import likeProductSchema from "../validations/products/likeProducts.validation";
+import listProductByCategorySchema from "../validations/products/listProductByCategory.validation";
+import listProductByNameSchema from "../validations/products/listProductByName.validation";
+import updateProductSchema from "../validations/products/updateProduct.validator";
 import tokenValidatorSchema from "../validations/token.validator";
 
 const routes = Router();
@@ -34,9 +36,10 @@ export const productsRoutes = () => {
       propertiesToValidate: ["headers"],
     })
   );
+
   routes.post(
     "/",
-    expressYupMiddleware({ schemaValidator: createProductValidatorSchema }),
+    expressYupMiddleware({ schemaValidator: createProductSchema }),
     authUser,
     verifyisAdmMiddleware,
     productAlreadyExists,
@@ -44,11 +47,22 @@ export const productsRoutes = () => {
     productCreateController
   );
 
-  routes.get("/", authUser, productListController);
+  routes.post(
+    "/like/:id",
+    expressYupMiddleware({ schemaValidator: likeProductSchema }),
+    authUser,
+    productLikeController
+  );
+
+  routes.get(
+    "/",
+    authUser,
+    productListController
+  );
 
   routes.post(
     "/product",
-    expressYupMiddleware({ schemaValidator: listProductByNameValidatorSchema }),
+    expressYupMiddleware({ schemaValidator: listProductByNameSchema }),
     authUser,
     productNotFound,
     productListByNameController
@@ -57,7 +71,7 @@ export const productsRoutes = () => {
   routes.post(
     "/category",
     expressYupMiddleware({
-      schemaValidator: listProductByCategoryValidatorSchema,
+      schemaValidator: listProductByCategorySchema,
     }),
     authUser,
     categoryNotFoundByName,
@@ -66,7 +80,7 @@ export const productsRoutes = () => {
 
   routes.patch(
     "/changes/:id",
-    expressYupMiddleware({ schemaValidator: updateProductValidatorSchema }),
+    expressYupMiddleware({ schemaValidator: updateProductSchema }),
     authUser,
     verifyisAdmMiddleware,
     categoryNotFoundByName,
@@ -75,8 +89,8 @@ export const productsRoutes = () => {
   );
 
   routes.delete(
-    "/changes/:id",
-    expressYupMiddleware({ schemaValidator: deleteProductValidatorSchema }),
+    "/:id",
+    expressYupMiddleware({ schemaValidator: deleteProductSchema }),
     authUser,
     verifyisAdmMiddleware,
     productNotRegistered,

@@ -7,3 +7,7 @@ export const checkDate = (date: Date) => {
   }
   return true;
 };
+
+export const fixedFloat = (value: number) => {
+  return Number.parseFloat((value).toFixed(2))
+}

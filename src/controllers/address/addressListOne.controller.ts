@@ -1,21 +1,20 @@
 import { Request, Response } from "express";
+import { AppError, handleError } from "../../errors/appError";
 import addressListOneService from "../../services/address/addressListOne.service";
 
 const addressListOneController = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const userId = req.userId;
 
-    const address = await addressListOneService(parseInt(id));
+    const addresss = await addressListOneService(userId);
 
-    return res.status(200).send(address);
+    return res.send(addresss);
   } catch (err) {
-    if (err instanceof Error) {
-      return res.status(401).send({
-        error: err.name,
-        message: err.message,
-      });
+    if (err instanceof AppError) {
+      handleError(err, res);
     }
   }
 };
+
 
 export default addressListOneController;

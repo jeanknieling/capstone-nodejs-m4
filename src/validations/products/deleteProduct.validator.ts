@@ -1,13 +1,13 @@
 import * as yup from "yup";
 
-const deleteProductValidatorSchema = {
+const deleteProductSchema = {
   schema: {
-    body: {
+    params: {
       yupSchema: yup.object().shape({
-        category: yup
+        id: yup
           .string()
-          .min(3, "Must be at least 3 characters long")
-          .required("Name is required"),
+          .min(36, "Id must be a UUID invalid format")
+          .required("Id is required"),
       }),
       validateOptions: {
         abortEarly: false,
@@ -16,4 +16,4 @@ const deleteProductValidatorSchema = {
   },
 };
 
-export default deleteProductValidatorSchema;
+export default deleteProductSchema;

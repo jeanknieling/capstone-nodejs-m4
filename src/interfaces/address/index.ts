@@ -5,9 +5,7 @@ export interface IAddress {
   number: string;
   neighborhood: string;
   complement: string;
-  user_id: string;
-
- 
+  user_id: string; 
 }
 
 export interface IAddressCreate {

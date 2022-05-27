@@ -1,42 +1,63 @@
 import { AppDataSource } from "../../data-source";
 import { Address } from "../../entities/address.entity";
-
+import { User } from "../../entities/user.entity";
+import { AppError } from "../../errors/appError";
 
 const addressUpdateService = async (
-  id: number,
+  userId: string,
+  addressId: number,
   zipcode: string,
   street: string,
   number: string,
   neighborhood: string,
-  complement: string,
-  user_id: string
+  complement: string
 ) => {
-  const addressRepository = AppDataSource.getRepository(Address);
-
-  const adresses = await addressRepository.find();
-
-  const address = adresses.find((address) => address.id === id);
-  if (address!.id !== id) {
-    throw new Error("Address not found");
-  }
-
-  const newZipcode = !zipcode ? address!.zipcode : zipcode;
-  const newStreet = !street ? address!.street : street;
-  const newNumber = !number ? address!.number : number;
-  const newNeighborhood = !neighborhood ? address!.neighborhood : neighborhood;
-  const newComplement = !complement ? address!.complement : complement;
-  const newUser_id = !user_id ? address!.user_id : user_id;
-  
-  await addressRepository.update(address!.id, {
-    zipcode: newZipcode,
-    street: newStreet,
-    number: newNumber,
-    neighborhood: newNeighborhood,
-    complement: newComplement,
-    user_id: newUser_id,
+  const userCheck = await AppDataSource.getRepository(User).findOne({
+    where: { id: userId },
   });
 
-  return true;
+  if (!userCheck) {
+    throw new AppError(400, "User not found!");
+  }
+
+  const addressCheck = await AppDataSource.getRepository(Address).findOne({
+    where: {
+      id: addressId,
+    },
+  });
+
+  if (!addressCheck) {
+    throw new AppError(400, "Address not found");
+  }
+
+  const userAddressCheck = userCheck.address.some((address) => {
+    return address.id === addressCheck.id;
+  });
+
+  if (!userAddressCheck) {
+    throw new AppError(401, "This address does not belong to you");
+  }
+
+  zipcode && (addressCheck.zipcode = zipcode);
+  street && (addressCheck.street = street);
+  number && (addressCheck.number = number);
+  neighborhood && (addressCheck.neighborhood = neighborhood);
+  complement && (addressCheck.complement = complement);
+
+  AppDataSource.getRepository(Address).update(addressCheck.id, {
+    zipcode,
+    street,
+    number,
+    neighborhood,
+    complement,
+  });
+
+  const message = {
+    status: true,
+    message: "Address updated with success!",
+  };
+
+  return message;
 };
 
 export default addressUpdateService;

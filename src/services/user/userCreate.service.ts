@@ -7,6 +7,7 @@ import { AppDataSource } from "../../data-source";
 import bcrypt from "bcrypt";
 import { AppError } from "../../errors/appError";
 import { checkDate } from "../../utils/checkDate";
+import { Cart } from "../../entities/cart.entity";
 
 const userCreateService = async ({
   name,
@@ -22,6 +23,7 @@ const userCreateService = async ({
   }
 
   const userRepository = AppDataSource.getRepository(User);
+  const cartRepository = AppDataSource.getRepository(Cart);
 
   const users = await userRepository.find();
 
@@ -31,13 +33,20 @@ const userCreateService = async ({
     throw new AppError(409, "Email Already Exists");
   }
 
+  const cart = new Cart();
+  cart.total = 0;
+
+  cartRepository.create(cart);
+  await cartRepository.save(cart);
+
   const user = userRepository.create({
     name: bcrypt.hashSync(name, 10),
     nickname,
     birthday,
     email,
     password: bcrypt.hashSync(password, 10),
-    isAdm: isAdm ? (isAdm = isAdm) : (isAdm = false)
+    cart: cart,
+    isAdm: isAdm ? true : false,
   });
 
   await userRepository.save(user);

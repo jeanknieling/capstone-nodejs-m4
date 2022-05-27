@@ -23,6 +23,13 @@ import updateCategoryValidatorSchema from "../validations/categories/updateCateg
 const routes = Router();
 
 export const categoriesRoutes = () => {
+  routes.use(
+    expressYupMiddleware({
+      schemaValidator: tokenValidatorSchema,
+      propertiesToValidate: ["headers"],
+    })
+  );
+  
   routes.post(
     "/",
     expressYupMiddleware({ schemaValidator: createCategorySchema }),
@@ -32,23 +39,10 @@ export const categoriesRoutes = () => {
     categoryCreateController
   );
 
-  routes.get(
-    "/",
-    expressYupMiddleware({
-      schemaValidator: tokenValidatorSchema,
-      propertiesToValidate: ["headers"],
-    }),
-    authUser,
-    categoryNotRegistered,
-    categoryListController
-  );
+  routes.get("/", authUser, categoryNotRegistered, categoryListController);
 
   routes.get(
     "/:id",
-    expressYupMiddleware({
-      schemaValidator: tokenValidatorSchema,
-      propertiesToValidate: ["headers"],
-    }),
     expressYupMiddleware({ schemaValidator: listCategoryByIdValidatorSchema }),
     authUser,
     categoryNotFound,
@@ -58,10 +52,6 @@ export const categoriesRoutes = () => {
   routes.patch(
     "/changes/:id",
     expressYupMiddleware({ schemaValidator: updateCategoryValidatorSchema }),
-    expressYupMiddleware({
-      schemaValidator: tokenValidatorSchema,
-      propertiesToValidate: ["headers"],
-    }),
     authUser,
     verifyisAdmMiddleware,
     categoryNotFound,
@@ -72,10 +62,6 @@ export const categoriesRoutes = () => {
   routes.delete(
     "/:id",
     expressYupMiddleware({ schemaValidator: deleteCategoryValidatorSchema }),
-    expressYupMiddleware({
-      schemaValidator: tokenValidatorSchema,
-      propertiesToValidate: ["headers"],
-    }),
     authUser,
     verifyisAdmMiddleware,
     categoryNotFound,

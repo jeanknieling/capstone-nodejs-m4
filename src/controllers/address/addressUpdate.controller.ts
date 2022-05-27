@@ -1,25 +1,27 @@
 import { Request, Response } from "express";
+import { AppError, handleError } from "../../errors/appError";
 import addressUpdateService from "../../services/address/addressUpdate.service";
 
 const addressUpdateController = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-
-    const { name, discount_value } = req.body;
+    const userId = req.userId;
+    const { addressId } = req.params;
+    const { zipcode, street, number, neighborhood, complement } = req.body;
 
     const address = await addressUpdateService(
-      parseInt(id),
-      name,
-      discount_value
+      userId,
+      Number(addressId),
+      zipcode,
+      street,
+      number,
+      neighborhood,
+      complement,
     );
 
-    return res.status(201).json({ message: "address updated!" });
+    return res.json(address);
   } catch (err) {
-    if (err instanceof Error) {
-      return res.status(400).send({
-        error: err.name,
-        message: err.message,
-      });
+    if (err instanceof AppError) {
+      handleError(err, res);
     }
   }
 };

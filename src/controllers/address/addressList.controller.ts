@@ -6,12 +6,11 @@ const addressListController = async (req: Request, res: Response) => {
   
   try {
     const addresss = await addressListService(id);
-  
 
     return res.send(addresss);
   } catch (err) {
     if (err instanceof Error) {
-      return res.status(400).send({
+      return res.status(401).send({
         error: err.name,
         message: err.message,
       });

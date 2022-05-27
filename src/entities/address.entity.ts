@@ -4,8 +4,6 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
   JoinColumn,
-  UpdateDateColumn,
-  CreateDateColumn,
 } from "typeorm";
 
 import { User } from "./user.entity";
@@ -30,9 +28,9 @@ export class Address {
   @Column()
   complement: string;
 
-  // nao permite criar endereco com user:User
-  @ManyToOne((type) => User, (user) => user.address)
-  @JoinColumn()
+  @ManyToOne((type) => User, (user) => user.address, {
+    onDelete: "CASCADE",
+  })
   user: User;
 
   @Column()
@@ -49,5 +47,4 @@ export class Address {
       this.updated_at = new Date();
     }
   }
-  
 }

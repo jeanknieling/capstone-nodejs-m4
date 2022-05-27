@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-const listProductByCategoryValidatorSchema = {
+const listProductByCategorySchema = {
   schema: {
     body: {
       yupSchema: yup.object().shape({
@@ -16,4 +16,4 @@ const listProductByCategoryValidatorSchema = {
   },
 };
 
-export default listProductByCategoryValidatorSchema;
+export default listProductByCategorySchema;
