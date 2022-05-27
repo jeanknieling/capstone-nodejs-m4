@@ -16,3 +16,4 @@ const buyCreateController = async (req: Request, res: Response) => {
 };
 
 export default buyCreateController;
+

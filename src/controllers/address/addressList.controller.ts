@@ -10,7 +10,7 @@ const addressListController = async (req: Request, res: Response) => {
     return res.send(addresss);
   } catch (err) {
     if (err instanceof Error) {
-      return res.status(400).send({
+      return res.status(401).send({
         error: err.name,
         message: err.message,
       });

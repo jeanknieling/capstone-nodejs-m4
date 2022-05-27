@@ -1,6 +1,6 @@
-import { Entity, Column, PrimaryColumn, ManyToOne } from "typeorm";
-import { Category } from "./category.entity";
+import { Entity, Column, PrimaryColumn, ManyToOne, OneToMany } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { Category } from "./category.entity";
 
 @Entity()
 export class Product {
@@ -32,14 +32,14 @@ export class Product {
   updated_at: Date;
 
   constructor() {
-    if (!this.id) {
-      this.id = uuid();
-    }
     if (!this.created_at) {
       this.created_at = new Date();
     }
     if (!this.updated_at) {
       this.updated_at = new Date();
+    }
+    if (!this.id) {
+      this.id = uuid();
     }
   }
 }

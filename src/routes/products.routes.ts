@@ -60,7 +60,7 @@ export const productsRoutes = () => {
     productListController
   );
 
-  routes.get(
+  routes.post(
     "/product",
     expressYupMiddleware({ schemaValidator: listProductByNameSchema }),
     authUser,
@@ -68,7 +68,7 @@ export const productsRoutes = () => {
     productListByNameController
   );
 
-  routes.get(
+  routes.post(
     "/category",
     expressYupMiddleware({
       schemaValidator: listProductByCategorySchema,
