@@ -33,9 +33,7 @@ const addProductService = async (userId: string, productName: string) => {
 
   if (cart && product) {
 
-    console.log("CART", cart)
     if (cart.products.filter((prod) => prod.name === product.name).length) {
-      console.log("PROD", product.name )
       throw new AppError(400, "Product is already in the cart");
     }
 
@@ -44,16 +42,9 @@ const addProductService = async (userId: string, productName: string) => {
 
     await cartRepository.save(cart);
 
-    const updatedCart = await cartRepository.findOne({
-      where: {
-        id: user?.cart.id,
-      },
-    });
-
-    console.log("UPDATED", updatedCart)
-
-    return updatedCart;
+    return cart;
   }
 };
 
 export default addProductService;
+

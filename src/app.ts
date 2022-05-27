@@ -1,9 +1,12 @@
-import express, { Request, Response, NextFunction } from "express";
+import express from "express";
 import "express-async-errors";
 import "reflect-metadata";
 import { appRoutes } from "./routes/index";
+import cors from "cors";
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 
@@ -14,12 +17,5 @@ app.get("/home", (request, response) => {
                   <p>Parabens, voce esta conectado!</p>
                   <p>Clique <a href="https://api-capstone-grupo8.herokuapp.com/users/">aqui</a> para ver os Usuarios<p>`);
 });
-
-if (process.env.NODE_ENV !== "test") {
-  const port = process.env.PORT || 3000;
-  app.listen(port, () => {
-    console.log(`Server running ${port}`);
-  });
-}
 
 export default app;

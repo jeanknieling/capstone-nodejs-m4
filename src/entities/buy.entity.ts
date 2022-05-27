@@ -4,6 +4,7 @@ import {
   PrimaryColumn,
   OneToMany,
   ManyToOne,
+  JoinColumn,
   ManyToMany,
   JoinTable,
 } from "typeorm";
@@ -32,12 +33,8 @@ export class Buy {
   products: Product []
 
   @ManyToOne((type) => User, (user) => user.buys)
+  @JoinColumn()
   user: User;
-
-  @OneToMany((type) => Product, (product) => product.buy,{
-    eager: true,
-  })
-  product: Product[];
 
   @Column()
   created_at: Date;
